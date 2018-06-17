@@ -12,7 +12,7 @@ namespace Ejyle.DevAccelerate.Core.Caching
     public interface ICacheManager
     {
         /// <summary>
-        /// Inserts a cache entiry into the cache.
+        /// Inserts a cache entry into the cache.
         /// </summary>
         /// <param name="key">A unique identifier for the cache entry.</param>
         /// <param name="value">The object to insert into the cache.</param>
