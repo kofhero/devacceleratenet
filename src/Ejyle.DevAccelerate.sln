@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2036
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{B81C5372-A185-4E08-B4C7-55DACCBC851B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejyle.DevAccelerate.Core", "Ejyle.DevAccelerate.Core\Ejyle.DevAccelerate.Core.csproj", "{D6C2A6B1-B80F-404C-B087-0A31927F1A4C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D6C2A6B1-B80F-404C-B087-0A31927F1A4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6C2A6B1-B80F-404C-B087-0A31927F1A4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6C2A6B1-B80F-404C-B087-0A31927F1A4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6C2A6B1-B80F-404C-B087-0A31927F1A4C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D6C2A6B1-B80F-404C-B087-0A31927F1A4C} = {B81C5372-A185-4E08-B4C7-55DACCBC851B}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {42F3A2F2-E141-4DF6-99B0-B818023128BF}
+		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Logging.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.ExceptionHandling.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Data.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Logging.Database.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.ExceptionHandling.Logging.6.0.1304.0\lib\NET45
+	EndGlobalSection
+EndGlobal
