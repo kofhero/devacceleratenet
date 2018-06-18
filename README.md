@@ -6,7 +6,7 @@
 
 <h3>History</h3>
 
-<p><a href="https://github.com/tanveery">Tanveer Yousuf</a> started to work on DevAccelerate project at <a href="http://www.ejyle.com">Ejyle</a> in mid 2013. The main purpose of the project was to help quickly bootstrap complex and real-world .NET app development. Since 2013, the project went through many iterations and improvements.</p>
+<p><a href="https://github.com/tanveery">Tanveer Yousuf</a> (<a href="http://www.twitter.com/tanveery">@tanveery</a>) started to work on DevAccelerate project at <a href="http://www.ejyle.com">Ejyle</a> in mid 2013. The main purpose of the project was to help quickly bootstrap complex and real-world .NET app development. Since 2013, the project went through many iterations and improvements.</p>
 
 <p>The project was open sourced in October 2015 but it remains to be officially supported by Ejyle and actively contributed to by Tanveer.</p>
 
