@@ -4,7 +4,6 @@
 // ----------------------------------------------------------------------------------------------------------------------
 
 using System;
-using System.Data.Entity;
 
 namespace Ejyle.DevAccelerate.Core
 {
