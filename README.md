@@ -1,14 +1,17 @@
 <h1>DevAccelerate.NET</h1>
 
+<p>
+<a href="https://badge.fury.io/gh/DevAccelerate%2FDevAccelerateNet"><img src="https://badge.fury.io/gh/DevAccelerate%2FDevAccelerateNet.svg" alt="Current Version" height="20"></a>
 <a href="https://gitter.im/devaccelerate/dotnet"><img src="http://badges.gitter.im/tanveery/repo.png" /></a>
+</p>
 
 <strong>DevAccelerate.NET</strong> is the DevAccelerate library for Microsoft .NET Framework and it is designed to help you build real-world apps rapidly. It provides all the interfaces and defualt implementations for the most common cross-cutting concerns such as configuration, caching, logging, exception handling, security, subscriptions, notifications, and much more.
 
-<h3>History</h3>
+<h3>Background</h3>
 
 <p><a href="https://github.com/tanveery">Tanveer Yousuf</a> (<a href="http://www.twitter.com/tanveery">@tanveery</a>) started to work on DevAccelerate project at <a href="http://www.ejyle.com">Ejyle</a> in mid 2013. The main purpose of the project was to help quickly bootstrap complex and real-world .NET app development.</p>
 
-<p>The project was open sourced in October 2015 across different repositories on GitHub. Additionally, some parts of DevAccelerate.NET remained in Ejyle's private version control systems. Starting with June 2018, this new repository <a href="https://github.com/devaccelerate/devacceleratenet">https://github.com/devaccelerate/devacceleratenet</a> will be the single and unified repository for the entire DevAccelerate.NET codebase.</p>
+<p>The project was open sourced in October 2015 across different repositories on GitHub. Additionally, some parts of DevAccelerate.NET remained in Ejyle's private version control systems. Starting with June 2018, this new repository <a href="https://github.com/devaccelerate/devacceleratenet">https://github.com/devaccelerate/devacceleratenet</a> will be the single and unified repository for the entire DevAccelerate.NET codebase. When completed and ready for use, the repository will be tagged as v4.0.0.</p>
 
 <h3>Commitment to DevAccelerate.NET</h3>
 
