@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejyle.DevAccelerate.Identit
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejyle.DevAccelerate.Identity.AspNet", "Identity\Ejyle.DevAccelerate.Identity.AspNet\Ejyle.DevAccelerate.Identity.AspNet.csproj", "{F3B6DDF8-58C8-4634-A0F1-E197107A8467}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Notifications", "Notifications", "{7F3358A3-A52E-4EB6-A042-237BFB5009D3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejyle.DevAccelerate.Notifications", "Notifications\Ejyle.DevAccelerate.Notifications\Ejyle.DevAccelerate.Notifications.csproj", "{17C92A8E-B635-4435-906D-3F3DB8982BFB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +35,10 @@ Global
 		{F3B6DDF8-58C8-4634-A0F1-E197107A8467}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F3B6DDF8-58C8-4634-A0F1-E197107A8467}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F3B6DDF8-58C8-4634-A0F1-E197107A8467}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17C92A8E-B635-4435-906D-3F3DB8982BFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17C92A8E-B635-4435-906D-3F3DB8982BFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17C92A8E-B635-4435-906D-3F3DB8982BFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17C92A8E-B635-4435-906D-3F3DB8982BFB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -39,9 +47,10 @@ Global
 		{D6C2A6B1-B80F-404C-B087-0A31927F1A4C} = {B81C5372-A185-4E08-B4C7-55DACCBC851B}
 		{592380EA-C5D8-4436-B2E0-DE7CCB256860} = {B49FAF31-5772-4214-9897-9A349F94AE07}
 		{F3B6DDF8-58C8-4634-A0F1-E197107A8467} = {B49FAF31-5772-4214-9897-9A349F94AE07}
+		{17C92A8E-B635-4435-906D-3F3DB8982BFB} = {7F3358A3-A52E-4EB6-A042-237BFB5009D3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Logging.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.ExceptionHandling.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Data.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Logging.Database.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.ExceptionHandling.Logging.6.0.1304.0\lib\NET45
 		SolutionGuid = {42F3A2F2-E141-4DF6-99B0-B818023128BF}
+		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Logging.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.ExceptionHandling.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Data.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Logging.Database.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.ExceptionHandling.Logging.6.0.1304.0\lib\NET45
 	EndGlobalSection
 EndGlobal

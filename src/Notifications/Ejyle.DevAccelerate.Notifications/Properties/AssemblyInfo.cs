@@ -4,8 +4,8 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Ejyle.DevAccelerate.Core")]
-[assembly: AssemblyDescription("Ejyle.DevAccelerate.Core")]
+[assembly: AssemblyTitle("Ejyle.DevAccelerate.Notifications")]
+[assembly: AssemblyDescription("Ejyle.DevAccelerate.Notifications")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Ejyle Technologies (P) Ltd")]
 [assembly: AssemblyProduct("DevAccelerate for .NET")]
@@ -19,7 +19,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("d6c2a6b1-b80f-404c-b087-0a31927f1a4c")]
+[assembly: Guid("17c92a8e-b635-4435-906d-3f3db8982bfb")]
 
 // Version information for an assembly consists of the following four values:
 //
