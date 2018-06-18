@@ -8,7 +8,12 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Ejyle.DevAccelerate.Notifications.Messages
 {
-    public class NotificationMessageParam<TKey, TNotificationMessage> : EntityBase<TKey>, INotificationMessageParam<TKey>
+    public class NotificationMessageParam
+        : NotificationMessageParam<int, string, NotificationMessage>
+    { }
+
+    public class NotificationMessageParam<TKey, TUserIdKey, TNotificationMessage>
+        : EntityBase<TKey>, INotificationMessageParam<TKey>
         where TNotificationMessage : INotificationMessage<TKey>
     {
         [Required]

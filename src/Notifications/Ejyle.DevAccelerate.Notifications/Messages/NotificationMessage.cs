@@ -3,6 +3,7 @@
 // Licensed under the MIT license. See the LICENSE file in the project's root directory for complete license information.
 // ---------------------------------------------------------------------------------------------------------------------- 
 
+using Ejyle.DevAccelerate.Core;
 using Ejyle.DevAccelerate.Notifications.Recipients;
 using Ejyle.DevAccelerate.Notifications.Subjects;
 using System;
@@ -11,7 +12,15 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Ejyle.DevAccelerate.Notifications.Messages
 {
-    public class NotificationMessage<TKey, TUserIdKey, TNotificationMessageParam, TNotificationRecipient, TNotificationSubjectParam> : INotificationMessage<TKey>
+    public class NotificationMessage
+        : NotificationMessage<int, string, NotificationMessageParam, NotificationRecipient, NotificationSubjectParam>
+    {
+        public NotificationMessage() : base()
+        { }
+    }
+
+    public class NotificationMessage<TKey, TUserIdKey, TNotificationMessageParam, TNotificationRecipient, TNotificationSubjectParam>
+        : EntityBase<TKey>, INotificationMessage<TKey>
         where TNotificationMessageParam : INotificationMessageParam<TKey>
         where TNotificationRecipient : INotificationRecipient<TKey, TUserIdKey>
         where TNotificationSubjectParam : INotificationSubjectParam<TKey>
@@ -22,8 +31,6 @@ namespace Ejyle.DevAccelerate.Notifications.Messages
             Recipients = new HashSet<TNotificationRecipient>();
             SubjectParams = new HashSet<TNotificationSubjectParam>();
         }
-
-        public TKey Id { get; set; }
 
         public TKey NotificationTemplateId { get; set; }
 

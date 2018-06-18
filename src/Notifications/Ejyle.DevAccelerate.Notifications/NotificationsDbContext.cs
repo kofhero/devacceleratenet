@@ -14,7 +14,7 @@ namespace Ejyle.DevAccelerate.Notifications
 {
     public class NotificationsDbContext<TKey, TUserIdKey, TNotificationMessageTemplate, TNotificationSender, TNotificationMessage, TNotificationMessageSubjectParam, TNotificationMessageParam, TNotificationMessageRecipient> : DbContext
         where TNotificationMessage : NotificationMessage<TKey, TUserIdKey, TNotificationMessageParam, TNotificationMessageRecipient, TNotificationMessageSubjectParam>
-        where TNotificationMessageParam : NotificationMessageParam<TKey, TNotificationMessage>
+        where TNotificationMessageParam : NotificationMessageParam<TKey, TUserIdKey, TNotificationMessage>
         where TNotificationMessageRecipient : NotificationRecipient<TKey, TUserIdKey, TNotificationMessage>
         where TNotificationMessageSubjectParam : NotificationSubjectParam<TKey, TNotificationMessage>
         where TNotificationMessageTemplate : NotificationTemplate<TKey>

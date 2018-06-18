@@ -3,16 +3,20 @@
 // Licensed under the MIT license. See the LICENSE file in the project's root directory for complete license information.
 // ---------------------------------------------------------------------------------------------------------------------- 
 
+using Ejyle.DevAccelerate.Core;
 using Ejyle.DevAccelerate.Notifications.Messages;
 using System.ComponentModel.DataAnnotations;
 
 namespace Ejyle.DevAccelerate.Notifications.Recipients
 {
-    public class NotificationRecipient<TKey, TUserIdKey, TNotificationMessage> : INotificationRecipient<TKey, TUserIdKey>
+    public class NotificationRecipient
+        : NotificationRecipient<int, string, NotificationMessage>
+    { }
+
+    public class NotificationRecipient<TKey, TUserIdKey, TNotificationMessage>
+        : EntityBase<TKey>, INotificationRecipient<TKey, TUserIdKey>
         where TNotificationMessage : INotificationMessage<TKey>
     {
-        public TKey Id { get; set; }
-
         [StringLength(100)]
         public string Name { get; set; }
         public TUserIdKey UserId { get; set; }

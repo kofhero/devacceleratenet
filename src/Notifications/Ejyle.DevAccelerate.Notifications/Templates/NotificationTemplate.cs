@@ -8,7 +8,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Ejyle.DevAccelerate.Notifications.Templates
 {
-    public class NotificationTemplate<TKey> : EntityBase<TKey>, INotificationTemplate<TKey>
+    public class NotificationTemplate<TKey>
+        : EntityBase<TKey>, INotificationTemplate<TKey>
     {
         [Required]
         [StringLength(255)]

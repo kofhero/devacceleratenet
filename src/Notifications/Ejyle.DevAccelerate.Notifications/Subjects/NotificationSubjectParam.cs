@@ -9,7 +9,12 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Ejyle.DevAccelerate.Notifications.Subjects
 {
-    public class NotificationSubjectParam<TKey, TNotificationMessage> : EntityBase<TKey>, INotificationSubjectParam<TKey>
+    public class NotificationSubjectParam
+        : NotificationSubjectParam<int, NotificationMessage>
+    { }
+
+    public class NotificationSubjectParam<TKey, TNotificationMessage>
+        : EntityBase<TKey>, INotificationSubjectParam<TKey>
         where TNotificationMessage : INotificationMessage<TKey>
     {
         [Required]

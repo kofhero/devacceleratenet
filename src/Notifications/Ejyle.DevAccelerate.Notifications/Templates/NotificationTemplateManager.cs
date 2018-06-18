@@ -10,7 +10,8 @@ using System.Threading.Tasks;
 
 namespace Ejyle.DevAccelerate.Notifications.Templates
 {
-    public class NotificationTemplateManager<TKey, TNotificationTemplate, TRepository> : EntityManagerBase<TKey, TNotificationTemplate, TRepository>
+    public class NotificationTemplateManager<TKey, TNotificationTemplate, TRepository>
+        : EntityManagerBase<TKey, TNotificationTemplate, TRepository>
         where TNotificationTemplate : INotificationTemplate<TKey>
         where TRepository : INotificationTemplateRepository<TKey, TNotificationTemplate>
     {
