@@ -16,7 +16,7 @@
 
 <h3>License</h3>
 
-<p>The usage of DevAccelerate for .NET is governered by the terms and conditions of its <a href="https://github.com/devaccelerate/devacceleratenet/blob/master/LICENSE">License</a>.</p>
+<p>The usage of DevAccelerate.NET is governered by the terms and conditions of its <a href="https://github.com/devaccelerate/devacceleratenet/blob/master/LICENSE">License</a>.</p>
 
 <h3>Issues</h3>
 
