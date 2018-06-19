@@ -12,6 +12,11 @@ using Ejyle.DevAccelerate.Notifications.Templates;
 
 namespace Ejyle.DevAccelerate.Notifications
 {
+    public class NotificationsDbContext
+        : NotificationsDbContext<int, string, NotificationTemplate, NotificationSender, NotificationMessage, NotificationSubjectParam, NotificationMessageParam, NotificationRecipient>
+    {
+    }
+
     public class NotificationsDbContext<TKey, TUserIdKey, TNotificationMessageTemplate, TNotificationSender, TNotificationMessage, TNotificationMessageSubjectParam, TNotificationMessageParam, TNotificationMessageRecipient> : DbContext
         where TNotificationMessage : NotificationMessage<TKey, TUserIdKey, TNotificationMessageParam, TNotificationMessageRecipient, TNotificationMessageSubjectParam>
         where TNotificationMessageParam : NotificationMessageParam<TKey, TUserIdKey, TNotificationMessage>

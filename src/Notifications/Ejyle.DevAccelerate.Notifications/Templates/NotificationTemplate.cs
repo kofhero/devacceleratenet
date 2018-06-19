@@ -8,6 +8,10 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Ejyle.DevAccelerate.Notifications.Templates
 {
+    public class NotificationTemplate : NotificationTemplate<int>
+    {
+    }
+
     public class NotificationTemplate<TKey>
         : EntityBase<TKey>, INotificationTemplate<TKey>
     {

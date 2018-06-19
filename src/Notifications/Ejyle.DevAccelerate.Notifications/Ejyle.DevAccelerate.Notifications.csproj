@@ -53,6 +53,7 @@
     <Compile Include="Messages\INotificationMessage.cs" />
     <Compile Include="Messages\INotificationMessageParam.cs" />
     <Compile Include="Messages\INotificationMessageRepository.cs" />
+    <Compile Include="NotificationsRepositoryBase.cs" />
     <Compile Include="Recipients\INotificationRecipient.cs" />
     <Compile Include="Senders\INotificationSender.cs" />
     <Compile Include="Senders\INotificationSenderRepository.cs" />
