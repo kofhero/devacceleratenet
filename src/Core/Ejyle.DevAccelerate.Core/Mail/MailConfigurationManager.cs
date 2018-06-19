@@ -6,20 +6,20 @@
 using Ejyle.DevAccelerate.Core;
 using Ejyle.DevAccelerate.Core.Configuration;
 
-namespace Ejyle.DevAccelerate.Notifications.Configuration
+namespace Ejyle.DevAccelerate.Core.Mail
 {
-    public static class NotificationConfigurationManager
+    public static class MailConfigurationManager
     {
-        private const string NOTIFICATION_CONFIG = "daNotificationConfiguration";
+        private const string MAIL_CONFIG = "daMailConfiguration";
 
         public static void SetConfiguration(IConfigurationSource configurationSource)
         {
-            DaApplicationContext.SetupConfiguration<ProviderConfigurationSection>(NOTIFICATION_CONFIG, configurationSource);
+            DaApplicationContext.SetupConfiguration<ProviderConfigurationSection>(MAIL_CONFIG, configurationSource);
         }
 
-        public static NotificationConfigurationSection GetConfiguration()
+        public static MailConfigurationSection GetConfiguration()
         {
-            return DaApplicationContext.GetConfiguration<NotificationConfigurationSection>(NOTIFICATION_CONFIG);
+            return DaApplicationContext.GetConfiguration<MailConfigurationSection>(MAIL_CONFIG);
         }
     }
 }

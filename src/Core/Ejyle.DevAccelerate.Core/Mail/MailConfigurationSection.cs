@@ -6,42 +6,42 @@
 using System.Configuration;
 using Ejyle.DevAccelerate.Core.Configuration;
 
-namespace Ejyle.DevAccelerate.Notifications.Configuration
+namespace Ejyle.DevAccelerate.Core.Mail
 {
-    public class NotificationConfigurationSection : DaConfigurationSection
+    public class MailConfigurationSection : DaConfigurationSection
     {
-        private const string EMAIL_PROVIDER = "emailProvider";
-        private const string SMS_PROVIDER = "smsProvider";   
+        private const string SMTP_SERVER = "smtpServer";
+        private const string MAIL_PROVIDER = "mailProvider";
 
-        [ConfigurationProperty(EMAIL_PROVIDER, IsRequired = false)]
-        public EmailProviderConfigurationElement EmailProvider
+        [ConfigurationProperty(MAIL_PROVIDER, IsRequired = false)]
+        public ProviderConfigurationElement MailProvider
         {
             get
             {
-                return this[EMAIL_PROVIDER] as EmailProviderConfigurationElement;
+                return this[MAIL_PROVIDER] as ProviderConfigurationElement;
             }
             set
             {
-                this[EMAIL_PROVIDER] = value;
+                this[MAIL_PROVIDER] = value;
             }
         }
 
-        [ConfigurationProperty(SMS_PROVIDER, IsRequired = false)]
-        public SmsProviderConfigurationElement SmsProvider
+        [ConfigurationProperty(SMTP_SERVER, IsRequired = false)]
+        public SmtpServerConfigurationElement SmtpServer
         {
             get
             {
-                return this[SMS_PROVIDER] as SmsProviderConfigurationElement;
+                return this[SMTP_SERVER] as SmtpServerConfigurationElement;
             }
             set
             {
-                this[SMS_PROVIDER] = value;
+                this[SMTP_SERVER] = value;
             }
         }
 
         public override string GetConfigurationSectionName()
         {
-            return "daNotificationConfiguration";
+            return "daMailConfiguration";
         }
     }
 }

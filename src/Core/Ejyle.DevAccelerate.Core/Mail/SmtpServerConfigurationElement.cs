@@ -6,13 +6,14 @@
 using System;
 using System.Configuration;
 
-namespace Ejyle.DevAccelerate.Notifications.Configuration
+namespace Ejyle.DevAccelerate.Core.Mail
 {
-    public class EmailProviderConfigurationElement : ConfigurationElement
+    public class SmtpServerConfigurationElement : ConfigurationElement
     {
         private const string HOST_NAME = "hostName";
         private const string USER_ID = "userId";
         private const string PASSWORD = "password";
+        private const string PORT = "port";
         private const string API_KEY = "apiKey";
         private const string USE_SSL = "useSsl";
         private const string DEFAULT_SENDER_NAME = "defaultSenderName";
@@ -54,6 +55,19 @@ namespace Ejyle.DevAccelerate.Notifications.Configuration
             set
             {
                 this[PASSWORD] = value;
+            }
+        }
+
+        [ConfigurationProperty(PORT, IsRequired = false, DefaultValue = 25)]
+        public int Port
+        {
+            get
+            {
+                return Convert.ToInt32(this[PORT]);
+            }
+            set
+            {
+                this[PORT] = value;
             }
         }
 

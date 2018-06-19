@@ -58,8 +58,13 @@
     <Compile Include="Configuration\IConfigurationSource.cs" />
     <Compile Include="Configuration\NamedConfigurationElement.cs" />
     <Compile Include="Configuration\NamedConfigurationElementCollection.cs" />
+    <Compile Include="Configuration\ProviderConfigurationElement.cs" />
     <Compile Include="Configuration\ProviderConfigurationSection.cs" />
     <Compile Include="DaApplicationContext.cs" />
+    <Compile Include="Mail\DefaultMailProvider.cs" />
+    <Compile Include="Mail\MailProviderFactory.cs" />
+    <Compile Include="Mail\SmtpServerConfigurationElement.cs" />
+    <Compile Include="Mail\IMailProvider.cs" />
     <Compile Include="EntityBase.cs" />
     <Compile Include="EntityManagerBase.cs" />
     <Compile Include="Exceptions\ExceptionHandlingConfigurationSection.cs" />
@@ -71,6 +76,8 @@
     <Compile Include="Logging\ILogMessage.cs" />
     <Compile Include="Logging\LoggingConfigurationSection.cs" />
     <Compile Include="Logging\LogMessage.cs" />
+    <Compile Include="Mail\MailConfigurationManager.cs" />
+    <Compile Include="Mail\MailConfigurationSection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -79,5 +86,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
