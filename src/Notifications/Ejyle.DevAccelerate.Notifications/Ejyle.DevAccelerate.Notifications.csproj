@@ -41,6 +41,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -50,6 +51,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration\EmailProviderConfigurationElement.cs" />
+    <Compile Include="Configuration\NotificationConfigurationSection.cs" />
+    <Compile Include="Configuration\SmsProviderConfigurationElement.cs" />
     <Compile Include="Messages\INotificationMessage.cs" />
     <Compile Include="Messages\INotificationMessageParam.cs" />
     <Compile Include="Messages\INotificationMessageRepository.cs" />
@@ -59,7 +63,7 @@
     <Compile Include="Senders\INotificationSender.cs" />
     <Compile Include="Senders\INotificationSenderRepository.cs" />
     <Compile Include="Subjects\INotificationSubjectParam.cs" />
-    <Compile Include="NotificationConfigurationManager.cs" />
+    <Compile Include="Configuration\NotificationConfigurationManager.cs" />
     <Compile Include="Messages\NotificationMessage.cs" />
     <Compile Include="Messages\NotificationMessageManager.cs" />
     <Compile Include="Messages\NotificationMessageParam.cs" />
