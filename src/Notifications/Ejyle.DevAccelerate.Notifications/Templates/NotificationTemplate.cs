@@ -4,30 +4,41 @@
 // ---------------------------------------------------------------------------------------------------------------------- 
 
 using Ejyle.DevAccelerate.Core;
+using Ejyle.DevAccelerate.Notifications.Senders;
 using System.ComponentModel.DataAnnotations;
 
 namespace Ejyle.DevAccelerate.Notifications.Templates
 {
-    public class NotificationTemplate : NotificationTemplate<int>
+    public class NotificationTemplate : NotificationTemplate<int, int?, string, NotificationSender>
     {
     }
 
-    public class NotificationTemplate<TKey>
-        : EntityBase<TKey>, INotificationTemplate<TKey>
+    public class NotificationTemplate<TKey, TOptionalKey, TUserIdKey, TNotificationSender>
+        : EntityBase<TKey>, INotificationTemplate<TKey, TOptionalKey>
+        where TNotificationSender : INotificationSender<TKey, TUserIdKey>
     {
         [Required]
         [StringLength(255)]
         public string Name { get; set; }
-        public TKey NotificationSenderId { get; set; }
+
         public string Subject { get; set; }
+
+        [Required]
         public string Message { get; set; }
-        public bool IsHtml { get; set; }
+
+        [Required]
+        public NotificationMessageFormat MessageFormat { get; set; }
+
         public NotificationPriority Priority { get; set; }
-        [StringLength(255)]
-        public string Sender { get; set; }
-        public bool HasMessageParams { get; set; }
-        public bool HasSubjectParams { get; set; }
-        public bool HasRecipientMessageParams { get; set; }
-        public bool HasRecipientSubjectParams { get; set; }
+
+        public bool IsMessageParameterized { get; set; }
+
+        public bool IsSubjectParameterized { get; set; }
+
+        public bool IsActive { get; set; }
+
+        public TOptionalKey SenderId { get; set; }
+
+        public virtual TNotificationSender Sender { get; set; }
     }
 }

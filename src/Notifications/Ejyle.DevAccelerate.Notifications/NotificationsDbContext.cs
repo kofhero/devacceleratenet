@@ -13,17 +13,17 @@ using Ejyle.DevAccelerate.Notifications.Templates;
 namespace Ejyle.DevAccelerate.Notifications
 {
     public class NotificationsDbContext
-        : NotificationsDbContext<int, string, NotificationTemplate, NotificationSender, NotificationMessage, NotificationSubjectParam, NotificationMessageParam, NotificationRecipient>
+        : NotificationsDbContext<int, int?, string, NotificationTemplate, NotificationSender, NotificationMessage, NotificationSubjectParam, NotificationMessageParam, NotificationRecipient>
     {
     }
 
-    public class NotificationsDbContext<TKey, TUserIdKey, TNotificationMessageTemplate, TNotificationSender, TNotificationMessage, TNotificationMessageSubjectParam, TNotificationMessageParam, TNotificationMessageRecipient> : DbContext
-        where TNotificationMessage : NotificationMessage<TKey, TUserIdKey, TNotificationMessageParam, TNotificationMessageRecipient, TNotificationMessageSubjectParam>
+    public class NotificationsDbContext<TKey, TOptionalKey, TUserIdKey, TNotificationTemplate, TNotificationSender, TNotificationMessage, TNotificationSubjectParam, TNotificationMessageParam, TNotificationRecipient> : DbContext
+        where TNotificationMessage : NotificationMessage<TKey, TUserIdKey, TNotificationMessageParam, TNotificationRecipient, TNotificationSubjectParam>
         where TNotificationMessageParam : NotificationMessageParam<TKey, TUserIdKey, TNotificationMessage>
-        where TNotificationMessageRecipient : NotificationRecipient<TKey, TUserIdKey, TNotificationMessage>
-        where TNotificationMessageSubjectParam : NotificationSubjectParam<TKey, TNotificationMessage>
-        where TNotificationMessageTemplate : NotificationTemplate<TKey>
-        where TNotificationSender : NotificationSender<TKey, TUserIdKey>
+        where TNotificationRecipient : NotificationRecipient<TKey, TUserIdKey, TNotificationMessage>
+        where TNotificationSubjectParam : NotificationSubjectParam<TKey, TNotificationMessage>
+        where TNotificationTemplate : NotificationTemplate<TKey, TOptionalKey, TUserIdKey, TNotificationSender>
+        where TNotificationSender : NotificationSender<TKey, TOptionalKey, TUserIdKey, TNotificationTemplate>
     {
         private const string SCHEMA_NAME = "notifications";
 
@@ -39,20 +39,26 @@ namespace Ejyle.DevAccelerate.Notifications
         public DbSet<TNotificationMessageParam> NotificationMessageParams { get; set; }
         public DbSet<TNotificationSender> NotificationSenders { get; set; }
         public DbSet<TNotificationMessage> NotificationMessages { get; set; }
-        public DbSet<TNotificationMessageRecipient> NotificationRecipients { get; set; }
-        public DbSet<TNotificationMessageSubjectParam> NotificationSubjectParams { get; set; }
-        public DbSet<TNotificationMessageTemplate> NotificationTemplates { get; set; }
+        public DbSet<TNotificationRecipient> NotificationRecipients { get; set; }
+        public DbSet<TNotificationSubjectParam> NotificationSubjectParams { get; set; }
+        public DbSet<TNotificationTemplate> NotificationTemplates { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<TNotificationMessage>().ToTable("Messages", SCHEMA_NAME);
-            modelBuilder.Entity<TNotificationMessageTemplate>().ToTable("Templates", SCHEMA_NAME);
+            modelBuilder.Entity<TNotificationTemplate>().ToTable("Templates", SCHEMA_NAME);
             modelBuilder.Entity<TNotificationMessageParam>().ToTable("MessageParams", SCHEMA_NAME);
-            modelBuilder.Entity<TNotificationMessageRecipient>().ToTable("Recipients", SCHEMA_NAME);
-            modelBuilder.Entity<TNotificationMessageSubjectParam>().ToTable("SubjectParams", SCHEMA_NAME);
+            modelBuilder.Entity<TNotificationRecipient>().ToTable("Recipients", SCHEMA_NAME);
+            modelBuilder.Entity<TNotificationSubjectParam>().ToTable("SubjectParams", SCHEMA_NAME);
             modelBuilder.Entity<TNotificationSender>().ToTable("NotificationSenders", SCHEMA_NAME);
+
+            modelBuilder.Entity<TNotificationSender>()
+                .HasMany(e => e.Templates)
+                .WithOptional(e => e.Sender)
+                .HasForeignKey(e => e.SenderId)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<TNotificationMessage>()
                 .HasMany(e => e.MessageParams)

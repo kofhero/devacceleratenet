@@ -53,6 +53,7 @@
     <Compile Include="Messages\INotificationMessage.cs" />
     <Compile Include="Messages\INotificationMessageParam.cs" />
     <Compile Include="Messages\INotificationMessageRepository.cs" />
+    <Compile Include="NotificationMessageFormat.cs" />
     <Compile Include="NotificationsRepositoryBase.cs" />
     <Compile Include="Recipients\INotificationRecipient.cs" />
     <Compile Include="Senders\INotificationSender.cs" />
@@ -77,6 +78,7 @@
     <Compile Include="Templates\INotificationTemplateRepository.cs" />
     <Compile Include="Templates\NotificationTemplate.cs" />
     <Compile Include="Templates\NotificationTemplateManager.cs" />
+    <Compile Include="Templates\NotificationTemplateRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="da.ico" />

@@ -4,17 +4,29 @@
 // ----------------------------------------------------------------------------------------------------------------------
 
 using Ejyle.DevAccelerate.Core;
+using Ejyle.DevAccelerate.Notifications.Templates;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Ejyle.DevAccelerate.Notifications.Senders
 {
     public class NotificationSender
-        : NotificationSender<int, string>
-    { }
-
-    public class NotificationSender<TKey, TUserIdKey>
-        : EntityBase<TKey>, INotificationSender<TKey, TUserIdKey>
+        : NotificationSender<int, int?, string, NotificationTemplate>
     {
+        public NotificationSender()
+            : base()
+        { }
+    }
+
+    public class NotificationSender<TKey, TOptionalKey, TUserIdKey, TNotificationTemplate>
+        : EntityBase<TKey>, INotificationSender<TKey, TUserIdKey>
+        where TNotificationTemplate: INotificationTemplate<TKey, TOptionalKey>
+    {
+        public NotificationSender()
+        {
+            Templates = new HashSet<TNotificationTemplate>();
+        }
+
         public TUserIdKey UserId { get; set; }
 
         [StringLength(100)]
@@ -23,5 +35,7 @@ namespace Ejyle.DevAccelerate.Notifications.Senders
         [Required]
         [StringLength(255)]
         public string EmailAddress { get; set; }
+
+        public virtual ICollection<TNotificationTemplate> Templates { get; set; }
     }
 }

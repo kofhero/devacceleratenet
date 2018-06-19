@@ -11,8 +11,8 @@ using System.Threading.Tasks;
 
 namespace Ejyle.DevAccelerate.Notifications.Templates
 {
-    public interface INotificationTemplateRepository<TKey, TNotificationTemplate> : IEntityRepository<TKey, TNotificationTemplate>
-        where TNotificationTemplate : INotificationTemplate<TKey>
+    public interface INotificationTemplateRepository<TKey, TOptionalKey, TNotificationTemplate> : IEntityRepository<TKey, TNotificationTemplate>
+        where TNotificationTemplate : INotificationTemplate<TKey, TOptionalKey>
     {
         Task CreateAsync(TNotificationTemplate notificationTemplate);
         Task<List<TNotificationTemplate>> FindAllAsync();

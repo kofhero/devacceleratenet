@@ -7,18 +7,16 @@ using Ejyle.DevAccelerate.Core;
 
 namespace Ejyle.DevAccelerate.Notifications.Templates
 {
-    public interface INotificationTemplate<TKey> : IEntity<TKey>
+    public interface INotificationTemplate<TKey, TOptionalKey> : IEntity<TKey>
     {
         string Name { get; set; }
-        TKey NotificationSenderId { get; set; }
+        TOptionalKey SenderId { get; set; }
         string Subject { get; set; }
         string Message { get; set; }
-        bool IsHtml { get; set; }
+        NotificationMessageFormat MessageFormat { get; set; }
         NotificationPriority Priority { get; set; }
-        string Sender { get; set; }
-        bool HasMessageParams { get; set; }
-        bool HasSubjectParams { get; set; }
-        bool HasRecipientMessageParams { get; set; }
-        bool HasRecipientSubjectParams { get; set; }
+        bool IsMessageParameterized { get; set; }
+        bool IsSubjectParameterized { get; set; }
+        bool IsActive { get; set; }
     }
 }
