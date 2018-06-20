@@ -7,19 +7,28 @@ using System.Configuration;
 
 namespace Ejyle.DevAccelerate.Core.Configuration
 {
-    public class ProviderConfigurationElementCollection : ConfigurationElementCollection
+    public class ProviderConfigurationElementCollection : ProviderConfigurationElementCollection<ProviderConfigurationElement>
+    {
+        protected override ConfigurationElement CreateNewElement()
+        {
+            return new ProviderConfigurationElement();
+        }
+    }
+
+    public abstract class ProviderConfigurationElementCollection<TProviderConfigurationElement> : ConfigurationElementCollection
+            where TProviderConfigurationElement : ProviderConfigurationElement
     {
         protected override object GetElementKey(ConfigurationElement element)
         {
-            return ((ProviderConfigurationElement)element).Name;
+            return ((TProviderConfigurationElement)element).Name;
         }
 
-        public ProviderConfigurationElement GetByName(string name)
+        public TProviderConfigurationElement GetByName(string name)
         {
-            return (ProviderConfigurationElement)this.BaseGet((object)name);
+            return (TProviderConfigurationElement)this.BaseGet((object)name);
         }
 
-        public void Add(ProviderConfigurationElement element)
+        public void Add(TProviderConfigurationElement element)
         {
             this.BaseAdd(element);
         }
@@ -32,11 +41,6 @@ namespace Ejyle.DevAccelerate.Core.Configuration
         public void RemoveAt(int index)
         {
             this.BaseRemoveAt(index);
-        }
-
-        protected override ConfigurationElement CreateNewElement()
-        {
-            return new ProviderConfigurationElement();
         }
     }
 }

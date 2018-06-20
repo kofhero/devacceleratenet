@@ -8,20 +8,34 @@ using Ejyle.DevAccelerate.Core.Configuration;
 
 namespace Ejyle.DevAccelerate.Core.Mail
 {
-    public class MailConfigurationSection : DaProviderConfigurationSection
+    public class MailConfigurationSection : DaProviderConfigurationSection<MailProviderConfigurationElement>
     {
-        private const string SMTP_SERVER = "smtpServer";
+        private const string DEFAULT_SENDER_NAME = "defaultSenderName";
+        private const string DEFAULT_SENDER_EMAIL = "defaultSenderEmail";
 
-        [ConfigurationProperty(SMTP_SERVER, IsRequired = false)]
-        public SmtpServerConfigurationElement SmtpServer
+        [ConfigurationProperty(DEFAULT_SENDER_NAME, IsRequired = false, DefaultValue = "DevAccelerate")]
+        public string DefaultSenderName
         {
             get
             {
-                return this[SMTP_SERVER] as SmtpServerConfigurationElement;
+                return this[DEFAULT_SENDER_NAME] as string;
             }
             set
             {
-                this[SMTP_SERVER] = value;
+                this[DEFAULT_SENDER_NAME] = value;
+            }
+        }
+
+        [ConfigurationProperty(DEFAULT_SENDER_EMAIL, IsRequired = false, DefaultValue = "email@devaccelerate.com")]
+        public string DefaultSenderEmail
+        {
+            get
+            {
+                return this[DEFAULT_SENDER_EMAIL] as string;
+            }
+            set
+            {
+                this[DEFAULT_SENDER_EMAIL] = value;
             }
         }
 

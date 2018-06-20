@@ -3,12 +3,13 @@
 // Licensed under the MIT license. See the LICENSE file in the project's root directory for complete license information.
 // ----------------------------------------------------------------------------------------------------------------------
 
+using Ejyle.DevAccelerate.Core.Configuration;
 using System;
 using System.Configuration;
 
 namespace Ejyle.DevAccelerate.Core.Mail
 {
-    public class SmtpServerConfigurationElement : ConfigurationElement
+    public class MailProviderConfigurationElement : ProviderConfigurationElement
     {
         private const string HOST_NAME = "hostName";
         private const string USER_ID = "userId";
@@ -16,8 +17,6 @@ namespace Ejyle.DevAccelerate.Core.Mail
         private const string PORT = "port";
         private const string API_KEY = "apiKey";
         private const string USE_SSL = "useSsl";
-        private const string DEFAULT_SENDER_NAME = "defaultSenderName";
-        private const string DEFAULT_SENDER_EMAIL = "defaultSenderEmail";
 
         [ConfigurationProperty(HOST_NAME, IsRequired = false, DefaultValue = null)]
         public string HostName
@@ -94,32 +93,6 @@ namespace Ejyle.DevAccelerate.Core.Mail
             set
             {
                 this[USE_SSL] = value;
-            }
-        }
-
-        [ConfigurationProperty(DEFAULT_SENDER_NAME, IsRequired = false, DefaultValue = "DevAccelerate")]
-        public string DefaultSenderName
-        {
-            get
-            {
-                return this[DEFAULT_SENDER_NAME] as string;
-            }
-            set
-            {
-                this[DEFAULT_SENDER_NAME] = value;
-            }
-        }
-
-        [ConfigurationProperty(DEFAULT_SENDER_EMAIL, IsRequired = false, DefaultValue = "email@devaccelerate.com")]
-        public string DefaultSenderEmail
-        {
-            get
-            {
-                return this[DEFAULT_SENDER_EMAIL] as string;
-            }
-            set
-            {
-                this[DEFAULT_SENDER_EMAIL] = value;
             }
         }
     }

@@ -8,27 +8,23 @@ using System.Threading.Tasks;
 
 namespace Ejyle.DevAccelerate.Core.Mail
 {
-    public class DefaultMailProvider : IMailProvider
+    public class DefaultMailProvider : MailProviderBase
     {
-        private SmtpServerConfigurationElement _config;
+        public DefaultMailProvider() : base()
+        { }
 
-        public DefaultMailProvider()
+        public override void Send(MailMessage mail)
         {
-            _config = MailConfigurationManager.GetConfiguration().SmtpServer;
-        }
+            var smtpClient = new SmtpClient(this.SmtpServer.Host);
 
-        public void Send(MailMessage mail)
-        {
-            var smtpClient = new SmtpClient(_config.HostName);
-
-            smtpClient.Port = _config.Port;
-            smtpClient.Credentials = new System.Net.NetworkCredential(_config.UserId, _config.Password);
-            smtpClient.EnableSsl = _config.UseSsl;
+            smtpClient.Port = (int)SmtpServer.Port;
+            smtpClient.Credentials = new System.Net.NetworkCredential(SmtpServer.UserId, SmtpServer.Password);
+            smtpClient.EnableSsl = SmtpServer.UseSsl;
 
             smtpClient.Send(mail);
         }
 
-        public void Send(string to, string from, string subject, string body)
+        public override void Send(string to, string from, string subject, string body)
         {
             var message = new MailMessage()
             {
@@ -40,18 +36,18 @@ namespace Ejyle.DevAccelerate.Core.Mail
             Send(message);
         }
 
-        public Task SendAsync(MailMessage message)
+        public override Task SendAsync(MailMessage message)
         {
-            var smtpClient = new SmtpClient(_config.HostName);
+            var smtpClient = new SmtpClient(SmtpServer.Host);
 
-            smtpClient.Port = _config.Port;
-            smtpClient.Credentials = new System.Net.NetworkCredential(_config.UserId, _config.Password);
-            smtpClient.EnableSsl = _config.UseSsl;
+            smtpClient.Port = (int)SmtpServer.Port;
+            smtpClient.Credentials = new System.Net.NetworkCredential(SmtpServer.UserId, SmtpServer.Password);
+            smtpClient.EnableSsl = SmtpServer.UseSsl;
 
             return smtpClient.SendMailAsync(message);
         }
 
-        public Task SendAsync(string to, string from, string subject, string body)
+        public override Task SendAsync(string to, string from, string subject, string body)
         {
             var message = new MailMessage()
             {

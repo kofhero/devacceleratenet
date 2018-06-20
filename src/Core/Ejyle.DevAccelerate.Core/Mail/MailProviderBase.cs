@@ -12,19 +12,34 @@ namespace Ejyle.DevAccelerate.Core.Mail
     {
         public MailProviderBase()
         {
-            var config = DaApplicationContext.GetConfiguration<ProviderConfigurationSection>("mailProviderConfiguration");
-            var properties = config.ExtendedProperties;
+            var config = DaApplicationContext.GetConfiguration<MailConfigurationSection>("daMailConfiguration");
+
+            DefaultFromName = config.DefaultSenderName;
+            DefaultFromEmail = config.DefaultSenderEmail;
+
+            var provider = config.Providers.GetByName(config.DefaultProvider);
 
             SmtpServer = new SmtpServerInfo()
             {
-                ApiKey = properties.GetByName("apiKey").Value,
-                UserId = properties.GetByName("userId").Value,
-                Host = properties.GetByName("host").Value,
-                Password = properties.GetByName("password").Value,
-                Port = Convert.ToInt32(properties.GetByName("port").Value),
-                UseSsl = Convert.ToBoolean(properties.GetByName("useSsl").Value)
-            };
-            
+                ApiKey = provider.ApiKey,
+                UserId = provider.UserId,
+                Host = provider.HostName,
+                Password = provider.Password,
+                Port = provider.Port,
+                UseSsl = provider.UseSsl
+            };            
+        }
+
+        protected string DefaultFromName
+        {
+            get;
+            set;
+        }
+
+        protected string DefaultFromEmail
+        {
+            get;
+            set;
         }
 
         protected SmtpServerInfo SmtpServer

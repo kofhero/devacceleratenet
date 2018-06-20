@@ -59,8 +59,9 @@
     <Compile Include="Configuration\ProviderConfigurationElementCollection.cs" />
     <Compile Include="DaApplicationContext.cs" />
     <Compile Include="Mail\DefaultMailProvider.cs" />
+    <Compile Include="Mail\MailProviderBase.cs" />
     <Compile Include="Mail\MailProviderFactory.cs" />
-    <Compile Include="Mail\SmtpServerConfigurationElement.cs" />
+    <Compile Include="Mail\MailProviderConfigurationElement.cs" />
     <Compile Include="Mail\IMailProvider.cs" />
     <Compile Include="EntityBase.cs" />
     <Compile Include="EntityManagerBase.cs" />
@@ -75,7 +76,15 @@
     <Compile Include="Logging\LogMessage.cs" />
     <Compile Include="Mail\MailConfigurationManager.cs" />
     <Compile Include="Mail\MailConfigurationSection.cs" />
+    <Compile Include="Mail\SmtpServerInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sms\ISmsProvider.cs" />
+    <Compile Include="Sms\SmsProviderBase.cs" />
+    <Compile Include="Sms\SmsConfigurationManager.cs" />
+    <Compile Include="Sms\SmsConfigurationSection.cs" />
+    <Compile Include="Sms\SmsProviderConfigurationElement.cs" />
+    <Compile Include="Sms\SmsProviderFactory.cs" />
+    <Compile Include="Sms\SmsProviderInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="da.ico" />

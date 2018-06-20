@@ -12,7 +12,13 @@ using System.Threading.Tasks;
 
 namespace Ejyle.DevAccelerate.Core.Configuration
 {
-    public class DaProviderConfigurationSection : DaConfigurationSection
+    public class DaProviderConfigurationSection
+        : DaProviderConfigurationSection<ProviderConfigurationElement>
+    {
+    }
+
+    public class DaProviderConfigurationSection<TProviderConfigurationElement> : DaConfigurationSection
+        where TProviderConfigurationElement : ProviderConfigurationElement
     {
         private const string PROVIDERS = "providers";
         private const string DEFAULT_PROVIDER = "defaultProvider";
@@ -31,11 +37,11 @@ namespace Ejyle.DevAccelerate.Core.Configuration
         }
 
         [ConfigurationProperty(PROVIDERS, IsRequired = false, DefaultValue = null)]
-        public ProviderConfigurationElementCollection Providers
+        public ProviderConfigurationElementCollection<TProviderConfigurationElement> Providers
         {
             get
             {
-                return this[PROVIDERS] as ProviderConfigurationElementCollection;
+                return this[PROVIDERS] as ProviderConfigurationElementCollection<TProviderConfigurationElement>;
             }
             set
             {

@@ -21,6 +21,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejyle.DevAccelerate.Notific
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejyle.DevAccelerate.Core.UnitTests", "Core\Ejyle.DevAccelerate.Core.UnitTests\Ejyle.DevAccelerate.Core.UnitTests.csproj", "{B25FC243-FCE1-4554-A1D3-83D82A02FF32}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Providers", "Providers", "{430D6143-AF2F-4BA3-8565-8E097B859642}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejyle.DevAccelerate.Providers.Sms.Twilio", "Providers\Ejyle.DevAccelerate.Providers.Sms.Twilio\Ejyle.DevAccelerate.Providers.Sms.Twilio.csproj", "{1FD9D8FA-F500-46E2-9612-E5C5051A493C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejyle.DevAccelerate.Providers.Mail.SendGrid", "Providers\Ejyle.DevAccelerate.Providers.Mail.SendGrid\Ejyle.DevAccelerate.Providers.Mail.SendGrid.csproj", "{2847EDDA-703B-4321-8B7C-E617A303E955}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +57,14 @@ Global
 		{B25FC243-FCE1-4554-A1D3-83D82A02FF32}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B25FC243-FCE1-4554-A1D3-83D82A02FF32}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B25FC243-FCE1-4554-A1D3-83D82A02FF32}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1FD9D8FA-F500-46E2-9612-E5C5051A493C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FD9D8FA-F500-46E2-9612-E5C5051A493C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FD9D8FA-F500-46E2-9612-E5C5051A493C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FD9D8FA-F500-46E2-9612-E5C5051A493C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2847EDDA-703B-4321-8B7C-E617A303E955}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2847EDDA-703B-4321-8B7C-E617A303E955}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2847EDDA-703B-4321-8B7C-E617A303E955}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2847EDDA-703B-4321-8B7C-E617A303E955}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -62,9 +76,11 @@ Global
 		{17C92A8E-B635-4435-906D-3F3DB8982BFB} = {7F3358A3-A52E-4EB6-A042-237BFB5009D3}
 		{E4E862FB-84E8-4506-8172-4C183FD552B9} = {7F3358A3-A52E-4EB6-A042-237BFB5009D3}
 		{B25FC243-FCE1-4554-A1D3-83D82A02FF32} = {B81C5372-A185-4E08-B4C7-55DACCBC851B}
+		{1FD9D8FA-F500-46E2-9612-E5C5051A493C} = {430D6143-AF2F-4BA3-8565-8E097B859642}
+		{2847EDDA-703B-4321-8B7C-E617A303E955} = {430D6143-AF2F-4BA3-8565-8E097B859642}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Logging.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.ExceptionHandling.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Data.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Logging.Database.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.ExceptionHandling.Logging.6.0.1304.0\lib\NET45
 		SolutionGuid = {42F3A2F2-E141-4DF6-99B0-B818023128BF}
+		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Logging.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.ExceptionHandling.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Data.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Logging.Database.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.ExceptionHandling.Logging.6.0.1304.0\lib\NET45
 	EndGlobalSection
 EndGlobal
