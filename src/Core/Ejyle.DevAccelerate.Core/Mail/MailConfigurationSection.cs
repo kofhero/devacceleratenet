@@ -8,23 +8,9 @@ using Ejyle.DevAccelerate.Core.Configuration;
 
 namespace Ejyle.DevAccelerate.Core.Mail
 {
-    public class MailConfigurationSection : DaConfigurationSection
+    public class MailConfigurationSection : DaProviderConfigurationSection
     {
         private const string SMTP_SERVER = "smtpServer";
-        private const string MAIL_PROVIDER = "mailProvider";
-
-        [ConfigurationProperty(MAIL_PROVIDER, IsRequired = false)]
-        public ProviderConfigurationElement MailProvider
-        {
-            get
-            {
-                return this[MAIL_PROVIDER] as ProviderConfigurationElement;
-            }
-            set
-            {
-                this[MAIL_PROVIDER] = value;
-            }
-        }
 
         [ConfigurationProperty(SMTP_SERVER, IsRequired = false)]
         public SmtpServerConfigurationElement SmtpServer

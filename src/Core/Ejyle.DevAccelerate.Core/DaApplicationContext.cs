@@ -69,7 +69,9 @@ namespace Ejyle.DevAccelerate.Core
                 throw new InvalidOperationException("Caching configuration has not been set up and therefore cache manager cannot be created.");
             }
 
-            Type type = Type.GetType(cachingConfiguration.Type);
+            var providerConfig = cachingConfiguration.Providers.GetByName(cachingConfiguration.DefaultProvider);
+
+            Type type = Type.GetType(providerConfig.Type);
             var cacheManager = (TCacheManager)Activator.CreateInstance(type);
 
             return cacheManager;
@@ -88,7 +90,9 @@ namespace Ejyle.DevAccelerate.Core
                 throw new InvalidOperationException("Caching configuration has not been set up and therefore cache manager cannot be created.");
             }
 
-            Type type = Type.GetType(cachingConfiguration.Type);
+            var providerConfig = cachingConfiguration.Providers.GetByName(cachingConfiguration.DefaultProvider);
+
+            Type type = Type.GetType(providerConfig.Type);
             var cacheManager = (ICacheManager)Activator.CreateInstance(type);
 
             return cacheManager;
@@ -109,7 +113,9 @@ namespace Ejyle.DevAccelerate.Core
                 throw new InvalidOperationException("Logging configuration has not been set up and therefore log manager cannot be created.");
             }
 
-            Type type = Type.GetType(loggingConfiguration.Type);
+            var providerConfig = loggingConfiguration.Providers.GetByName(loggingConfiguration.DefaultProvider);
+
+            Type type = Type.GetType(providerConfig.Type);
             var logManager = (TLogManager)Activator.CreateInstance(type);
 
             return logManager;
@@ -128,7 +134,9 @@ namespace Ejyle.DevAccelerate.Core
                 throw new InvalidOperationException("Logging configuration has not been set up and therefore log manager cannot be created.");
             }
 
-            Type type = Type.GetType(loggingConfiguration.Type);
+            var providerConfig = loggingConfiguration.Providers.GetByName(loggingConfiguration.DefaultProvider);
+
+            Type type = Type.GetType(providerConfig.Type);
             var logManager = (ILogManager)Activator.CreateInstance(type);
 
             return logManager;
@@ -149,7 +157,9 @@ namespace Ejyle.DevAccelerate.Core
                 throw new InvalidOperationException("Exception handling configuration has not been set up and therefore exception manager cannot be created.");
             }
 
-            Type type = Type.GetType(exceptionHandlingConfiguration.Type);
+            var providerConfig = exceptionHandlingConfiguration.Providers.GetByName(exceptionHandlingConfiguration.DefaultProvider);
+
+            Type type = Type.GetType(providerConfig.Type);
             var exceptionManager = (TExceptionManager)Activator.CreateInstance(type);
 
             return exceptionManager;
@@ -168,7 +178,9 @@ namespace Ejyle.DevAccelerate.Core
                 throw new InvalidOperationException("Exception handling configuration has not been set up and therefore exception manager cannot be created.");
             }
 
-            Type type = Type.GetType(exceptionHandlingConfiguration.Type);
+            var providerConfig = exceptionHandlingConfiguration.Providers.GetByName(exceptionHandlingConfiguration.DefaultProvider);
+
+            Type type = Type.GetType(providerConfig.Type);
             var exceptionManager = (IExceptionManager)Activator.CreateInstance(type);
 
             return exceptionManager;

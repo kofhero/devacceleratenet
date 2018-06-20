@@ -11,7 +11,7 @@ namespace Ejyle.DevAccelerate.Core.Exceptions
     /// <summary>
     /// Represents the configuration section for exception handling.
     /// </summary>
-    public class ExceptionHandlingConfigurationSection : ProviderConfigurationSection
+    public class ExceptionHandlingConfigurationSection : DaProviderConfigurationSection
     {
         private const string DEFAULT_EXCEPTION_POLICY = "defaultExceptionPolicy";
 

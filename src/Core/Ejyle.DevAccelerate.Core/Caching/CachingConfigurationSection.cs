@@ -10,7 +10,7 @@ namespace Ejyle.DevAccelerate.Core.Caching
     /// <summary>
     /// Represents the configuration section for caching.
     /// </summary>
-    public class CachingConfigurationSection : ProviderConfigurationSection
+    public class CachingConfigurationSection : DaProviderConfigurationSection
     {
         /// <summary>
         /// Gets the name of the configuration section.

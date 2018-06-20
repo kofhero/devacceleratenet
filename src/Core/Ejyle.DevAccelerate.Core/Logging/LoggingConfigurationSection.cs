@@ -10,7 +10,7 @@ namespace Ejyle.DevAccelerate.Core.Logging
     /// <summary>
     /// Represents the configuration section for logging management in the application.
     /// </summary>
-    public class LoggingConfigurationSection : ProviderConfigurationSection
+    public class LoggingConfigurationSection : DaProviderConfigurationSection
     {
         /// <summary>
         /// Returns daLoggingConfiguration as the name of the configuration section.

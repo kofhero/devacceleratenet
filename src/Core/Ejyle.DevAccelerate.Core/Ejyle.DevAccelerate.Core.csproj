@@ -51,15 +51,12 @@
     <Compile Include="Caching\DefaultCacheManager.cs" />
     <Compile Include="Caching\ICacheManager.cs" />
     <Compile Include="Configuration\DaConfigurationSection.cs" />
+    <Compile Include="Configuration\DaProviderConfigurationSection.cs" />
     <Compile Include="Configuration\DefaultConfigurationSource.cs" />
-    <Compile Include="Configuration\ExtendedPropertyConfigurationElement.cs" />
-    <Compile Include="Configuration\ExtendedPropertyConfigurationElementCollection.cs" />
     <Compile Include="Configuration\FileConfigurationSource.cs" />
     <Compile Include="Configuration\IConfigurationSource.cs" />
-    <Compile Include="Configuration\NamedConfigurationElement.cs" />
-    <Compile Include="Configuration\NamedConfigurationElementCollection.cs" />
     <Compile Include="Configuration\ProviderConfigurationElement.cs" />
-    <Compile Include="Configuration\ProviderConfigurationSection.cs" />
+    <Compile Include="Configuration\ProviderConfigurationElementCollection.cs" />
     <Compile Include="DaApplicationContext.cs" />
     <Compile Include="Mail\DefaultMailProvider.cs" />
     <Compile Include="Mail\MailProviderFactory.cs" />

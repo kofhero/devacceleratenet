@@ -18,7 +18,7 @@ namespace Ejyle.DevAccelerate.Core.Mail
 
             if (config != null)
             {
-                providerConfig = config.MailProvider;
+                providerConfig = config.Providers.GetByName(config.DefaultProvider);
             }
 
             if (providerConfig == null)
