@@ -5,7 +5,6 @@
 
 using Ejyle.DevAccelerate.Core;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Threading.Tasks;
 
 namespace Ejyle.DevAccelerate.Notifications.Messages

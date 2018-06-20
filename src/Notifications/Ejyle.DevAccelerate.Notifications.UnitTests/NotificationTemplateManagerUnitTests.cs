@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Ejyle.DevAccelerate.Notifications.Templates;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
