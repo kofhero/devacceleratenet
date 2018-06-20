@@ -3,7 +3,6 @@
 // Licensed under the MIT license. See the LICENSE file in the project's root directory for complete license information.
 // ----------------------------------------------------------------------------------------------------------------------
 
-using System.Configuration;
 using Ejyle.DevAccelerate.Core.Configuration;
 
 namespace Ejyle.DevAccelerate.Core.Sms

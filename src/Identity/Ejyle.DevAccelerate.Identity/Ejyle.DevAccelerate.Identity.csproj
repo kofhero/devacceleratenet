@@ -50,9 +50,11 @@
     <Compile Include="Configuration\IdentityPasswordPolicyConfigurationElement.cs" />
     <Compile Include="Configuration\IdentityTwoFactorPolicyConfigurationElement.cs" />
     <Compile Include="Configuration\IdentityUserNamePolicyConfigurationElement.cs" />
+    <Compile Include="ITenantUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="IRole.cs" />
     <Compile Include="IUser.cs" />
+    <Compile Include="ITenant.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="da.ico" />

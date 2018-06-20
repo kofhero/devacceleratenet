@@ -4,6 +4,8 @@
 // ----------------------------------------------------------------------------------------------------------------------
 
 using System;
+using System.Data.Entity;
+using Ejyle.DevAccelerate.Identity.AspNet.Tenants;
 using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Ejyle.DevAccelerate.Identity.AspNet
@@ -11,7 +13,7 @@ namespace Ejyle.DevAccelerate.Identity.AspNet
     /// <summary>
     /// Represents the identity database context for the underlying data store.
     /// </summary>
-    public class AspNetIdentityDbContext : AspNetIdentityDbContext<string, User, Role, UserLogin, UserRole, UserClaim>
+    public class AspNetIdentityDbContext : AspNetIdentityDbContext<string, User, Role, UserLogin, UserRole, UserClaim, Tenant, TenantUser>
     {
         /// <summary>
         /// Creates an instance of the <see cref="AspNetIdentityDbContext"/> class.
@@ -40,7 +42,7 @@ namespace Ejyle.DevAccelerate.Identity.AspNet
     /// <typeparam name="TUserLogin">The type of the user login entity.</typeparam>
     /// <typeparam name="TUserRole">The type of the user role entity.</typeparam>
     /// <typeparam name="TUserClaim">The type of the user claim entity.</typeparam>
-    public class AspNetIdentityDbContext<TKey, TUser, TRole, TUserLogin, TUserRole, TUserClaim>
+    public class AspNetIdentityDbContext<TKey, TUser, TRole, TUserLogin, TUserRole, TUserClaim, TTenant, TTenantUser>
         : IdentityDbContext<TUser, TRole, TKey, TUserLogin, TUserRole, TUserClaim>
         where TKey : IEquatable<TKey>
         where TUser : User<TKey, TUserLogin, TUserRole, TUserClaim>
@@ -48,6 +50,8 @@ namespace Ejyle.DevAccelerate.Identity.AspNet
         where TUserLogin: UserLogin<TKey>
         where TUserRole: UserRole<TKey>
         where TUserClaim: UserClaim<TKey>
+        where TTenant : Tenant<TKey, TTenantUser>
+        where TTenantUser : TenantUser<TKey, TTenant, TUser>
     {
         /// <summary>
         /// Creates an instance of the <see cref="AspNetIdentityDbContext"/> class.
@@ -56,6 +60,9 @@ namespace Ejyle.DevAccelerate.Identity.AspNet
             : base("IdentityConnection")
         {
         }
+
+        public DbSet<TTenant> Tenants { get; set; }
+        public DbSet<TTenantUser> TenantUsers { get; set; }
 
         /// <summary>
         /// Creates an instance of the <see cref="AspNetIdentityDbContext"/> class.

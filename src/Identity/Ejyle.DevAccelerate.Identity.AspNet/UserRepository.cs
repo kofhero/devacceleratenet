@@ -5,6 +5,7 @@
 
 using System;
 using System.Threading.Tasks;
+using Ejyle.DevAccelerate.Identity.AspNet.Tenants;
 using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Ejyle.DevAccelerate.Identity.AspNet
@@ -12,7 +13,7 @@ namespace Ejyle.DevAccelerate.Identity.AspNet
     /// <summary>
     /// Represents a repository for storing and retrieving users from an underlying data store.
     /// </summary>
-    public class UserRepository : UserRepository<string, User, Role, UserLogin, UserRole, UserClaim, AspNetIdentityDbContext>
+    public class UserRepository : UserRepository<string, User, Role, UserLogin, UserRole, UserClaim, Tenant, TenantUser, AspNetIdentityDbContext>
     {
         /// <summary>
         /// Creates an instance of the <see cref="UserRepository{TContext}"/> class.
@@ -44,14 +45,16 @@ namespace Ejyle.DevAccelerate.Identity.AspNet
     /// <typeparam name="TUserRole">The type of the user role.</typeparam>
     /// <typeparam name="TUserClaim">The type of the user claim.</typeparam>
     /// <typeparam name="TContext">The type of the data context representing the underlying data store.</typeparam>
-    public class UserRepository<TKey, TUser, TRole, TUserLogin, TUserRole, TUserClaim, TContext> : UserStore<TUser, TRole, TKey, TUserLogin, TUserRole, TUserClaim>
+    public class UserRepository<TKey, TUser, TRole, TUserLogin, TUserRole, TUserClaim, TTenant, TTenantUser, TContext> : UserStore<TUser, TRole, TKey, TUserLogin, TUserRole, TUserClaim>
         where TKey : IEquatable<TKey>
         where TUser : User<TKey, TUserLogin, TUserRole, TUserClaim>
         where TRole : Role<TKey, TUserRole>, new()
         where TUserLogin : UserLogin<TKey>, new()
         where TUserRole : UserRole<TKey>, new()
         where TUserClaim : UserClaim<TKey>, new()
-        where TContext : AspNetIdentityDbContext<TKey, TUser, TRole, TUserLogin, TUserRole, TUserClaim>
+        where TTenant : Tenant<TKey, TTenantUser>
+        where TTenantUser : TenantUser<TKey, TTenant, TUser>
+        where TContext : AspNetIdentityDbContext<TKey, TUser, TRole, TUserLogin, TUserRole, TUserClaim, TTenant, TTenantUser>
     {
         /// <summary>
         /// Creates an instance of the <see cref="UserRepository{TKey, TUser, TRole, TUserLogin, TUserRole, TUserClaim, TContext}"/> class.

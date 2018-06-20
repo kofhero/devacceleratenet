@@ -4,6 +4,7 @@
 // ----------------------------------------------------------------------------------------------------------------------
 
 using Ejyle.DevAccelerate.Core;
+using Ejyle.DevAccelerate.Identity.AspNet.Tenants;
 using Ejyle.DevAccelerate.Identity.Configuration;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
@@ -15,7 +16,7 @@ namespace Ejyle.DevAccelerate.Identity.AspNet
     /// <summary>
     /// Represents the core functionality for creating and managing user accounts.
     /// </summary>
-    public class UserManager : UserManager<string, User, Role, UserLogin, UserRole, UserClaim, UserRepository, AspNetIdentityDbContext>
+    public class UserManager : UserManager<string, User, Role, UserLogin, UserRole, UserClaim, Tenant, TenantUser, UserRepository, AspNetIdentityDbContext>
     {
         /// <summary>
         /// Creates an instance of the <see cref="UserManager"/> class.
@@ -112,15 +113,17 @@ namespace Ejyle.DevAccelerate.Identity.AspNet
     /// <typeparam name="TUserClaim">The type of a user claim entity.</typeparam>
     /// <typeparam name="TRepository">The type of the user repository entity.</typeparam>
     /// <typeparam name="TContext">The type fo the database context for identity.</typeparam>
-    public class UserManager<TKey, TUser, TRole, TUserLogin, TUserRole, TUserClaim, TRepository, TContext> : Microsoft.AspNet.Identity.UserManager<TUser, TKey>
+    public class UserManager<TKey, TUser, TRole, TUserLogin, TUserRole, TUserClaim, TTenant, TTenantUser, TRepository, TContext> : Microsoft.AspNet.Identity.UserManager<TUser, TKey>
         where TKey : IEquatable<TKey>
         where TUser : User<TKey, TUserLogin, TUserRole, TUserClaim>
         where TRole: Role<TKey, TUserRole>, new()
         where TUserLogin : UserLogin<TKey>, new()
         where TUserRole : UserRole<TKey>, new()
         where TUserClaim : UserClaim<TKey>, new()
-        where TRepository: UserRepository<TKey, TUser, TRole, TUserLogin, TUserRole, TUserClaim, TContext>
-        where TContext : AspNetIdentityDbContext<TKey, TUser, TRole, TUserLogin, TUserRole, TUserClaim>
+        where TTenant : Tenant<TKey, TTenantUser>
+        where TTenantUser : TenantUser<TKey, TTenant, TUser>
+        where TRepository: UserRepository<TKey, TUser, TRole, TUserLogin, TUserRole, TUserClaim, TTenant, TTenantUser, TContext>
+        where TContext : AspNetIdentityDbContext<TKey, TUser, TRole, TUserLogin, TUserRole, TUserClaim, TTenant, TTenantUser>
     {
         /// <summary>
         /// Creates an instance of the <see cref="UserManager{TKey, TUser, TRole, TUserLogin, TUserRole, TUserClaim, TRepository, TContext}"/> class.

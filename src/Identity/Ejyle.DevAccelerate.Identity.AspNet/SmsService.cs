@@ -5,9 +5,6 @@
 
 using Ejyle.DevAccelerate.Core.Sms;
 using Microsoft.AspNet.Identity;
-using System;
-using System.Configuration;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Ejyle.DevAccelerate.Identity.AspNet

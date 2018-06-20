@@ -3,12 +3,13 @@
 // Licensed under the MIT license. See the LICENSE file in the project's root directory for complete license information.
 // ----------------------------------------------------------------------------------------------------------------------
 
+using Ejyle.DevAccelerate.Identity.AspNet.Tenants;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 
 namespace Ejyle.DevAccelerate.Identity.AspNet
 {
-    public class RoleRepository : RoleRepository<string, User, Role, UserLogin, UserRole, UserClaim, AspNetIdentityDbContext>
+    public class RoleRepository : RoleRepository<string, User, Role, UserLogin, UserRole, UserClaim, Tenant, TenantUser, AspNetIdentityDbContext>
     {
         /// <summary>
         /// Creates an instance of the <see cref="RoleRepository{TContext}"/> class.
@@ -23,14 +24,16 @@ namespace Ejyle.DevAccelerate.Identity.AspNet
     /// Represents an extension for <see cref="RoleStore{TRole, TKey, TUserRole}"/> class.
     /// </summary>
     /// <typeparam name="TContext">The <see cref="DbContext"/> of the role repository.</typeparam>
-    public class RoleRepository<TKey, TUser, TRole, TUserLogin, TUserRole, TUserClaim, TContext> : RoleStore<TRole, TKey, TUserRole>
+    public class RoleRepository<TKey, TUser, TRole, TUserLogin, TUserRole, TUserClaim, TTenant, TTenantUser, TContext> : RoleStore<TRole, TKey, TUserRole>
         where TKey : IEquatable<TKey>
         where TUser : User<TKey, TUserLogin, TUserRole, TUserClaim>
         where TRole : Role<TKey, TUserRole>, new()
         where TUserLogin : UserLogin<TKey>
         where TUserRole : UserRole<TKey>, new()
         where TUserClaim : UserClaim<TKey>
-        where TContext : AspNetIdentityDbContext<TKey, TUser, TRole, TUserLogin, TUserRole, TUserClaim>
+        where TTenant : Tenant<TKey, TTenantUser>
+        where TTenantUser : TenantUser<TKey, TTenant, TUser>
+        where TContext : AspNetIdentityDbContext<TKey, TUser, TRole, TUserLogin, TUserRole, TUserClaim, TTenant, TTenantUser>
     {
         /// <summary>
         /// Creates an instance of the <see cref="RoleRepository{TContext}"/> class.
