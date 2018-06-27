@@ -51,7 +51,8 @@ namespace Ejyle.DevAccelerate.Identity.AspNet
     /// <typeparam name="TUserAgreementVersion">The type of an <see cref="IUserAgreementVersion{TKey}"/> entity.</typeparam>
     /// <typeparam name="TDbContext">The type of the data context representing the underlying data store.</typeparam>
     public class UserRepository<TKey, TNullableKey, TUser, TRole, TUserLogin, TUserRole, TUserClaim, TTenant, TTenantUser, TUserSession, TUserAgreement, TUserAgreementVersion, TDbContext>
-        : UserStore<TUser, TRole, TKey, TUserLogin, TUserRole, TUserClaim>
+        : UserStore<TUser, TRole, TKey, TUserLogin, TUserRole, TUserClaim>,
+        IUserRepository<TKey, TNullableKey, TUser>
         where TKey : IEquatable<TKey>
         where TUser : User<TKey, TNullableKey, TUserLogin, TUserRole, TUserClaim>
         where TRole : Role<TKey, TUserRole>, new()
@@ -94,6 +95,17 @@ namespace Ejyle.DevAccelerate.Identity.AspNet
             user.CreatedDateUtc = DateTime.UtcNow;
             user.LastUpdatedDateUtc = DateTime.UtcNow;
             return base.CreateAsync(user);
+        }
+
+        /// <summary>
+        /// Asynchronously update a user.
+        /// </summary>
+        /// <param name="user">User to be updated.</param>
+        /// <returns>The task representing the asynchronous operation.</returns>
+        public override Task UpdateAsync(TUser user)
+        {
+            user.LastUpdatedDateUtc = DateTime.UtcNow;
+            return base.UpdateAsync(user);
         }
     }
 }

@@ -53,6 +53,7 @@
     <Compile Include="ITenantUser.cs" />
     <Compile Include="IUserAgreement.cs" />
     <Compile Include="IUserAgreementVersion.cs" />
+    <Compile Include="IUserRepository.cs" />
     <Compile Include="IUserSession.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="IRole.cs" />
