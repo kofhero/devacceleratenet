@@ -115,6 +115,8 @@
     <Compile Include="RoleRepository.cs" />
     <Compile Include="SignInManager.cs" />
     <Compile Include="SmsService.cs" />
+    <Compile Include="Tenants\TenantManager.cs" />
+    <Compile Include="Tenants\TenantRepository.cs" />
     <Compile Include="Tenants\Tenant.cs" />
     <Compile Include="Tenants\TenantUser.cs" />
     <Compile Include="User.cs" />
