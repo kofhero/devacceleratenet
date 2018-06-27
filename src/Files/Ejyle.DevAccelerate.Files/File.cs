@@ -1,8 +1,10 @@
 ﻿using Ejyle.DevAccelerate.Core;
+using System;
 
 namespace Ejyle.DevAccelerate.Files
 {
     public class File<TKey, TFileLocation> : EntityBase<TKey>
+        where TKey : IEquatable<TKey>
         where TFileLocation : IFileLocation<TKey>
     {
         public string Name

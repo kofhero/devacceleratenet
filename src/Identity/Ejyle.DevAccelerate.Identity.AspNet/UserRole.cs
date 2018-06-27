@@ -11,7 +11,7 @@ namespace Ejyle.DevAccelerate.Identity.AspNet
     /// <summary>
     /// Represents a user's role.
     /// </summary>
-    public class UserRole : UserRole<string>
+    public class UserRole : UserRole<int>
     {
         /// <summary>
         /// Creates an instance of the <see cref="UserRole"/> class.

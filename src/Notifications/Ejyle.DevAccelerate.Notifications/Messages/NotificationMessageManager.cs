@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 namespace Ejyle.DevAccelerate.Notifications.Messages
 {
     public class NotificationMessageManager<TKey, TNotificationMessage, TRepository>
+        where TKey : IEquatable<TKey>
         where TNotificationMessage : INotificationMessage<TKey>
         where TRepository : INotificationMessageRepository<TKey, TNotificationMessage>
     {

@@ -4,10 +4,12 @@
 // ----------------------------------------------------------------------------------------------------------------------
 
 using Ejyle.DevAccelerate.Core;
+using System;
 
 namespace Ejyle.DevAccelerate.Subscriptions
 {
     public interface ISubscriptionPlan<TKey> : IEntity<TKey>
+        where TKey : IEquatable<TKey>
     {
         string Name { get; set; }
         bool IsActive { get; set; }

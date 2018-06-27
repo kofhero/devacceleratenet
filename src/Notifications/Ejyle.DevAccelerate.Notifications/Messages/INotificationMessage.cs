@@ -9,6 +9,7 @@ using System;
 namespace Ejyle.DevAccelerate.Notifications.Messages
 {
     public interface INotificationMessage<TKey> : IEntity<TKey>
+        where TKey : IEquatable<TKey>
     {
         TKey NotificationTemplateId { get; set; }
         string Subject { get; set; }

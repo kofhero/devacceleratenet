@@ -3,6 +3,8 @@
 // Licensed under the MIT license. See the LICENSE file in the project's root directory for complete license information.
 // ----------------------------------------------------------------------------------------------------------------------
 
+using System;
+
 namespace Ejyle.DevAccelerate.Core
 {
     /// <summary>
@@ -10,6 +12,7 @@ namespace Ejyle.DevAccelerate.Core
     /// </summary>
     /// <typeparam name="TKey">The type of the entity's ID.</typeparam>
     public interface IEntity<TKey>
+        where TKey: IEquatable<TKey>
     {
         /// <summary>
         /// Gets or sets the unique ID of the entity.

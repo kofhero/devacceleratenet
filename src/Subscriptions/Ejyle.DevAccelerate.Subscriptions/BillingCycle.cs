@@ -3,9 +3,12 @@
 // Licensed under the MIT license. See the LICENSE file in the project's root directory for complete license information.
 // ----------------------------------------------------------------------------------------------------------------------
 
+using System;
+
 namespace Ejyle.DevAccelerate.Subscriptions
 {
     public class BillingCycle<TKey, TSubscriptionPlan> : IBillingCycle<TKey>
+        where TKey : IEquatable<TKey>
         where TSubscriptionPlan : ISubscriptionPlan<TKey>
     {
         public BillingCycleType BillingCycleType { get; set; }

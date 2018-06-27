@@ -3,13 +3,15 @@
 // Licensed under the MIT license. See the LICENSE file in the project's root directory for complete license information.
 // ----------------------------------------------------------------------------------------------------------------------
 
+using System;
 using System.Data.Entity;
 
 namespace Ejyle.DevAccelerate.Subscriptions
 {
-    public class SubscriptionDbContext<TKey, TOptionalKey, TSubscriptionPlan, TSubscription, TBillingCycle> : DbContext
-        where TSubscription : Subscription<TKey, TOptionalKey, TSubscriptionPlan>
-        where TSubscriptionPlan : SubscriptionPlan<TKey, TOptionalKey, TBillingCycle, TSubscription>
+    public class SubscriptionDbContext<TKey, TNullableKey, TSubscriptionPlan, TSubscription, TBillingCycle> : DbContext
+        where TKey : IEquatable<TKey>
+        where TSubscription : Subscription<TKey, TNullableKey, TSubscriptionPlan>
+        where TSubscriptionPlan : SubscriptionPlan<TKey, TNullableKey, TBillingCycle, TSubscription>
         where TBillingCycle : BillingCycle<TKey, TSubscriptionPlan>
     {
         private const string SCHEMA_NAME = "subscriptions";

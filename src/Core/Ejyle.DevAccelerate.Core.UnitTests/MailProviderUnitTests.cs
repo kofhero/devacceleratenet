@@ -4,6 +4,7 @@
 // ----------------------------------------------------------------------------------------------------------------------
 
 using System.Net.Mail;
+using System.Threading.Tasks;
 using Ejyle.DevAccelerate.Core.Configuration;
 using Ejyle.DevAccelerate.Core.Mail;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -31,6 +32,17 @@ namespace Ejyle.DevAccelerate.Core.UnitTests
         {
             var mailProvider = MailProviderFactory.GetProvider();
             mailProvider.Send(new MailMessage("someone@example.com", "someone@example.com")
+            {
+                Subject = "Some subject",
+                Body = "Some message"
+            });
+        }
+
+        [TestMethod]
+        public async Task SendMailMessageAsynchronously()
+        {
+            var mailProvider = MailProviderFactory.GetProvider();
+            await mailProvider.SendAsync(new MailMessage("someone@example.com", "someone@example.com")
             {
                 Subject = "Some subject",
                 Body = "Some message"

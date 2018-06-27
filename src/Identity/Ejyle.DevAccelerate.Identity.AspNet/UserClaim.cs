@@ -11,7 +11,7 @@ namespace Ejyle.DevAccelerate.Identity.AspNet
     /// <summary>
     /// Represents a user's claim in the system.
     /// </summary>
-    public class UserClaim : UserClaim<string>
+    public class UserClaim : UserClaim<int>
     { }
 
     /// <summary>

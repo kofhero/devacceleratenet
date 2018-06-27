@@ -9,45 +9,40 @@ using System;
 namespace Ejyle.DevAccelerate.Identity
 {
     /// <summary>
-    /// Represents the core interface for a tenant.
+    /// Represents an interface for a user session.
     /// </summary>
     /// <typeparam name="TKey">The type of a non-nullable key of an entity.</typeparam>
-    public interface ITenant<TKey> : IEntity<TKey>
+    public interface IUserSession<TKey> : IEntity<TKey>
         where TKey : IEquatable<TKey>
     {
         /// <summary>
-        /// Gets or sets the type of a tenant.
+        /// Gets or sets the Id of the user associated with the session.
         /// </summary>
-        TenantType TenantType { get; set; }
+        TKey UserId { get; set; }
 
         /// <summary>
-        /// Gets the name of a tenant.
+        /// Gets or sets the unique key of the session.
         /// </summary>
-        string Name { get; set; }
+        string SessionKey { get; set; }
 
         /// <summary>
-        /// Gets the unique text key of a tenant.
+        /// Gets or sets the system session ID.
         /// </summary>
-        string TenantKey { get; set; }
+        string SystemSessionId { get; set; }
 
         /// <summary>
-        /// Gets the unique domain of a tenant.
+        /// Gets or sets the date and time when the user session is created.
         /// </summary>
-        string Domain { get; set; }
+        DateTime CreatedDateUtc { get; set; }
 
         /// <summary>
-        /// Determines if the domain's ownership is verified or not.
+        /// Gets or sets the date and time of when the user session is expired.
         /// </summary>
-        bool IsDomainOwnershipVerified { get; set; }
+        DateTime ExpiryDateUtc { get; set; }
 
         /// <summary>
-        /// Gets or sets the ID of the user who owns the tenant.
+        /// Gets or sets the date and time of when the user session actually got expired.
         /// </summary>
-        TKey OwnerUserId { get; set; }
-
-        /// <summary>
-        /// Gets or sets the status of the tenant.
-        /// </summary>
-        AccountStatus Status { get; set; }
+        DateTime? ExpiredDateUtc { get; set; }
     }
 }

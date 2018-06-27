@@ -9,7 +9,7 @@ using System;
 
 namespace Ejyle.DevAccelerate.Identity.AspNet
 {
-    public class RoleRepository : RoleRepository<string, User, Role, UserLogin, UserRole, UserClaim, Tenant, TenantUser, AspNetIdentityDbContext>
+    public class RoleRepository : RoleRepository<int, int?, User, Role, UserLogin, UserRole, UserClaim, Tenant, TenantUser, UserSession, UserAgreement, UserAgreementVersion, AspNetIdentityDbContext>
     {
         /// <summary>
         /// Creates an instance of the <see cref="RoleRepository{TContext}"/> class.
@@ -23,34 +23,37 @@ namespace Ejyle.DevAccelerate.Identity.AspNet
     /// <summary>
     /// Represents an extension for <see cref="RoleStore{TRole, TKey, TUserRole}"/> class.
     /// </summary>
-    /// <typeparam name="TContext">The <see cref="DbContext"/> of the role repository.</typeparam>
-    public class RoleRepository<TKey, TUser, TRole, TUserLogin, TUserRole, TUserClaim, TTenant, TTenantUser, TContext> : RoleStore<TRole, TKey, TUserRole>
+    /// <typeparam name="TDbContext">The <see cref="DbContext"/> of the role repository.</typeparam>
+    public class RoleRepository<TKey, TNullableKey, TUser, TRole, TUserLogin, TUserRole, TUserClaim, TTenant, TTenantUser, TUserSession, TUserAgreement, TUserAgreementVersion, TDbContext> : RoleStore<TRole, TKey, TUserRole>
         where TKey : IEquatable<TKey>
-        where TUser : User<TKey, TUserLogin, TUserRole, TUserClaim>
+        where TUser : User<TKey, TNullableKey, TUserLogin, TUserRole, TUserClaim>
         where TRole : Role<TKey, TUserRole>, new()
         where TUserLogin : UserLogin<TKey>
         where TUserRole : UserRole<TKey>, new()
         where TUserClaim : UserClaim<TKey>
         where TTenant : Tenant<TKey, TTenantUser>
-        where TTenantUser : TenantUser<TKey, TTenant, TUser>
-        where TContext : AspNetIdentityDbContext<TKey, TUser, TRole, TUserLogin, TUserRole, TUserClaim, TTenant, TTenantUser>
+        where TTenantUser : TenantUser<TKey, TNullableKey, TTenant, TUser>
+        where TUserSession: UserSession<TKey>
+        where TUserAgreement : UserAgreement<TKey, TUserAgreementVersion>
+        where TUserAgreementVersion : UserAgreementVersion<TKey, TUserAgreement>
+        where TDbContext : AspNetIdentityDbContext<TKey, TNullableKey, TUser, TRole, TUserLogin, TUserRole, TUserClaim, TTenant, TTenantUser, TUserSession, TUserAgreement, TUserAgreementVersion>
     {
         /// <summary>
         /// Creates an instance of the <see cref="RoleRepository{TContext}"/> class.
         /// </summary>
         /// <param name="context">The <see cref="DbContext"/> of the role repository.</param>
-        public RoleRepository(TContext context)
+        public RoleRepository(TDbContext context)
             : base(context)
         { }
 
         /// <summary>
         /// Gets the instance of the repository's <see cref="DbContext"/>.
         /// </summary>
-        protected TContext DaContext
+        protected TDbContext DaContext
         {
             get
             {
-                return Context as TContext;
+                return Context as TDbContext;
             }
         }
     }

@@ -4,6 +4,7 @@
 // ----------------------------------------------------------------------------------------------------------------------
 
 using Ejyle.DevAccelerate.Core;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Ejyle.DevAccelerate.Notifications.Messages
@@ -14,6 +15,7 @@ namespace Ejyle.DevAccelerate.Notifications.Messages
 
     public class NotificationMessageParam<TKey, TUserIdKey, TNotificationMessage>
         : EntityBase<TKey>, INotificationMessageParam<TKey>
+        where TKey : IEquatable<TKey>
         where TNotificationMessage : INotificationMessage<TKey>
     {
         [Required]

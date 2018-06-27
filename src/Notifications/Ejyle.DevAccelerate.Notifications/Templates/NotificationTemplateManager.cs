@@ -17,10 +17,11 @@ namespace Ejyle.DevAccelerate.Notifications.Templates
         { }
     }
 
-    public class NotificationTemplateManager<TKey, TOptionalKey, TNotificationTemplate, TRepository>
+    public class NotificationTemplateManager<TKey, TNullableKey, TNotificationTemplate, TRepository>
         : EntityManagerBase<TKey, TNotificationTemplate, TRepository>
-        where TNotificationTemplate : INotificationTemplate<TKey, TOptionalKey>
-        where TRepository : INotificationTemplateRepository<TKey, TOptionalKey, TNotificationTemplate>
+        where TKey : IEquatable<TKey>
+        where TNotificationTemplate : INotificationTemplate<TKey, TNullableKey>
+        where TRepository : INotificationTemplateRepository<TKey, TNullableKey, TNotificationTemplate>
     {
         public NotificationTemplateManager(TRepository repository)
             : base(repository)

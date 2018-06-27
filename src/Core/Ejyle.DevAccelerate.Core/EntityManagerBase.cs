@@ -14,6 +14,7 @@ namespace Ejyle.DevAccelerate.Core
     /// <typeparam name="TEntity">The type of the entity.</typeparam>
     /// <typeparam name="TEntityRepository">The type of the entity repository.</typeparam>
     public class EntityManagerBase<TKey, TEntity, TEntityRepository> : IEntityManager<TKey, TEntity, TEntityRepository>
+        where TKey : IEquatable<TKey>
         where TEntity : IEntity<TKey>
         where TEntityRepository : IEntityRepository<TKey, TEntity>
     {

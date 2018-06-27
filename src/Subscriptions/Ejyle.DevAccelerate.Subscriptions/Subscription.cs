@@ -8,7 +8,8 @@ using Ejyle.DevAccelerate.Core;
 
 namespace Ejyle.DevAccelerate.Subscriptions
 {
-    public class Subscription<TKey, TOptionalKey, TSubscriptionPlan> : EntityBase<TKey>, ISubscription<TKey, TOptionalKey>
+    public class Subscription<TKey, TNullableKey, TSubscriptionPlan> : EntityBase<TKey>, ISubscription<TKey, TNullableKey>
+        where TKey : IEquatable<TKey>
         where TSubscriptionPlan : ISubscriptionPlan<TKey>
     {
         public Subscription()
@@ -24,7 +25,7 @@ namespace Ejyle.DevAccelerate.Subscriptions
         public int? BillingCycleEndDay { get; set; }
         public TKey TenantId { get; set; }
         public TKey OwnerUserId { get; set; }
-        public TOptionalKey PaymentMethodId { get; set; }
+        public TNullableKey PaymentMethodId { get; set; }
         public TKey SubscriptionPlanId { get; set; }
         public bool IsTrial { get; set; }
         public DateTime CreatedDateUtc { get; set; }

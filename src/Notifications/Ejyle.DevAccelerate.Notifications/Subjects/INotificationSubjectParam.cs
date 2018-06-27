@@ -4,10 +4,12 @@
 // ----------------------------------------------------------------------------------------------------------------------
 
 using Ejyle.DevAccelerate.Core;
+using System;
 
 namespace Ejyle.DevAccelerate.Notifications.Subjects
 {
     public interface INotificationSubjectParam<TKey> : IEntity<TKey>
+        where TKey : IEquatable<TKey>
     {
         string Name { get; set; }
         string Value { get; set; }

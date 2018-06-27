@@ -4,12 +4,14 @@
 // ---------------------------------------------------------------------------------------------------------------------- 
 
 using Ejyle.DevAccelerate.Core;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Ejyle.DevAccelerate.Notifications.Messages
 {
     public interface INotificationMessageRepository<TKey, TNotificationMessage> : IEntityRepository<TKey, INotificationMessage<TKey>>
+        where TKey : IEquatable<TKey>
         where TNotificationMessage : INotificationMessage<TKey>
     {
         Task<List<TNotificationMessage>> FindByStatusAsync(NotificationStatus status);

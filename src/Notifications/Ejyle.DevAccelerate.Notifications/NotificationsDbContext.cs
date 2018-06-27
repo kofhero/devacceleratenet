@@ -3,6 +3,7 @@
 // Licensed under the MIT license. See the LICENSE file in the project's root directory for complete license information.
 // ----------------------------------------------------------------------------------------------------------------------
 
+using System;
 using System.Data.Entity;
 using Ejyle.DevAccelerate.Notifications.Messages;
 using Ejyle.DevAccelerate.Notifications.Recipients;
@@ -17,13 +18,14 @@ namespace Ejyle.DevAccelerate.Notifications
     {
     }
 
-    public class NotificationsDbContext<TKey, TOptionalKey, TUserIdKey, TNotificationTemplate, TNotificationSender, TNotificationMessage, TNotificationSubjectParam, TNotificationMessageParam, TNotificationRecipient> : DbContext
+    public class NotificationsDbContext<TKey, TNullableKey, TUserIdKey, TNotificationTemplate, TNotificationSender, TNotificationMessage, TNotificationSubjectParam, TNotificationMessageParam, TNotificationRecipient> : DbContext
+        where TKey : IEquatable<TKey>
         where TNotificationMessage : NotificationMessage<TKey, TUserIdKey, TNotificationMessageParam, TNotificationRecipient, TNotificationSubjectParam>
         where TNotificationMessageParam : NotificationMessageParam<TKey, TUserIdKey, TNotificationMessage>
         where TNotificationRecipient : NotificationRecipient<TKey, TUserIdKey, TNotificationMessage>
         where TNotificationSubjectParam : NotificationSubjectParam<TKey, TNotificationMessage>
-        where TNotificationTemplate : NotificationTemplate<TKey, TOptionalKey, TUserIdKey, TNotificationSender>
-        where TNotificationSender : NotificationSender<TKey, TOptionalKey, TUserIdKey, TNotificationTemplate>
+        where TNotificationTemplate : NotificationTemplate<TKey, TNullableKey, TUserIdKey, TNotificationSender>
+        where TNotificationSender : NotificationSender<TKey, TNullableKey, TUserIdKey, TNotificationTemplate>
     {
         private const string SCHEMA_NAME = "notifications";
 

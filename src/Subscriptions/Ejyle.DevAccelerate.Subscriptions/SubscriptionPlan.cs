@@ -4,12 +4,14 @@
 // ----------------------------------------------------------------------------------------------------------------------
 
 using Ejyle.DevAccelerate.Core;
+using System;
 using System.Collections.Generic;
 namespace Ejyle.DevAccelerate.Subscriptions
 {
-    public class SubscriptionPlan<TKey, TOptionalKey, TBillingCycle, TSubscription> : EntityBase<TKey>, ISubscriptionPlan<TKey>
+    public class SubscriptionPlan<TKey, TNullableKey, TBillingCycle, TSubscription> : EntityBase<TKey>, ISubscriptionPlan<TKey>
+        where TKey : IEquatable<TKey>
         where TBillingCycle : IBillingCycle<TKey>
-        where TSubscription : ISubscription<TKey, TOptionalKey>
+        where TSubscription : ISubscription<TKey, TNullableKey>
     {
         public SubscriptionPlan()
         {

@@ -5,6 +5,7 @@
 
 using Ejyle.DevAccelerate.Core;
 using Ejyle.DevAccelerate.Notifications.Messages;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Ejyle.DevAccelerate.Notifications.Recipients
@@ -15,6 +16,7 @@ namespace Ejyle.DevAccelerate.Notifications.Recipients
 
     public class NotificationRecipient<TKey, TUserIdKey, TNotificationMessage>
         : EntityBase<TKey>, INotificationRecipient<TKey, TUserIdKey>
+        where TKey : IEquatable<TKey>
         where TNotificationMessage : INotificationMessage<TKey>
     {
         [StringLength(100)]

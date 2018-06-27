@@ -4,13 +4,15 @@
 // ---------------------------------------------------------------------------------------------------------------------- 
 
 using Ejyle.DevAccelerate.Core;
+using System;
 
 namespace Ejyle.DevAccelerate.Notifications.Templates
 {
-    public interface INotificationTemplate<TKey, TOptionalKey> : IEntity<TKey>
+    public interface INotificationTemplate<TKey, TNullableKey> : IEntity<TKey>
+        where TKey : IEquatable<TKey>
     {
         string Name { get; set; }
-        TOptionalKey SenderId { get; set; }
+        TNullableKey SenderId { get; set; }
         string Subject { get; set; }
         string Message { get; set; }
         NotificationMessageFormat MessageFormat { get; set; }

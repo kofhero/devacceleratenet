@@ -5,6 +5,7 @@
 
 using Ejyle.DevAccelerate.Core;
 using Ejyle.DevAccelerate.Notifications.Senders;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Ejyle.DevAccelerate.Notifications.Templates
@@ -13,8 +14,9 @@ namespace Ejyle.DevAccelerate.Notifications.Templates
     {
     }
 
-    public class NotificationTemplate<TKey, TOptionalKey, TUserIdKey, TNotificationSender>
-        : EntityBase<TKey>, INotificationTemplate<TKey, TOptionalKey>
+    public class NotificationTemplate<TKey, TNullableKey, TUserIdKey, TNotificationSender>
+        : EntityBase<TKey>, INotificationTemplate<TKey, TNullableKey>
+        where TKey : IEquatable<TKey>
         where TNotificationSender : INotificationSender<TKey, TUserIdKey>
     {
         [Required]
@@ -37,7 +39,7 @@ namespace Ejyle.DevAccelerate.Notifications.Templates
 
         public bool IsActive { get; set; }
 
-        public TOptionalKey SenderId { get; set; }
+        public TNullableKey SenderId { get; set; }
 
         public virtual TNotificationSender Sender { get; set; }
     }

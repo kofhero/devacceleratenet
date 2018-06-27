@@ -3,51 +3,46 @@
 // Licensed under the MIT license. See the LICENSE file in the project's root directory for complete license information.
 // ----------------------------------------------------------------------------------------------------------------------
 
-using Ejyle.DevAccelerate.Core;
 using System;
+using Ejyle.DevAccelerate.Core;
 
 namespace Ejyle.DevAccelerate.Identity
 {
     /// <summary>
-    /// Represents the core interface for a tenant.
+    /// Represents an interface for a user agreement version. A user agreement can have multiple versions.
     /// </summary>
     /// <typeparam name="TKey">The type of a non-nullable key of an entity.</typeparam>
-    public interface ITenant<TKey> : IEntity<TKey>
+    public interface IUserAgreementVersion<TKey> : IEntity<TKey>
         where TKey : IEquatable<TKey>
     {
         /// <summary>
-        /// Gets or sets the type of a tenant.
+        /// Gets or sets the Id of the user agreement associated with the version.
         /// </summary>
-        TenantType TenantType { get; set; }
+        TKey UserAgreementId { get; set; }
 
         /// <summary>
-        /// Gets the name of a tenant.
+        /// Gets or sets the version number of the user agreement version.
         /// </summary>
-        string Name { get; set; }
+        int VersionNumber { get; set; }
 
         /// <summary>
-        /// Gets the unique text key of a tenant.
+        /// Gets or sets the text of the user agreement version.
         /// </summary>
-        string TenantKey { get; set; }
+        string Text { get; set; }
 
         /// <summary>
-        /// Gets the unique domain of a tenant.
+        /// Determines if the user agreement version is current.
         /// </summary>
-        string Domain { get; set; }
+        bool IsCurrent { get; set; }
 
         /// <summary>
-        /// Determines if the domain's ownership is verified or not.
+        /// Determines if the user agreement version is published.
         /// </summary>
-        bool IsDomainOwnershipVerified { get; set; }
+        bool IsPublished { get; set; }
 
         /// <summary>
-        /// Gets or sets the ID of the user who owns the tenant.
+        /// Gets or sets the date when the user agreement version was published.
         /// </summary>
-        TKey OwnerUserId { get; set; }
-
-        /// <summary>
-        /// Gets or sets the status of the tenant.
-        /// </summary>
-        AccountStatus Status { get; set; }
+        DateTime? PublishedDateUtc { get; set; }
     }
 }

@@ -4,10 +4,12 @@
 // ----------------------------------------------------------------------------------------------------------------------
 
 using Ejyle.DevAccelerate.Core;
+using System;
 
 namespace Ejyle.DevAccelerate.Subscriptions
 {
     public interface IBillingCycle<TKey> : IEntity<TKey>
+        where TKey : IEquatable<TKey>
     {
         BillingCycleType BillingCycleType { get; set; }
         int BillingCycleDuration { get; set; }

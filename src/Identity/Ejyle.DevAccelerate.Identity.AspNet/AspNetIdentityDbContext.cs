@@ -13,13 +13,13 @@ namespace Ejyle.DevAccelerate.Identity.AspNet
     /// <summary>
     /// Represents the identity database context for the underlying data store.
     /// </summary>
-    public class AspNetIdentityDbContext : AspNetIdentityDbContext<string, User, Role, UserLogin, UserRole, UserClaim, Tenant, TenantUser>
+    public class AspNetIdentityDbContext : AspNetIdentityDbContext<int, int?, User, Role, UserLogin, UserRole, UserClaim, Tenant, TenantUser, UserSession, UserAgreement, UserAgreementVersion>
     {
         /// <summary>
         /// Creates an instance of the <see cref="AspNetIdentityDbContext"/> class.
         /// </summary>
         public AspNetIdentityDbContext()
-            : base()
+            : base("IdentityConnection")
         {
         }
 
@@ -42,35 +42,31 @@ namespace Ejyle.DevAccelerate.Identity.AspNet
     /// <typeparam name="TUserLogin">The type of the user login entity.</typeparam>
     /// <typeparam name="TUserRole">The type of the user role entity.</typeparam>
     /// <typeparam name="TUserClaim">The type of the user claim entity.</typeparam>
-    public class AspNetIdentityDbContext<TKey, TUser, TRole, TUserLogin, TUserRole, TUserClaim, TTenant, TTenantUser>
+    public class AspNetIdentityDbContext<TKey, TNullableKey, TUser, TRole, TUserLogin, TUserRole, TUserClaim, TTenant, TTenantUser, TUserSession, TUserAgreement, TUserAgreementVersion>
         : IdentityDbContext<TUser, TRole, TKey, TUserLogin, TUserRole, TUserClaim>
         where TKey : IEquatable<TKey>
-        where TUser : User<TKey, TUserLogin, TUserRole, TUserClaim>
+        where TUser : User<TKey, TNullableKey,  TUserLogin, TUserRole, TUserClaim>
         where TRole: Role<TKey, TUserRole>
         where TUserLogin: UserLogin<TKey>
         where TUserRole: UserRole<TKey>
         where TUserClaim: UserClaim<TKey>
         where TTenant : Tenant<TKey, TTenantUser>
-        where TTenantUser : TenantUser<TKey, TTenant, TUser>
+        where TTenantUser : TenantUser<TKey, TNullableKey, TTenant, TUser>
+        where TUserSession : UserSession<TKey>
+        where TUserAgreement : UserAgreement<TKey, TUserAgreementVersion>
+        where TUserAgreementVersion : UserAgreementVersion<TKey, TUserAgreement>
     {
         /// <summary>
         /// Creates an instance of the <see cref="AspNetIdentityDbContext"/> class.
         /// </summary>
-        public AspNetIdentityDbContext()
-            : base("IdentityConnection")
-        {
-        }
+        public AspNetIdentityDbContext(string nameOrConnectionString)
+            : base(nameOrConnectionString)
+        { }
 
-        public DbSet<TTenant> Tenants { get; set; }
-        public DbSet<TTenantUser> TenantUsers { get; set; }
+        public virtual DbSet<TUserAgreement> UserAgreements { get; set; }
+        public virtual DbSet<TUserAgreementVersion> UserAgreementVersions { get; set; }
 
-        /// <summary>
-        /// Creates an instance of the <see cref="AspNetIdentityDbContext"/> class.
-        /// </summary>
-        /// <param name="connectionString">The name of the connection string.</param>
-        public AspNetIdentityDbContext(string connectionString)
-            : base(connectionString)
-        {
-        }
+        public virtual DbSet<TTenant> Tenants { get; set; }
+        public virtual DbSet<TTenantUser> TenantUsers { get; set; }
     }
 }

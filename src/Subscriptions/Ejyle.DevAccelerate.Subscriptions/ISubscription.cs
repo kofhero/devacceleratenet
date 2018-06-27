@@ -8,7 +8,8 @@ using System;
 
 namespace Ejyle.DevAccelerate.Subscriptions
 {
-    public interface ISubscription<TKey, TOptionalKey> : IEntity<TKey>
+    public interface ISubscription<TKey, TNullableKey> : IEntity<TKey>
+        where TKey : IEquatable<TKey>
     {
         string Name { get; set; }
         bool IsActive { get; set; }
@@ -20,7 +21,7 @@ namespace Ejyle.DevAccelerate.Subscriptions
         int? BillingCycleEndDay { get; set; }
         TKey TenantId { get; set; }
         TKey OwnerUserId { get; set; }
-        TOptionalKey PaymentMethodId { get; set; }
+        TNullableKey PaymentMethodId { get; set; }
         DateTime? ExpiryDateUtc { get; set; }
         DateTime CreatedDateUtc { get; set; }
     }

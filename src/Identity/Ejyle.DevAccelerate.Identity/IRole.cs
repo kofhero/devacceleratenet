@@ -11,7 +11,7 @@ namespace Ejyle.DevAccelerate.Identity
     /// <summary>
     /// Represents the basic interface of a role.
     /// </summary>
-    /// <typeparam name="TKey">The type of the role ID.</typeparam>
+    /// <typeparam name="TKey">The type of a non-nullable key of an entity.</typeparam>
     public interface IRole<TKey> : IEntity<TKey>
         where TKey : IEquatable<TKey>
     {

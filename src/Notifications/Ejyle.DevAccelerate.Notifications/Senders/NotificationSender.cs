@@ -5,6 +5,7 @@
 
 using Ejyle.DevAccelerate.Core;
 using Ejyle.DevAccelerate.Notifications.Templates;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -18,9 +19,10 @@ namespace Ejyle.DevAccelerate.Notifications.Senders
         { }
     }
 
-    public class NotificationSender<TKey, TOptionalKey, TUserIdKey, TNotificationTemplate>
+    public class NotificationSender<TKey, TNullableKey, TUserIdKey, TNotificationTemplate>
         : EntityBase<TKey>, INotificationSender<TKey, TUserIdKey>
-        where TNotificationTemplate: INotificationTemplate<TKey, TOptionalKey>
+        where TKey : IEquatable<TKey>
+        where TNotificationTemplate: INotificationTemplate<TKey, TNullableKey>
     {
         public NotificationSender()
         {

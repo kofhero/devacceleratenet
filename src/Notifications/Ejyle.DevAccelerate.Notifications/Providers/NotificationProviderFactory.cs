@@ -4,6 +4,7 @@ using System;
 namespace Ejyle.DevAccelerate.Notifications.Providers
 {
     public class NotificationProviderFactory<TKey, TMessage, TNotificationProvider>
+        where TKey : IEquatable<TKey>
         where TNotificationProvider : INotificationServiceProvider<TKey, TMessage>
         where TMessage : INotificationMessage<TKey>
     {

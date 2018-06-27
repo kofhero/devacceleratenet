@@ -3,22 +3,20 @@
 // Licensed under the MIT license. See the LICENSE file in the project's root directory for complete license information.
 // ----------------------------------------------------------------------------------------------------------------------
 
-using Microsoft.AspNet.Identity.EntityFramework;
-using System;
-
-namespace Ejyle.DevAccelerate.Identity.AspNet
+namespace Ejyle.DevAccelerate.Identity
 {
     /// <summary>
-    /// Represents a user's external login.
+    /// Represents the type of a tenant.
     /// </summary>
-    public class UserLogin : UserLogin<int>
-    { }
-
-    /// <summary>
-    /// Represents a user's external login.
-    /// </summary>
-    /// <typeparam name="TKey">The type of the user ID.</typeparam>
-    public class UserLogin<TKey> : IdentityUserLogin<TKey>
-        where TKey : IEquatable<TKey>
-    { }
+    public enum TenantType
+    {
+        /// <summary>
+        /// Represents an individual
+        /// </summary>
+        Individual = 0,
+        /// <summary>
+        /// Represents an organization
+        /// </summary>
+        Organization = 1
+    }
 }

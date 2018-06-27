@@ -6,13 +6,23 @@
 using Ejyle.DevAccelerate.Core;
 using System;
 
-namespace Ejyle.DevAccelerate.Notifications.Senders
+namespace Ejyle.DevAccelerate.Identity
 {
-    public interface INotificationSender<TKey, TUserIdKey> : IEntity<TKey>
+    /// <summary>
+    /// Represents the interface for a user agreement.
+    /// </summary>
+    /// <typeparam name="TKey">The type of a non-nullable key of an entity.</typeparam>
+    public interface IUserAgreement<TKey> : IEntity<TKey>
         where TKey : IEquatable<TKey>
     {
-        TUserIdKey UserId { get; set; }
+        /// <summary>
+        /// Gets or sets the name of a user agreement.
+        /// </summary>
         string Name { get; set; }
-        string EmailAddress { get; set; }
+
+        /// <summary>
+        /// Gets or sets the unique text key of a user agreement.
+        /// </summary>
+        string UserAgreementKey { get; set; }
     }
 }

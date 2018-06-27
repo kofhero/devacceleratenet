@@ -4,13 +4,15 @@
 // ---------------------------------------------------------------------------------------------------------------------- 
 
 using Ejyle.DevAccelerate.Core;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Ejyle.DevAccelerate.Notifications.Templates
 {
-    public interface INotificationTemplateRepository<TKey, TOptionalKey, TNotificationTemplate> : IEntityRepository<TKey, TNotificationTemplate>
-        where TNotificationTemplate : INotificationTemplate<TKey, TOptionalKey>
+    public interface INotificationTemplateRepository<TKey, TNullableKey, TNotificationTemplate> : IEntityRepository<TKey, TNotificationTemplate>
+        where TKey : IEquatable<TKey>
+        where TNotificationTemplate : INotificationTemplate<TKey, TNullableKey>
     {
         Task CreateAsync(TNotificationTemplate notificationTemplate);
         Task<List<TNotificationTemplate>> FindAllAsync();

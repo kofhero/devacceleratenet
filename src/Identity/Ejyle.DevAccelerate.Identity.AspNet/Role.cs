@@ -9,9 +9,9 @@ using Microsoft.AspNet.Identity.EntityFramework;
 namespace Ejyle.DevAccelerate.Identity.AspNet
 {
     /// <summary>
-    /// Represents the non-generics version of the <see cref="Role{TKey, TOptionalKey, TUserRole}"/> class.
+    /// Represents the non-generics version of the <see cref="Role{TKey, TUserRole}"/> class.
     /// </summary>
-    public class Role : Role<string, UserRole>
+    public class Role : Role<int, UserRole>
     {
         /// <summary>
         /// Creates an instance of the <see cref="Role"/> class.
@@ -25,7 +25,6 @@ namespace Ejyle.DevAccelerate.Identity.AspNet
     /// Represents a role.
     /// </summary>
     /// <typeparam name="TKey">The type of the role ID.</typeparam>
-    /// <typeparam name="TOptionalKey">The type of an optional ID.</typeparam>
     /// <typeparam name="TUserRole">The type of the user role.</typeparam>
     public class Role<TKey, TUserRole> : IdentityRole<TKey, TUserRole>, IRole<TKey>
         where TKey : IEquatable<TKey>

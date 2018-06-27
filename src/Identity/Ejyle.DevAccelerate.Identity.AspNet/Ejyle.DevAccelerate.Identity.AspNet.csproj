@@ -118,11 +118,14 @@
     <Compile Include="Tenants\Tenant.cs" />
     <Compile Include="Tenants\TenantUser.cs" />
     <Compile Include="User.cs" />
+    <Compile Include="UserAgreement.cs" />
+    <Compile Include="UserAgreementVersion.cs" />
     <Compile Include="UserClaim.cs" />
     <Compile Include="UserLogin.cs" />
     <Compile Include="UserManager.cs" />
     <Compile Include="UserRepository.cs" />
     <Compile Include="UserRole.cs" />
+    <Compile Include="UserSession.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="da.ico" />

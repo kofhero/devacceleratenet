@@ -21,6 +21,7 @@ namespace Ejyle.DevAccelerate.Notifications.Messages
 
     public class NotificationMessage<TKey, TUserIdKey, TNotificationMessageParam, TNotificationRecipient, TNotificationSubjectParam>
         : EntityBase<TKey>, INotificationMessage<TKey>
+        where TKey : IEquatable<TKey>
         where TNotificationMessageParam : INotificationMessageParam<TKey>
         where TNotificationRecipient : INotificationRecipient<TKey, TUserIdKey>
         where TNotificationSubjectParam : INotificationSubjectParam<TKey>

@@ -4,6 +4,7 @@
 // ----------------------------------------------------------------------------------------------------------------------
 
 using Ejyle.DevAccelerate.Core;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -11,6 +12,7 @@ namespace Ejyle.DevAccelerate.Notifications.Senders
 {
     public interface INotificationSenderRepository<TKey, TUserIdKey, TNotificationSender>
         : IEntityRepository<TKey, TNotificationSender>
+        where TKey : IEquatable<TKey>
         where TNotificationSender : INotificationSender<TKey, TUserIdKey>
     {
         Task<List<TNotificationSender>> FindAllAsync();
