@@ -50,6 +50,7 @@
     <Compile Include="Configuration\IdentityPasswordPolicyConfigurationElement.cs" />
     <Compile Include="Configuration\IdentityTwoFactorPolicyConfigurationElement.cs" />
     <Compile Include="Configuration\IdentityUserNamePolicyConfigurationElement.cs" />
+    <Compile Include="IRoleRepository.cs" />
     <Compile Include="ITenantUser.cs" />
     <Compile Include="IUserAgreement.cs" />
     <Compile Include="IUserAgreementVersion.cs" />

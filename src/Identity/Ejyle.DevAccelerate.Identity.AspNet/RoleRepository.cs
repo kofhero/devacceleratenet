@@ -24,7 +24,9 @@ namespace Ejyle.DevAccelerate.Identity.AspNet
     /// Represents an extension for <see cref="RoleStore{TRole, TKey, TUserRole}"/> class.
     /// </summary>
     /// <typeparam name="TDbContext">The <see cref="DbContext"/> of the role repository.</typeparam>
-    public class RoleRepository<TKey, TNullableKey, TUser, TRole, TUserLogin, TUserRole, TUserClaim, TTenant, TTenantUser, TUserSession, TUserAgreement, TUserAgreementVersion, TDbContext> : RoleStore<TRole, TKey, TUserRole>
+    public class RoleRepository<TKey, TNullableKey, TUser, TRole, TUserLogin, TUserRole, TUserClaim, TTenant, TTenantUser, TUserSession, TUserAgreement, TUserAgreementVersion, TDbContext>
+        : RoleStore<TRole, TKey, TUserRole>,
+        IRoleRepository<TKey, TRole>
         where TKey : IEquatable<TKey>
         where TUser : User<TKey, TNullableKey, TUserLogin, TUserRole, TUserClaim>
         where TRole : Role<TKey, TUserRole>, new()
