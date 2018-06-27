@@ -10,6 +10,8 @@ using Microsoft.AspNet.Identity.Owin;
 using Ejyle.DevAccelerate.Core;
 using Ejyle.DevAccelerate.Identity.AspNet.Tenants;
 using Ejyle.DevAccelerate.Identity.Configuration;
+using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace Ejyle.DevAccelerate.Identity.AspNet
 {
@@ -140,6 +142,29 @@ namespace Ejyle.DevAccelerate.Identity.AspNet
         public UserManager(TUserRepository repository)
             : base(repository)
         {
+        }
+
+        /// <summary>
+        /// Asynchronously creates a user session.
+        /// </summary>
+        /// <param name="userSession">User session to create.</param>
+        /// <returns>The task representing the asynchronous operation.</returns>
+        public Task CreateUserSessionAsync(TUserSession userSession)
+        {
+            var repository = Store as TUserRepository;
+            return repository.CreateUserSessionAsync(userSession);
+        }
+
+        public Task<TUserSession> FindUserSessionById(TKey userSessionId)
+        {
+            var repository = Store as TUserRepository;
+            return repository.FindUserSessionById(userSessionId);
+        }
+
+        public Task<List<TUserSession>> FindUserSessionsByUserId(TKey userId)
+        {
+            var repository = Store as TUserRepository;
+            return repository.FindUserSessionsByUserId(userId);
         }
     }
 }

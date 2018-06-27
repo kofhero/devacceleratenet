@@ -7,6 +7,9 @@ using System;
 using System.Threading.Tasks;
 using Ejyle.DevAccelerate.Identity.AspNet.Tenants;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Data.Entity;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace Ejyle.DevAccelerate.Identity.AspNet
 {
@@ -52,7 +55,7 @@ namespace Ejyle.DevAccelerate.Identity.AspNet
     /// <typeparam name="TDbContext">The type of the data context representing the underlying data store.</typeparam>
     public class UserRepository<TKey, TNullableKey, TUser, TRole, TUserLogin, TUserRole, TUserClaim, TTenant, TTenantUser, TUserSession, TUserAgreement, TUserAgreementVersion, TDbContext>
         : UserStore<TUser, TRole, TKey, TUserLogin, TUserRole, TUserClaim>,
-        IUserRepository<TKey, TNullableKey, TUser>
+        IUserRepository<TKey, TNullableKey, TUser, TUserSession>
         where TKey : IEquatable<TKey>
         where TUser : User<TKey, TNullableKey, TUserLogin, TUserRole, TUserClaim>
         where TRole : Role<TKey, TUserRole>, new()
@@ -106,6 +109,30 @@ namespace Ejyle.DevAccelerate.Identity.AspNet
         {
             user.LastUpdatedDateUtc = DateTime.UtcNow;
             return base.UpdateAsync(user);
+        }
+
+        /// <summary>
+        /// Asynchronously creates a user session.
+        /// </summary>
+        /// <param name="userSession">User session to create.</param>
+        /// <returns>The task representing the asynchronous operation.</returns>
+        public Task CreateUserSessionAsync(TUserSession userSession)
+        {
+            var context = Context as TDbContext;
+            context.UserSessions.Add(userSession);
+            return context.SaveChangesAsync();
+        }
+
+        public Task<TUserSession> FindUserSessionById(TKey userSessionId)
+        {
+            var context = Context as TDbContext;
+            return context.UserSessions.Where(m => m.Id.Equals(userSessionId)).SingleOrDefaultAsync();
+        }
+
+        public Task<List<TUserSession>> FindUserSessionsByUserId(TKey userId)
+        {
+            var context = Context as TDbContext;
+            return context.UserSessions.Where(m => m.UserId.Equals(userId)).ToListAsync();
         }
     }
 }

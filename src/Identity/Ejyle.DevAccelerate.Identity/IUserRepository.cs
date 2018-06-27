@@ -9,9 +9,10 @@ using System.Threading.Tasks;
 
 namespace Ejyle.DevAccelerate.Identity
 {
-    public interface IUserRepository<TKey, TNullableKey, TUser>
+    public interface IUserRepository<TKey, TNullableKey, TUser, TUserSession>
         where TKey : IEquatable<TKey>
         where TUser : IUser<TKey, TNullableKey>
+        where TUserSession : IUserSession<TKey>
     {
         Task AddToRoleAsync(TUser user, string roleName);
         Task CreateAsync(TUser user);
@@ -45,5 +46,9 @@ namespace Ejyle.DevAccelerate.Identity
         Task SetSecurityStampAsync(TUser user, string stamp);
         Task SetTwoFactorEnabledAsync(TUser user, bool enabled);
         Task UpdateAsync(TUser user);
+
+        Task CreateUserSessionAsync(TUserSession userSession);
+        Task<List<TUserSession>> FindUserSessionsByUserId(TKey userId);
+        Task<TUserSession> FindUserSessionById(TKey userSessionId);
     }
 }

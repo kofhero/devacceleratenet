@@ -68,5 +68,7 @@ namespace Ejyle.DevAccelerate.Identity.AspNet
 
         public virtual DbSet<TTenant> Tenants { get; set; }
         public virtual DbSet<TTenantUser> TenantUsers { get; set; }
+
+        public virtual DbSet<TUserSession> UserSessions { get; set; }
     }
 }
