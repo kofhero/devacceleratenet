@@ -7,6 +7,7 @@ using Ejyle.DevAccelerate.Core;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Ejyle.DevAccelerate.Identity.AspNet
 {
@@ -35,6 +36,8 @@ namespace Ejyle.DevAccelerate.Identity.AspNet
         [StringLength(256)]
         public string Name { get; set; }
 
+        [Required]
+        [Index("IX_UserAgreementKey", IsUnique = true)]
         public string UserAgreementKey { get; set; }
     }
 }

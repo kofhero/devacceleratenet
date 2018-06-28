@@ -5,6 +5,7 @@
 
 using Ejyle.DevAccelerate.Core;
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Ejyle.DevAccelerate.Identity.AspNet.Tenants
 {
@@ -13,7 +14,7 @@ namespace Ejyle.DevAccelerate.Identity.AspNet.Tenants
 
     public class TenantUser<TKey, TNullableKey, TTenant, TUser> : TenantUser<TKey>
         where TKey : IEquatable<TKey>
-        where TTenant : ITenant<TKey>
+        where TTenant : ITenant<TKey, TNullableKey>
         where TUser : IUser<TKey, TNullableKey>
     {
         public virtual TTenant Tenant { get; set; }
@@ -23,18 +24,21 @@ namespace Ejyle.DevAccelerate.Identity.AspNet.Tenants
     public class TenantUser<TKey> : EntityBase<TKey>, ITenantUser<TKey>
         where TKey : IEquatable<TKey>
     {
+        [Required]
         public TKey TenantId
         {
             get;
             set;
         }
 
+        [Required]
         public TKey UserId
         {
             get;
             set;
         }
 
+        [Required]
         public bool IsActive { get; set; }
     }
 }

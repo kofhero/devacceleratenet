@@ -12,7 +12,8 @@ namespace Ejyle.DevAccelerate.Identity
     /// Represents the core interface for a tenant.
     /// </summary>
     /// <typeparam name="TKey">The type of a non-nullable key of an entity.</typeparam>
-    public interface ITenant<TKey> : IEntity<TKey>
+    /// <typeparam name="TNullableKey">The type of a nullable key of an entity.</typeparam>
+    public interface ITenant<TKey, TNullableKey> : IEntity<TKey>
         where TKey : IEquatable<TKey>
     {
         /// <summary>
@@ -41,6 +42,16 @@ namespace Ejyle.DevAccelerate.Identity
         bool IsDomainOwnershipVerified { get; set; }
 
         /// <summary>
+        /// Gets or sets the currency ID of the tenant.
+        /// </summary>
+        TNullableKey CurrencyId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the time zone of the tenant.
+        /// </summary>
+        TNullableKey TimeZoneId { get; set; }
+
+        /// <summary>
         /// Gets or sets the ID of the user who owns the tenant.
         /// </summary>
         TKey OwnerUserId { get; set; }
@@ -49,5 +60,15 @@ namespace Ejyle.DevAccelerate.Identity
         /// Gets or sets the status of the tenant.
         /// </summary>
         AccountStatus Status { get; set; }
+
+        /// <summary>
+        /// Gets or sets the user ID who created the tenant.
+        /// </summary>
+        TKey CreatedBy { get; set; }
+
+        /// <summary>
+        /// Gets or sets the date and time when the tenant was created.
+        /// </summary>
+        DateTime CreatedDateUtc { get; set; }
     }
 }

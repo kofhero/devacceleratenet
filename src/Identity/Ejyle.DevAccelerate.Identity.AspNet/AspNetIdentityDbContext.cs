@@ -24,6 +24,13 @@ namespace Ejyle.DevAccelerate.Identity.AspNet
         }
 
         /// <summary>
+        /// Creates an instance of the <see cref="AspNetIdentityDbContext"/> class.
+        /// </summary>
+        public AspNetIdentityDbContext(string nameOrConnectionString)
+            : base(nameOrConnectionString)
+        { }
+
+        /// <summary>
         /// Create a new instance of the <see cref="AspNetIdentityDbContext"/> class.
         /// </summary>
         /// <returns>Returns an instance of the <see cref="AspNetIdentityDbContext"/> class.</returns>
@@ -50,7 +57,7 @@ namespace Ejyle.DevAccelerate.Identity.AspNet
         where TUserLogin: UserLogin<TKey>
         where TUserRole: UserRole<TKey>
         where TUserClaim: UserClaim<TKey>
-        where TTenant : Tenant<TKey, TTenantUser>
+        where TTenant : Tenant<TKey, TNullableKey, TTenantUser>
         where TTenantUser : TenantUser<TKey, TNullableKey, TTenant, TUser>
         where TUserSession : UserSession<TKey>
         where TUserAgreement : UserAgreement<TKey, TUserAgreementVersion>

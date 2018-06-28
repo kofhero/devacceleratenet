@@ -10,12 +10,12 @@ using System.Data.Entity;
 
 namespace Ejyle.DevAccelerate.Identity.AspNet.Tenants
 {
-    public class TenantManagery<TKey, TTenant, TTenantUser, TTenantRepository>
+    public class TenantManagery<TKey, TNullableKey, TTenant, TTenantUser, TTenantRepository>
         : IDisposable
         where TKey : IEquatable<TKey>
-        where TTenant : ITenant<TKey>
+        where TTenant : ITenant<TKey, TNullableKey>
         where TTenantUser : ITenantUser<TKey>
-        where TTenantRepository : ITenantRepository<TKey, TTenant, TTenantUser>
+        where TTenantRepository : ITenantRepository<TKey, TNullableKey, TTenant, TTenantUser>
     {
         private bool _disposed = false;
 

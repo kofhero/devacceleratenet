@@ -32,7 +32,7 @@ namespace Ejyle.DevAccelerate.Identity.AspNet
         where TUserLogin : UserLogin<TKey>, new()
         where TUserRole : UserRole<TKey>, new()
         where TUserClaim : UserClaim<TKey>, new()
-        where TTenant : Tenant<TKey, TTenantUser>
+        where TTenant : Tenant<TKey, TNullableKey, TTenantUser>
         where TTenantUser : TenantUser<TKey, TNullableKey, TTenant, TUser>
         where TUserSession : UserSession<TKey>
         where TUserAgreement : UserAgreement<TKey, TUserAgreementVersion>

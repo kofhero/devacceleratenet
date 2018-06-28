@@ -45,8 +45,7 @@ namespace Ejyle.DevAccelerate.Identity.AspNet
             set;
         }
 
-        [Required]
-        public DateTime ExpiryDateUtc
+        public DateTime? ExpiryDateUtc
         {
             get;
             set;

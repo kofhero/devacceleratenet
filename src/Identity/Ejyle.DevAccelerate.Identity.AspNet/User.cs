@@ -32,6 +32,7 @@ namespace Ejyle.DevAccelerate.Identity.AspNet
         /// <summary>
         /// Gets or sets the status of the user account.
         /// </summary>
+        [Required]
         public AccountStatus Status { get; set; }
 
         /// <summary>
@@ -53,11 +54,13 @@ namespace Ejyle.DevAccelerate.Identity.AspNet
         /// <summary>
         /// Gets or sets the UTC date and time when the user account is created.
         /// </summary>
+        [Required]
         public DateTime CreatedDateUtc { get; set; }
 
         /// <summary>
         /// Gets or sets the UTC date and time when the user account was last modified.
         /// </summary>
+        [Required]
         public DateTime LastUpdatedDateUtc { get; set; }
     }
 }

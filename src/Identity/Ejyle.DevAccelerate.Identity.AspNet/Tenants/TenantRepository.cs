@@ -11,14 +11,14 @@ using System.Data.Entity;
 namespace Ejyle.DevAccelerate.Identity.AspNet.Tenants
 {
     public class TenantRepository<TKey, TNullableKey, TUser, TRole, TUserLogin, TUserRole, TUserClaim, TTenant, TTenantUser, TUserSession, TUserAgreement, TUserAgreementVersion, TDbContext>
-        : ITenantRepository<TKey, TTenant, TTenantUser>
+        : ITenantRepository<TKey, TNullableKey, TTenant, TTenantUser>
         where TKey : IEquatable<TKey>
         where TUser : User<TKey, TNullableKey, TUserLogin, TUserRole, TUserClaim>
         where TRole : Role<TKey, TUserRole>, new()
         where TUserLogin : UserLogin<TKey>, new()
         where TUserRole : UserRole<TKey>, new()
         where TUserClaim : UserClaim<TKey>, new()
-        where TTenant : Tenant<TKey, TTenantUser>
+        where TTenant : Tenant<TKey, TNullableKey, TTenantUser>
         where TTenantUser : TenantUser<TKey, TNullableKey, TTenant, TUser>
         where TUserSession : UserSession<TKey>
         where TUserAgreement : UserAgreement<TKey, TUserAgreementVersion>

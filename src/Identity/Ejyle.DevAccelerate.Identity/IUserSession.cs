@@ -38,7 +38,7 @@ namespace Ejyle.DevAccelerate.Identity
         /// <summary>
         /// Gets or sets the date and time of when the user session is expired.
         /// </summary>
-        DateTime ExpiryDateUtc { get; set; }
+        DateTime? ExpiryDateUtc { get; set; }
 
         /// <summary>
         /// Gets or sets the date and time of when the user session actually got expired.
