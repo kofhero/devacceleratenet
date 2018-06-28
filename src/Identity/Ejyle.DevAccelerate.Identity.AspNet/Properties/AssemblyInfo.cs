@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("Ejyle.DevAccelerate.Identity.AspNet")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Ejyle Technologies (P) Ltd")]
-[assembly: AssemblyProduct("DevAccelerate.NET")]
+[assembly: AssemblyProduct("DevAccelerate Identity for ASP.NET")]
 [assembly: AssemblyCopyright("Copyright © Ejyle Technologies (P) Ltd (www.ejyle.com)")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("Ejyle.DevAccelerate.Providers.Mail.SendGrid")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Ejyle Technologies (P) Ltd")]
-[assembly: AssemblyProduct("DevAccelerate.NET")]
+[assembly: AssemblyProduct("DevAccelerate Mail Provider for SendGrid")]
 [assembly: AssemblyCopyright("Copyright © Ejyle Technologies (P) Ltd (www.ejyle.com)")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

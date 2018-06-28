@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("Ejyle.DevAccelerate.Financials.UnitTests")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Ejyle Technologies (P) Ltd")]
-[assembly: AssemblyProduct("DevAccelerate.NET")]
+[assembly: AssemblyProduct("DevAccelerate Financials")]
 [assembly: AssemblyCopyright("Copyright © Ejyle Technologies (P) Ltd (www.ejyle.com)")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
