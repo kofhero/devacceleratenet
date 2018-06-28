@@ -51,22 +51,37 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Currency.cs" />
+    <Compile Include="CurrencyManager.cs" />
+    <Compile Include="CurrencyRepository.cs" />
     <Compile Include="Geography\Country.cs" />
+    <Compile Include="Geography\CountryManager.cs" />
     <Compile Include="Geography\CountryRegion.cs" />
+    <Compile Include="Geography\CountryRepository.cs" />
     <Compile Include="Geography\ICountry.cs" />
     <Compile Include="Geography\ICountryRegion.cs" />
+    <Compile Include="Geography\ICountryRepository.cs" />
     <Compile Include="ICurrency.cs" />
+    <Compile Include="ICurrencyRepository.cs" />
     <Compile Include="IList.cs" />
     <Compile Include="ListBase.cs" />
     <Compile Include="ListsDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="System\DateFormat.cs" />
+    <Compile Include="System\DateFormatManager.cs" />
+    <Compile Include="System\DateFormatRepository.cs" />
     <Compile Include="System\DateFormatType.cs" />
     <Compile Include="System\GlobalTimeZone.cs" />
+    <Compile Include="System\GlobalTimeZoneManager.cs" />
+    <Compile Include="System\GlobalTimeZoneRepository.cs" />
     <Compile Include="System\IDateFormat.cs" />
+    <Compile Include="System\IDateFormatRepository.cs" />
     <Compile Include="System\IGlobalTimeZone.cs" />
+    <Compile Include="System\IGlobalTimeZoneRepository.cs" />
     <Compile Include="System\ISystemLanguage.cs" />
+    <Compile Include="System\ISystemLanguageRepository.cs" />
     <Compile Include="System\SystemLanguage.cs" />
+    <Compile Include="System\SystemLanguageManager.cs" />
+    <Compile Include="System\SystemLanguageRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="da.ico" />
