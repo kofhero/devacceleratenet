@@ -16,7 +16,7 @@ namespace Ejyle.DevAccelerate.Identity.AspNet
         { }
     }
 
-    public class UserAgreement<TKey, TUserAgreementVersion> : EntityBase<TKey>, IUserAgreement<TKey>
+    public class UserAgreement<TKey, TUserAgreementVersion> : UserAgreement<TKey>
         where TKey : IEquatable<TKey>
         where TUserAgreementVersion : IUserAgreementVersion<TKey>
     {
@@ -25,11 +25,15 @@ namespace Ejyle.DevAccelerate.Identity.AspNet
             UserAgreementVersions = new HashSet<TUserAgreementVersion>();
         }
 
+        public ICollection<TUserAgreementVersion> UserAgreementVersions { get; set; }
+    }
+
+    public class UserAgreement<TKey> : EntityBase<TKey>, IUserAgreement<TKey>
+        where TKey : IEquatable<TKey>
+    {
         [Required]
         [StringLength(256)]
         public string Name { get; set; }
-
-        public ICollection<TUserAgreementVersion> UserAgreementVersions { get; set; }
 
         public string UserAgreementKey { get; set; }
     }

@@ -15,7 +15,7 @@ namespace Ejyle.DevAccelerate.Identity.AspNet.Tenants
         { }
     }
 
-    public class Tenant<TKey, TTenantUser> : EntityBase<TKey>, ITenant<TKey>
+    public class Tenant<TKey, TTenantUser> : Tenant<TKey>
         where TKey : IEquatable<TKey>
         where TTenantUser : ITenantUser<TKey>
     {
@@ -24,6 +24,12 @@ namespace Ejyle.DevAccelerate.Identity.AspNet.Tenants
             TenantUsers = new List<TTenantUser>();
         }
 
+        public virtual ICollection<TTenantUser> TenantUsers { get; set; }
+    }
+
+    public class Tenant<TKey> : EntityBase<TKey>, ITenant<TKey>
+        where TKey : IEquatable<TKey>
+    {
         public TenantType TenantType { get; set; }
         public TKey OwnerUserId { get; set; }
         public bool IsActive { get; set; }
@@ -31,8 +37,7 @@ namespace Ejyle.DevAccelerate.Identity.AspNet.Tenants
         public string Domain { get; set; }
         public bool IsDomainOwnershipVerified { get; set; }
         public string FriendlyName { get; set; }
-        public virtual ICollection<TTenantUser> TenantUsers { get; set; }
-        public string TenantKey { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
-        public AccountStatus Status { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+        public string TenantKey { get; set; }
+        public AccountStatus Status { get; set; }
     }
 }

@@ -10,21 +10,12 @@ using System.Data.Entity;
 
 namespace Ejyle.DevAccelerate.Identity.AspNet.Tenants
 {
-    public class TenantManagery<TKey, TNullableKey, TUser, TRole, TUserLogin, TUserRole, TUserClaim, TTenant, TTenantUser, TUserSession, TUserAgreement, TUserAgreementVersion, TTenantRepository, TDbContext>
+    public class TenantManagery<TKey, TTenant, TTenantUser, TTenantRepository>
         : IDisposable
         where TKey : IEquatable<TKey>
-        where TUser : User<TKey, TNullableKey, TUserLogin, TUserRole, TUserClaim>
-        where TRole : Role<TKey, TUserRole>, new()
-        where TUserLogin : UserLogin<TKey>, new()
-        where TUserRole : UserRole<TKey>, new()
-        where TUserClaim : UserClaim<TKey>, new()
-        where TTenant : Tenant<TKey, TTenantUser>
-        where TTenantUser : TenantUser<TKey, TNullableKey, TTenant, TUser>
-        where TUserSession : UserSession<TKey>
-        where TUserAgreement : UserAgreement<TKey, TUserAgreementVersion>
-        where TUserAgreementVersion : UserAgreementVersion<TKey, TUserAgreement>
-        where TTenantRepository : TenantRepository<TKey, TNullableKey, TUser, TRole, TUserLogin, TUserRole, TUserClaim, TTenant, TTenantUser, TUserSession, TUserAgreement, TUserAgreementVersion, TDbContext>
-        where TDbContext : AspNetIdentityDbContext<TKey, TNullableKey, TUser, TRole, TUserLogin, TUserRole, TUserClaim, TTenant, TTenantUser, TUserSession, TUserAgreement, TUserAgreementVersion>
+        where TTenant : ITenant<TKey>
+        where TTenantUser : ITenantUser<TKey>
+        where TTenantRepository : ITenantRepository<TKey, TTenant, TTenantUser>
     {
         private bool _disposed = false;
 
@@ -67,7 +58,7 @@ namespace Ejyle.DevAccelerate.Identity.AspNet.Tenants
                 if (disposing)
                 {
                     Repository.Dispose();
-                    Repository = null;
+                    Repository = default(TTenantRepository);
                 }
 
                 _disposed = true;
