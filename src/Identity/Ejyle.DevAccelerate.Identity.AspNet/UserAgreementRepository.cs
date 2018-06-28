@@ -4,14 +4,15 @@
 // ----------------------------------------------------------------------------------------------------------------------
 
 using System;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Data.Entity;
+using Ejyle.DevAccelerate.Identity.AspNet.Tenants;
 
-namespace Ejyle.DevAccelerate.Identity.AspNet.Tenants
+namespace Ejyle.DevAccelerate.Identity.AspNet
 {
-    public class TenantRepository<TKey, TNullableKey, TUser, TRole, TUserLogin, TUserRole, TUserClaim, TTenant, TTenantUser, TUserSession, TUserAgreement, TUserAgreementVersion, TDbContext>
-        : ITenantRepository<TKey, TTenant, TTenantUser>
+    public class UserAgreementRepository<TKey, TNullableKey, TUser, TRole, TUserLogin, TUserRole, TUserClaim, TTenant, TTenantUser, TUserSession, TUserAgreement, TUserAgreementVersion, TDbContext>
+        : IUserAgreementRepository<TKey, TUserAgreement, TUserAgreementVersion>
         where TKey : IEquatable<TKey>
         where TUser : User<TKey, TNullableKey, TUserLogin, TUserRole, TUserClaim>
         where TRole : Role<TKey, TUserRole>, new()
@@ -27,32 +28,32 @@ namespace Ejyle.DevAccelerate.Identity.AspNet.Tenants
     {
         private bool _disposed = false;
 
-        public TenantRepository(TDbContext dbContext)
+        public UserAgreementRepository(TDbContext dbContext)
         {
             DbContext = dbContext;
         }
 
         protected TDbContext DbContext { get; private set; } = default(TDbContext);
 
-        public Task CreateAsync(TTenant tenant)
+        public Task CreateAsync(TUserAgreement userAgreement)
         {
-            DbContext.Tenants.Add(tenant);
+            DbContext.UserAgreements.Add(userAgreement);
             return DbContext.SaveChangesAsync();
         }
 
-        public Task<TTenant> FindByIdAsync(TKey tenantId)
+        public Task<TUserAgreement> FindByIdAsync(TKey userAgreementId)
         {
-            return DbContext.Tenants.Where(m => m.Id.Equals(tenantId)).SingleOrDefaultAsync();
+            return DbContext.UserAgreements.Where(m => m.Id.Equals(userAgreementId)).SingleOrDefaultAsync();
         }
 
-        public Task<TTenant> FindByKey(string tenantKey)
+        public Task<TUserAgreement> FindByKey(string userAgreementKey)
         {
-            return DbContext.Tenants.Where(m => m.TenantKey == tenantKey).SingleOrDefaultAsync();
+            return DbContext.UserAgreements.Where(m => m.UserAgreementKey == userAgreementKey).SingleOrDefaultAsync();
         }
 
-        public Task UpdateAsync(TTenant tenant)
+        public Task UpdateAsync(TUserAgreement userAgreement)
         {
-            DbContext.Entry(tenant).State = EntityState.Modified;
+            DbContext.Entry(userAgreement).State = EntityState.Modified;
             return DbContext.SaveChangesAsync();
         }
 

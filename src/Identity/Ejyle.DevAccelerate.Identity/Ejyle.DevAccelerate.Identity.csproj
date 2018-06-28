@@ -54,6 +54,7 @@
     <Compile Include="ITenantRepository.cs" />
     <Compile Include="ITenantUser.cs" />
     <Compile Include="IUserAgreement.cs" />
+    <Compile Include="IUserAgreementRepository.cs" />
     <Compile Include="IUserAgreementVersion.cs" />
     <Compile Include="IUserRepository.cs" />
     <Compile Include="IUserSession.cs" />

@@ -4,14 +4,13 @@
 // ----------------------------------------------------------------------------------------------------------------------
 
 using System;
-using System.Linq;
 using System.Threading.Tasks;
-using System.Data.Entity;
+using Ejyle.DevAccelerate.Identity.AspNet.Tenants;
 
-namespace Ejyle.DevAccelerate.Identity.AspNet.Tenants
+namespace Ejyle.DevAccelerate.Identity.AspNet
 {
-    public class TenantRepository<TKey, TNullableKey, TUser, TRole, TUserLogin, TUserRole, TUserClaim, TTenant, TTenantUser, TUserSession, TUserAgreement, TUserAgreementVersion, TDbContext>
-        : ITenantRepository<TKey, TTenant, TTenantUser>
+    public class UserAgreementManagery<TKey, TNullableKey, TUser, TRole, TUserLogin, TUserRole, TUserClaim, TTenant, TTenantUser, TUserSession, TUserAgreement, TUserAgreementVersion, TUserAgreementRepository, TDbContext>
+        : IDisposable
         where TKey : IEquatable<TKey>
         where TUser : User<TKey, TNullableKey, TUserLogin, TUserRole, TUserClaim>
         where TRole : Role<TKey, TUserRole>, new()
@@ -23,37 +22,36 @@ namespace Ejyle.DevAccelerate.Identity.AspNet.Tenants
         where TUserSession : UserSession<TKey>
         where TUserAgreement : UserAgreement<TKey, TUserAgreementVersion>
         where TUserAgreementVersion : UserAgreementVersion<TKey, TUserAgreement>
+        where TUserAgreementRepository : UserAgreementRepository<TKey, TNullableKey, TUser, TRole, TUserLogin, TUserRole, TUserClaim, TTenant, TTenantUser, TUserSession, TUserAgreement, TUserAgreementVersion, TDbContext>
         where TDbContext : AspNetIdentityDbContext<TKey, TNullableKey, TUser, TRole, TUserLogin, TUserRole, TUserClaim, TTenant, TTenantUser, TUserSession, TUserAgreement, TUserAgreementVersion>
     {
         private bool _disposed = false;
 
-        public TenantRepository(TDbContext dbContext)
+        public UserAgreementManagery(TUserAgreementRepository repository)
         {
-            DbContext = dbContext;
+            Repository = repository;
         }
 
-        protected TDbContext DbContext { get; private set; } = default(TDbContext);
+        protected TUserAgreementRepository Repository { get; private set; } = default(TUserAgreementRepository);
 
-        public Task CreateAsync(TTenant tenant)
+        public Task CreateAsync(TUserAgreement userAgreement)
         {
-            DbContext.Tenants.Add(tenant);
-            return DbContext.SaveChangesAsync();
+            return Repository.CreateAsync(userAgreement);
         }
 
-        public Task<TTenant> FindByIdAsync(TKey tenantId)
+        public Task<TUserAgreement> FindByIdAsync(TKey userAgreementId)
         {
-            return DbContext.Tenants.Where(m => m.Id.Equals(tenantId)).SingleOrDefaultAsync();
+            return Repository.FindByIdAsync(userAgreementId);
         }
 
-        public Task<TTenant> FindByKey(string tenantKey)
+        public Task<TUserAgreement> FindByKey(string userAgreementKey)
         {
-            return DbContext.Tenants.Where(m => m.TenantKey == tenantKey).SingleOrDefaultAsync();
+            return Repository.FindByKey(userAgreementKey);
         }
 
-        public Task UpdateAsync(TTenant tenant)
+        public Task UpdateAsync(TUserAgreement userAgreement)
         {
-            DbContext.Entry(tenant).State = EntityState.Modified;
-            return DbContext.SaveChangesAsync();
+            return Repository.UpdateAsync(userAgreement);
         }
 
         public void Dispose()
@@ -67,8 +65,8 @@ namespace Ejyle.DevAccelerate.Identity.AspNet.Tenants
             {
                 if (disposing)
                 {
-                    DbContext.Dispose();
-                    DbContext = null;
+                    Repository.Dispose();
+                    Repository = null;
                 }
 
                 _disposed = true;

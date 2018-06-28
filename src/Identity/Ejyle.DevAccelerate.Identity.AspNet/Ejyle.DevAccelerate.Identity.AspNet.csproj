@@ -121,6 +121,8 @@
     <Compile Include="Tenants\TenantUser.cs" />
     <Compile Include="User.cs" />
     <Compile Include="UserAgreement.cs" />
+    <Compile Include="UserAgreementManager.cs" />
+    <Compile Include="UserAgreementRepository.cs" />
     <Compile Include="UserAgreementVersion.cs" />
     <Compile Include="UserClaim.cs" />
     <Compile Include="UserLogin.cs" />
