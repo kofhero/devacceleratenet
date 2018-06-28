@@ -5,30 +5,21 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using Ejyle.DevAccelerate.Lists.Geography;
 
 namespace Ejyle.DevAccelerate.Lists.System
 {
-    public class SystemLanguageManager : SystemLanguageManager<int, int?, GlobalTimeZone, DateFormat, SystemLanguage, Currency, Country, CountryRegion, SystemLanguageRepository, ListsDbContext>
+    public class SystemLanguageManager : SystemLanguageManager<int, SystemLanguage, SystemLanguageRepository>
     {
         public SystemLanguageManager(SystemLanguageRepository repository)
             : base(repository)
         { }
     }
 
-    public class SystemLanguageManager<TKey, TNullableKey, TGlobalTimeZone, TDateFormat, TSystemLanguage, TCurrency, TCountry, TCountryRegion, TRepository, TDbContext>
+    public class SystemLanguageManager<TKey, TSystemLanguage, TRepository>
         where TKey : IEquatable<TKey>
-        where TGlobalTimeZone : GlobalTimeZone<TKey, TNullableKey, TDateFormat, TCountry>
-        where TDateFormat : DateFormat<TKey, TNullableKey, TGlobalTimeZone>
-        where TSystemLanguage : SystemLanguage<TKey, TCountry>
-        where TCurrency : Currency<TKey, TCountry>
-        where TCountry : Country<TKey, TNullableKey, TCurrency, TGlobalTimeZone, TCountryRegion, TSystemLanguage>
-        where TCountryRegion : CountryRegion<TKey, TNullableKey, TCountryRegion, TCountry>
-        where TRepository : SystemLanguageRepository<TKey, TNullableKey, TGlobalTimeZone, TDateFormat, TSystemLanguage, TCurrency, TCountry, TCountryRegion, TDbContext>
-        where TDbContext : ListsDbContext<TKey, TNullableKey, TGlobalTimeZone, TDateFormat, TSystemLanguage, TCurrency, TCountry, TCountryRegion>
+        where TSystemLanguage : ISystemLanguage<TKey>
+        where TRepository : ISystemLanguageRepository<TKey, TSystemLanguage>
     {
         private bool _isDisposed = false;
 
@@ -70,7 +61,7 @@ namespace Ejyle.DevAccelerate.Lists.System
                 if (disposing)
                 {
                     Repository.Dispose();
-                    Repository = null;
+                    Repository = default(TRepository);
                 }
 
                 _isDisposed = true;

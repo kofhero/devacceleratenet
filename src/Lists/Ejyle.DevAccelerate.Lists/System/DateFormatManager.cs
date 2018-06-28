@@ -10,23 +10,17 @@ using Ejyle.DevAccelerate.Lists.Geography;
 
 namespace Ejyle.DevAccelerate.Lists.System
 {
-    public class DateFormatManager : DateFormatManager<int, int?, GlobalTimeZone, DateFormat, SystemLanguage, Currency, Country, CountryRegion, DateFormatRepository, ListsDbContext>
+    public class DateFormatManager : DateFormatManager<int, DateFormat, DateFormatRepository>
     {
         public DateFormatManager(DateFormatRepository repository)
             : base(repository)
         { }
     }
 
-    public class DateFormatManager<TKey, TNullableKey, TGlobalTimeZone, TDateFormat, TSystemLanguage, TCurrency, TCountry, TCountryRegion, TRepository, TDbContext>
+    public class DateFormatManager<TKey, TDateFormat, TRepository>
         where TKey : IEquatable<TKey>
-        where TGlobalTimeZone : GlobalTimeZone<TKey, TNullableKey, TDateFormat, TCountry>
-        where TDateFormat : DateFormat<TKey, TNullableKey, TGlobalTimeZone>
-        where TSystemLanguage : SystemLanguage<TKey, TCountry>
-        where TCurrency : Currency<TKey, TCountry>
-        where TCountry : Country<TKey, TNullableKey, TCurrency, TGlobalTimeZone, TCountryRegion, TSystemLanguage>
-        where TCountryRegion : CountryRegion<TKey, TNullableKey, TCountryRegion, TCountry>
-        where TRepository : DateFormatRepository<TKey, TNullableKey, TGlobalTimeZone, TDateFormat, TSystemLanguage, TCurrency, TCountry, TCountryRegion, TDbContext>
-        where TDbContext : ListsDbContext<TKey, TNullableKey, TGlobalTimeZone, TDateFormat, TSystemLanguage, TCurrency, TCountry, TCountryRegion>
+        where TDateFormat : IDateFormat<TKey>
+        where TRepository : IDateFormatRepository<TKey, TDateFormat>
     {
         private bool _isDisposed = false;
 
@@ -68,7 +62,7 @@ namespace Ejyle.DevAccelerate.Lists.System
                 if (disposing)
                 {
                     Repository.Dispose();
-                    Repository = null;
+                    Repository = default(TRepository);
                 }
 
                 _isDisposed = true;

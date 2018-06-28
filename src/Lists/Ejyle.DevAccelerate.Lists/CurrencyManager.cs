@@ -6,28 +6,20 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Ejyle.DevAccelerate.Lists.Geography;
-using Ejyle.DevAccelerate.Lists.System;
 
 namespace Ejyle.DevAccelerate.Lists
 {
-    public class CurrencyManager : CurrencyManager<int, int?, GlobalTimeZone, DateFormat, SystemLanguage, Currency, Country, CountryRegion, CurrencyRepository, ListsDbContext>
+    public class CurrencyManager : CurrencyManager<int, Currency, CurrencyRepository>
     {
         public CurrencyManager(CurrencyRepository repository)
             : base(repository)
         { }
     }
 
-    public class CurrencyManager<TKey, TNullableKey, TGlobalTimeZone, TDateFormat, TSystemLanguage, TCurrency, TCountry, TCountryRegion, TRepository, TDbContext>
+    public class CurrencyManager<TKey, TCurrency, TRepository>
         where TKey : IEquatable<TKey>
-        where TGlobalTimeZone : GlobalTimeZone<TKey, TNullableKey, TDateFormat, TCountry>
-        where TDateFormat : DateFormat<TKey, TNullableKey, TGlobalTimeZone>
-        where TSystemLanguage : SystemLanguage<TKey, TCountry>
-        where TCurrency : Currency<TKey, TCountry>
-        where TCountry : Country<TKey, TNullableKey, TCurrency, TGlobalTimeZone, TCountryRegion, TSystemLanguage>
-        where TCountryRegion : CountryRegion<TKey, TNullableKey, TCountryRegion, TCountry>
-        where TRepository : CurrencyRepository<TKey, TNullableKey, TGlobalTimeZone, TDateFormat, TSystemLanguage, TCurrency, TCountry, TCountryRegion, TDbContext>
-        where TDbContext : ListsDbContext<TKey, TNullableKey, TGlobalTimeZone, TDateFormat, TSystemLanguage, TCurrency, TCountry, TCountryRegion>
+        where TCurrency : ICurrency<TKey>
+        where TRepository : ICurrencyRepository<TKey, TCurrency>
     {
         private bool _isDisposed = false;
 
@@ -69,7 +61,7 @@ namespace Ejyle.DevAccelerate.Lists
                 if (disposing)
                 {
                     Repository.Dispose();
-                    Repository = null;
+                    Repository = default(TRepository);
                 }
 
                 _isDisposed = true;

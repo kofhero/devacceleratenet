@@ -6,20 +6,20 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Ejyle.DevAccelerate.Lists.System;
 
 namespace Ejyle.DevAccelerate.Lists.Geography
 {
-    public class CountryManager<TKey, TNullableKey, TGlobalTimeZone, TDateFormat, TSystemLanguage, TCurrency, TCountry, TCountryRegion, TRepository, TDbContext>
+    public class CountryManager : CountryManager<int, int?, Country, CountryRegion, CountryRepository>
+    {
+        public CountryManager(CountryRepository repository) : base(repository)
+        { }
+    }
+
+    public class CountryManager<TKey, TNullableKey, TCountry, TCountryRegion, TRepository>
         where TKey : IEquatable<TKey>
-        where TGlobalTimeZone : GlobalTimeZone<TKey, TNullableKey, TDateFormat, TCountry>
-        where TDateFormat : DateFormat<TKey, TNullableKey, TGlobalTimeZone>
-        where TSystemLanguage : SystemLanguage<TKey, TCountry>
-        where TCurrency : Currency<TKey, TCountry>
-        where TCountry : Country<TKey, TNullableKey, TCurrency, TGlobalTimeZone, TCountryRegion, TSystemLanguage>
-        where TCountryRegion : CountryRegion<TKey, TNullableKey, TCountryRegion, TCountry>
-        where TRepository : CountryRepository<TKey, TNullableKey, TGlobalTimeZone, TDateFormat, TSystemLanguage, TCurrency, TCountry, TCountryRegion, TDbContext>
-        where TDbContext : ListsDbContext<TKey, TNullableKey, TGlobalTimeZone, TDateFormat, TSystemLanguage, TCurrency, TCountry, TCountryRegion>
+        where TCountry : ICountry<TKey>
+        where TCountryRegion : ICountryRegion<TKey, TNullableKey>
+        where TRepository : ICountryRepository<TKey, TNullableKey, TCountry, TCountryRegion>
     {
         private bool _isDisposed = false;
 
@@ -61,7 +61,7 @@ namespace Ejyle.DevAccelerate.Lists.Geography
                 if (disposing)
                 {
                     Repository.Dispose();
-                    Repository = null;
+                    Repository = default(TRepository);
                 }
 
                 _isDisposed = true;

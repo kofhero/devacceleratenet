@@ -6,27 +6,20 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Ejyle.DevAccelerate.Lists.Geography;
 
 namespace Ejyle.DevAccelerate.Lists.System
 {
-    public class GlobalTimeZoneManager : GlobalTimeZoneManager<int, int?, GlobalTimeZone, DateFormat, SystemLanguage, Currency, Country, CountryRegion, GlobalTimeZoneRepository, ListsDbContext>
+    public class GlobalTimeZoneManager : GlobalTimeZoneManager<int, int?, GlobalTimeZone, GlobalTimeZoneRepository>
     {
         public GlobalTimeZoneManager(GlobalTimeZoneRepository repository)
             : base(repository)
         { }
     }
 
-    public class GlobalTimeZoneManager<TKey, TNullableKey, TGlobalTimeZone, TDateFormat, TSystemLanguage, TCurrency, TCountry, TCountryRegion, TRepository, TDbContext>
+    public class GlobalTimeZoneManager<TKey, TNullableKey, TGlobalTimeZone, TRepository>
         where TKey : IEquatable<TKey>
-        where TGlobalTimeZone : GlobalTimeZone<TKey, TNullableKey, TDateFormat, TCountry>
-        where TDateFormat : DateFormat<TKey, TNullableKey, TGlobalTimeZone>
-        where TSystemLanguage : SystemLanguage<TKey, TCountry>
-        where TCurrency : Currency<TKey, TCountry>
-        where TCountry : Country<TKey, TNullableKey, TCurrency, TGlobalTimeZone, TCountryRegion, TSystemLanguage>
-        where TCountryRegion : CountryRegion<TKey, TNullableKey, TCountryRegion, TCountry>
-        where TRepository : GlobalTimeZoneRepository<TKey, TNullableKey, TGlobalTimeZone, TDateFormat, TSystemLanguage, TCurrency, TCountry, TCountryRegion, TDbContext>
-        where TDbContext : ListsDbContext<TKey, TNullableKey, TGlobalTimeZone, TDateFormat, TSystemLanguage, TCurrency, TCountry, TCountryRegion>
+        where TGlobalTimeZone : IGlobalTimeZone<TKey, TNullableKey>
+        where TRepository : IGlobalTimeZoneRepository<TKey, TNullableKey, TGlobalTimeZone>
     {
         private bool _isDisposed = false;
 
@@ -68,7 +61,7 @@ namespace Ejyle.DevAccelerate.Lists.System
                 if (disposing)
                 {
                     Repository.Dispose();
-                    Repository = null;
+                    Repository = default(TRepository);
                 }
 
                 _isDisposed = true;
