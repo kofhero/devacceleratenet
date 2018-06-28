@@ -5,6 +5,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Ejyle.DevAccelerate.Lists.Geography
 {
@@ -28,11 +29,19 @@ namespace Ejyle.DevAccelerate.Lists.Geography
         }
 
         public TKey CountryId { get; set; }
+
+        [StringLength(50)]
         public string RegionCode { get; set; }
-        public virtual TCountry Country { get; set; }
+
+        [Required]
         public bool IsVerified { get; set; }
+
+        public virtual TCountry Country { get; set; }
+
         public TNullableKey ParentId { get; set; }
+
         public virtual ICollection<TCountryRegion> Children { get; set; }
+
         public virtual TCountryRegion Parent { get; set; }
     }
 }

@@ -5,6 +5,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using Ejyle.DevAccelerate.Lists.System;
 
 namespace Ejyle.DevAccelerate.Lists.Geography
@@ -31,13 +32,23 @@ namespace Ejyle.DevAccelerate.Lists.Geography
             SystemLanguages = new HashSet<TSystemLanguage>();
         }
 
+        [StringLength(5)]
         public string DialingCode { get; set; }
+
+        [StringLength(5)]
         public string CountryCode { get; set; }
+
         public TKey CurrencyId { get; set; }
+
+        [Required]
         public bool HasRegions { get; set; }
+
         public virtual ICollection<TGlobalTimeZone> GlobalTimeZones { get; set; }
+
         public virtual ICollection<TSystemLanguage> SystemLanguages { get; set; }
+
         public virtual TCurrency Currency { get; set; }
+
         public virtual ICollection<TCountryRegion> Regions { get; set; }
     }
 }

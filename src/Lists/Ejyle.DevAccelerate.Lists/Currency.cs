@@ -5,6 +5,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using Ejyle.DevAccelerate.Lists.Geography;
 
 namespace Ejyle.DevAccelerate.Lists
@@ -25,8 +26,12 @@ namespace Ejyle.DevAccelerate.Lists
             Countries = new HashSet<TCountry>();
         }
 
+        [StringLength(20)]
         public string CurrencySymbol { get; set; }
+
+        [StringLength(20)]
         public string CurrencyCode { get; set; }
+
         public virtual ICollection<TCountry> Countries { get; set; }
     }
 }

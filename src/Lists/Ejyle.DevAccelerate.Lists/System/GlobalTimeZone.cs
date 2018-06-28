@@ -28,9 +28,11 @@ namespace Ejyle.DevAccelerate.Lists.System
         }
 
         [Required]
+        [StringLength(256)]
         public string TimeZoneId { get; set; }
 
         [Required]
+        [StringLength(256)]
         public string DisplayName { get; set; }
 
         public TNullableKey DefaultDateFormatId { get; set; }
