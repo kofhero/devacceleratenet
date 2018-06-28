@@ -12,6 +12,13 @@ using Ejyle.DevAccelerate.Lists.Geography;
 
 namespace Ejyle.DevAccelerate.Lists.System
 {
+    public class DateFormatRepository : DateFormatRepository<int, int?, GlobalTimeZone, DateFormat, SystemLanguage, Currency, Country, CountryRegion, ListsDbContext>
+    {
+        public DateFormatRepository(ListsDbContext dbContext)
+            : base(dbContext)
+        { }
+    }
+
     public class DateFormatRepository<TKey, TNullableKey, TGlobalTimeZone, TDateFormat, TSystemLanguage, TCurrency, TCountry, TCountryRegion, TDbContext> : IDateFormatRepository<TKey, TDateFormat>
         where TKey : IEquatable<TKey>
         where TGlobalTimeZone : GlobalTimeZone<TKey, TNullableKey, TDateFormat, TCountry>

@@ -12,6 +12,13 @@ using Ejyle.DevAccelerate.Lists.Geography;
 
 namespace Ejyle.DevAccelerate.Lists.System
 {
+    public class GlobalTimeZoneRepository : GlobalTimeZoneRepository<int, int?, GlobalTimeZone, DateFormat, SystemLanguage, Currency, Country, CountryRegion, ListsDbContext>
+    {
+        public GlobalTimeZoneRepository(ListsDbContext dbContext)
+            : base(dbContext)
+        { }
+    }
+
     public class GlobalTimeZoneRepository<TKey, TNullableKey, TGlobalTimeZone, TDateFormat, TSystemLanguage, TCurrency, TCountry, TCountryRegion, TDbContext> : IGlobalTimeZoneRepository<TKey, TNullableKey, TGlobalTimeZone>
         where TKey : IEquatable<TKey>
         where TGlobalTimeZone : GlobalTimeZone<TKey, TNullableKey, TDateFormat, TCountry>

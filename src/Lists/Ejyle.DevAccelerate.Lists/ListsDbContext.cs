@@ -10,6 +10,17 @@ using Ejyle.DevAccelerate.Lists.System;
 
 namespace Ejyle.DevAccelerate.Lists
 {
+    public class ListsDbContext : ListsDbContext<int, int?, GlobalTimeZone, DateFormat, SystemLanguage, Currency, Country, CountryRegion>
+    {
+        public ListsDbContext()
+            : base("ListsConnection")
+        { }
+
+        public ListsDbContext(string nameOfConnectionString)
+            : base(nameOfConnectionString)
+        { }
+    }
+
     public class ListsDbContext<TKey, TNullableKey, TGlobalTimeZone, TDateFormat, TSystemLanguage, TCurrency, TCountry, TCountryRegion> : DbContext
         where TKey : IEquatable<TKey>
         where TGlobalTimeZone : GlobalTimeZone<TKey, TNullableKey, TDateFormat, TCountry>

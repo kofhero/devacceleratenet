@@ -13,6 +13,13 @@ using Ejyle.DevAccelerate.Lists.System;
 
 namespace Ejyle.DevAccelerate.Lists.Geography
 {
+    public class CountryRepository : CountryRepository<int, int?, GlobalTimeZone, DateFormat, SystemLanguage, Currency, Country, CountryRegion, ListsDbContext>
+    {
+        public CountryRepository(ListsDbContext dbContext)
+            : base(dbContext)
+        { }
+    }
+
     public class CountryRepository<TKey, TNullableKey, TGlobalTimeZone, TDateFormat, TSystemLanguage, TCurrency, TCountry, TCountryRegion, TDbContext> : ICountryRepository<TKey, TNullableKey, TCountry, TCountryRegion>
         where TKey : IEquatable<TKey>
         where TGlobalTimeZone : GlobalTimeZone<TKey, TNullableKey, TDateFormat, TCountry>

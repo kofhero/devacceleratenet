@@ -12,6 +12,13 @@ using Ejyle.DevAccelerate.Lists.Geography;
 
 namespace Ejyle.DevAccelerate.Lists.System
 {
+    public class SystemLanguageManager : SystemLanguageManager<int, int?, GlobalTimeZone, DateFormat, SystemLanguage, Currency, Country, CountryRegion, SystemLanguageRepository, ListsDbContext>
+    {
+        public SystemLanguageManager(SystemLanguageRepository repository)
+            : base(repository)
+        { }
+    }
+
     public class SystemLanguageManager<TKey, TNullableKey, TGlobalTimeZone, TDateFormat, TSystemLanguage, TCurrency, TCountry, TCountryRegion, TRepository, TDbContext>
         where TKey : IEquatable<TKey>
         where TGlobalTimeZone : GlobalTimeZone<TKey, TNullableKey, TDateFormat, TCountry>

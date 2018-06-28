@@ -14,6 +14,13 @@ using Ejyle.DevAccelerate.Lists.System;
 
 namespace Ejyle.DevAccelerate.Lists
 {
+    public class CurrencyRepository : CurrencyRepository<int, int?, GlobalTimeZone, DateFormat, SystemLanguage, Currency, Country, CountryRegion, ListsDbContext>
+    {
+        public CurrencyRepository(ListsDbContext dbContext)
+            : base(dbContext)
+        { }
+    }
+
     public class CurrencyRepository<TKey, TNullableKey, TGlobalTimeZone, TDateFormat, TSystemLanguage, TCurrency, TCountry, TCountryRegion, TDbContext> : ICurrencyRepository<TKey, TCurrency>
         where TKey : IEquatable<TKey>
         where TGlobalTimeZone : GlobalTimeZone<TKey, TNullableKey, TDateFormat, TCountry>
