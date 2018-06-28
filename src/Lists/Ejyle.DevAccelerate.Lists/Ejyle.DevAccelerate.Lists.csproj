@@ -33,7 +33,14 @@
     <ApplicationIcon>da.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -43,10 +50,36 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Currency.cs" />
+    <Compile Include="Geography\Country.cs" />
+    <Compile Include="Geography\CountryRegion.cs" />
+    <Compile Include="Geography\ICountry.cs" />
+    <Compile Include="Geography\ICountryRegion.cs" />
+    <Compile Include="ICurrency.cs" />
+    <Compile Include="IList.cs" />
+    <Compile Include="ListBase.cs" />
+    <Compile Include="ListsDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="System\DateFormat.cs" />
+    <Compile Include="System\DateFormatType.cs" />
+    <Compile Include="System\GlobalTimeZone.cs" />
+    <Compile Include="System\IDateFormat.cs" />
+    <Compile Include="System\IGlobalTimeZone.cs" />
+    <Compile Include="System\ISystemLanguage.cs" />
+    <Compile Include="System\SystemLanguage.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="da.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\Ejyle.DevAccelerate.Core\Ejyle.DevAccelerate.Core.csproj">
+      <Project>{d6c2a6b1-b80f-404c-b087-0a31927f1a4c}</Project>
+      <Name>Ejyle.DevAccelerate.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
