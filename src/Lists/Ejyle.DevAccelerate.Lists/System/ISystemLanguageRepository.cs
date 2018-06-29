@@ -21,5 +21,8 @@ namespace Ejyle.DevAccelerate.Lists.System
 
         List<TSystemLanguage> FindAll();
         Task<List<TSystemLanguage>> FindAllAsync();
+
+        List<TSystemLanguage> FindByCountryId(TKey countryId);
+        Task<List<TSystemLanguage>> FindByCountryIdAsync(TKey countryId);
     }
 }

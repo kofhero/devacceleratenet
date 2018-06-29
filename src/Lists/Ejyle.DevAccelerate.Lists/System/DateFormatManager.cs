@@ -55,6 +55,16 @@ namespace Ejyle.DevAccelerate.Lists.System
             return Repository.FindByIdAsync(id);
         }
 
+        public TDateFormat FindByDateFormatExpression(string expr)
+        {
+            return Repository.FindByDateFormatExpression(expr);
+        }
+
+        public Task<TDateFormat> FindByDateFormatExpressionAsync(string expr)
+        {
+            return Repository.FindByDateFormatExpressionAsync(expr);
+        }
+
         protected virtual void Dispose(bool disposing)
         {
             if (!_isDisposed)

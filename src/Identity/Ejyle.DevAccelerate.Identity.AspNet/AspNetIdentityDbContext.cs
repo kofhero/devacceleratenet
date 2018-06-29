@@ -63,9 +63,8 @@ namespace Ejyle.DevAccelerate.Identity.AspNet
         where TUserAgreement : UserAgreement<TKey, TUserAgreementVersion>
         where TUserAgreementVersion : UserAgreementVersion<TKey, TUserAgreement>
     {
-        /// <summary>
-        /// Creates an instance of the <see cref="AspNetIdentityDbContext"/> class.
-        /// </summary>
+        private const string SCHEMA_NAME = "Identity";
+
         public AspNetIdentityDbContext(string nameOrConnectionString)
             : base(nameOrConnectionString)
         { }
@@ -77,5 +76,35 @@ namespace Ejyle.DevAccelerate.Identity.AspNet
         public virtual DbSet<TTenantUser> TenantUsers { get; set; }
 
         public virtual DbSet<TUserSession> UserSessions { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<TUser>().ToTable("Users", SCHEMA_NAME);
+            modelBuilder.Entity<TRole>().ToTable("Roles", SCHEMA_NAME);
+            modelBuilder.Entity<TUserClaim>().ToTable("UserClaims", SCHEMA_NAME);
+            modelBuilder.Entity<TUserLogin>().ToTable("UserLogins", SCHEMA_NAME);
+            modelBuilder.Entity<TUserRole>().ToTable("UserRoles", SCHEMA_NAME);
+
+            modelBuilder.Entity<TTenant>().ToTable("Tenants", SCHEMA_NAME);
+            modelBuilder.Entity<TTenantUser>().ToTable("TenantUsers", SCHEMA_NAME);
+            modelBuilder.Entity<TUserSession>().ToTable("UserSessions", SCHEMA_NAME);
+
+            modelBuilder.Entity<UserAgreement>().ToTable("UserAgreements", SCHEMA_NAME);
+            modelBuilder.Entity<UserAgreementVersion>().ToTable("UserAgreementVersions", SCHEMA_NAME);
+
+            modelBuilder.Entity<TTenant>()
+                .HasMany(e => e.TenantUsers)
+                .WithRequired(e => e.Tenant)
+                .HasForeignKey(e => e.TenantId)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<UserAgreement>()
+                .HasMany(e => e.UserAgreementVersions)
+                .WithRequired(e => e.UserAgreement)
+                .HasForeignKey(e => e.UserAgreementId)
+                .WillCascadeOnDelete(false);
+        }
     }
 }

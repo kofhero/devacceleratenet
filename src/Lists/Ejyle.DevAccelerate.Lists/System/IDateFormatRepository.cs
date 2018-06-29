@@ -21,5 +21,8 @@ namespace Ejyle.DevAccelerate.Lists.System
 
         List<TDateFormat> FindAll();
         Task<List<TDateFormat>> FindAllAsync();
+
+        TDateFormat FindByDateFormatExpression(string expr);
+        Task<TDateFormat> FindByDateFormatExpressionAsync(string expr);
     }
 }

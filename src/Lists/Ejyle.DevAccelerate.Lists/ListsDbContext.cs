@@ -30,7 +30,7 @@ namespace Ejyle.DevAccelerate.Lists
         where TCountry : Country<TKey, TNullableKey, TCurrency, TGlobalTimeZone, TCountryRegion, TSystemLanguage>
         where TCountryRegion : CountryRegion<TKey, TNullableKey, TCountryRegion, TCountry>
     {
-        private const string SCHEMA_NAME = "lists";
+        private const string SCHEMA_NAME = "Lists";
 
         public ListsDbContext(string nameOfConnectionString)
             : base(nameOfConnectionString)
@@ -39,9 +39,9 @@ namespace Ejyle.DevAccelerate.Lists
         public virtual DbSet<TGlobalTimeZone> GlobalTimeZones { get; set; }
         public virtual DbSet<TSystemLanguage> SystemLanguages { get; set; }
         public virtual DbSet<TCountry> Countries { get; set; }
+        public virtual DbSet<TCountryRegion> CountryRegions { get; set; }
         public virtual DbSet<TCurrency> Currencies { get; set; }
         public virtual DbSet<TDateFormat> DateFormats { get; set; }
-        public virtual DbSet<TCountryRegion> StateRegions { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

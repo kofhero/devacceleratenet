@@ -62,6 +62,16 @@ namespace Ejyle.DevAccelerate.Lists.System
             return DbContext.SystemLanguages.Where(m => m.Id.Equals(id)).SingleOrDefaultAsync();
         }
 
+        public List<TSystemLanguage> FindByCountryId(TKey countryId)
+        {
+            return DbContext.SystemLanguages.Where(m => m.Countries.Any(x => x.Equals(countryId))).ToList();
+        }
+
+        public Task<List<TSystemLanguage>> FindByCountryIdAsync(TKey countryId)
+        {
+            return DbContext.SystemLanguages.Where(m => m.Countries.Any(x => x.Equals(countryId))).ToListAsync();
+        }
+
         protected virtual void Dispose(bool disposing)
         {
             if (!_isDisposed)

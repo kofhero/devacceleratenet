@@ -113,7 +113,6 @@
     <Compile Include="Role.cs" />
     <Compile Include="RoleManager.cs" />
     <Compile Include="RoleRepository.cs" />
-    <Compile Include="SignInManager.cs" />
     <Compile Include="SmsService.cs" />
     <Compile Include="Tenants\TenantManager.cs" />
     <Compile Include="Tenants\TenantRepository.cs" />
@@ -130,6 +129,8 @@
     <Compile Include="UserRepository.cs" />
     <Compile Include="UserRole.cs" />
     <Compile Include="UserSession.cs" />
+    <Compile Include="UserSessionManager.cs" />
+    <Compile Include="UserSessionRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="da.ico" />

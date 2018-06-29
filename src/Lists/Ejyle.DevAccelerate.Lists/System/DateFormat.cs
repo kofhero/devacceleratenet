@@ -6,6 +6,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Ejyle.DevAccelerate.Lists.System
 {
@@ -23,6 +24,7 @@ namespace Ejyle.DevAccelerate.Lists.System
 
         [Required]
         [StringLength(256)]
+        [Index("IX_DateFormats_DateFormatExpression", IsUnique  = true)]
         public string DateFormatExpression
         {
             get;

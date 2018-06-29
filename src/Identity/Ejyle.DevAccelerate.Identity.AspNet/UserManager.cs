@@ -144,6 +144,18 @@ namespace Ejyle.DevAccelerate.Identity.AspNet
         {
         }
 
+
+
+        public IdentityResult Create(TUser user)
+        {
+            return base.CreateAsync(user).GetAwaiter().GetResult();
+        }
+
+        public IdentityResult Update(TUser user)
+        {
+            return base.UpdateAsync(user).GetAwaiter().GetResult();
+        }
+
         /// <summary>
         /// Asynchronously creates a user session.
         /// </summary>
@@ -153,6 +165,17 @@ namespace Ejyle.DevAccelerate.Identity.AspNet
         {
             var repository = Store as TUserRepository;
             return repository.CreateUserSessionAsync(userSession);
+        }
+
+        /// <summary>
+        /// Creates a user session.
+        /// </summary>
+        /// <param name="userSession">User session to create.</param>
+        /// <returns>The task representing the asynchronous operation.</returns>
+        public void CreateUserSession(TUserSession userSession)
+        {
+            var repository = Store as TUserRepository;
+            repository.CreateUserSession(userSession);
         }
 
         public Task<TUserSession> FindUserSessionById(TKey userSessionId)

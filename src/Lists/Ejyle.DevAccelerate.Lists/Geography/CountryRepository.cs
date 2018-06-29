@@ -63,6 +63,26 @@ namespace Ejyle.DevAccelerate.Lists.Geography
             return DbContext.Countries.Where(m => m.Id.Equals(id)).SingleOrDefaultAsync();
         }
 
+        public TCountryRegion FindCountryRegionById(TKey id)
+        {
+            return DbContext.CountryRegions.Where(m => m.Id.Equals(id)).SingleOrDefault();
+        }
+
+        public Task<TCountryRegion> FindCountryRegionByIdAsync(TKey id)
+        {
+            return DbContext.CountryRegions.Where(m => m.Id.Equals(id)).SingleOrDefaultAsync();
+        }
+
+        public TCountry FindByName(string name)
+        {
+            return DbContext.Countries.Where(m => m.Name == name).SingleOrDefault();
+        }
+
+        public Task<TCountry> FindByNameAsync(string name)
+        {
+            return DbContext.Countries.Where(m => m.Name == name).SingleOrDefaultAsync();
+        }
+
         protected virtual void Dispose(bool disposing)
         {
             if (!_isDisposed)

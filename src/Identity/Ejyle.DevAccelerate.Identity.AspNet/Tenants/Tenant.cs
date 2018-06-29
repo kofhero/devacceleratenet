@@ -62,9 +62,19 @@ namespace Ejyle.DevAccelerate.Identity.AspNet.Tenants
         [Required]
         public AccountStatus Status { get; set; }
 
+        public TNullableKey CountryId { get; set; }
+
         public TNullableKey CurrencyId { get; set; }
 
         public TNullableKey TimeZoneId { get; set; }
+
+        public TNullableKey DateFormatId { get; set; }
+
+        public TNullableKey DateFormatWithDateOnlyId { get; set; }
+
+        public TNullableKey DateFormatWithTimeOnlyId { get; set; }
+
+        public TNullableKey SystemLanguageId { get; set; }
 
         [Required]
         public TKey CreatedBy { get; set; }

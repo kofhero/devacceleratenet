@@ -21,5 +21,8 @@ namespace Ejyle.DevAccelerate.Lists.System
 
         List<TGlobalTimeZone> FindAll();
         Task<List<TGlobalTimeZone>> FindAllAsync();
+
+        List<TGlobalTimeZone> FindByCountryId(TKey countryId);
+        Task<List<TGlobalTimeZone>> FindByCountryIdAsync(TKey countryId);
     }
 }

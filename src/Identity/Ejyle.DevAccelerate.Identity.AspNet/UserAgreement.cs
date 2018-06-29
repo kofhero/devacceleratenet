@@ -37,7 +37,8 @@ namespace Ejyle.DevAccelerate.Identity.AspNet
         public string Name { get; set; }
 
         [Required]
-        [Index("IX_UserAgreementKey", IsUnique = true)]
+        [Index("IX_UserAgreements_UserAgreementKey", IsUnique = true)]
+        [StringLength(256)]
         public string UserAgreementKey { get; set; }
     }
 }

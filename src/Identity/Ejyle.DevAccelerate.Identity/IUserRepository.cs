@@ -47,6 +47,7 @@ namespace Ejyle.DevAccelerate.Identity
         Task SetTwoFactorEnabledAsync(TUser user, bool enabled);
         Task UpdateAsync(TUser user);
 
+        void CreateUserSession(TUserSession userSession);
         Task CreateUserSessionAsync(TUserSession userSession);
         Task<List<TUserSession>> FindUserSessionsByUserId(TKey userId);
         Task<TUserSession> FindUserSessionById(TKey userSessionId);

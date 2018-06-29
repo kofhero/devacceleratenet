@@ -20,7 +20,13 @@ namespace Ejyle.DevAccelerate.Lists.Geography
         TCountry FindById(TKey id);
         Task<TCountry> FindByIdAsync(TKey id);
 
+        TCountry FindByName(string name);
+        Task<TCountry> FindByNameAsync(string name);
+
         List<TCountry> FindAll();
         Task<List<TCountry>> FindAllAsync();
+
+        TCountryRegion FindCountryRegionById(TKey id);
+        Task<TCountryRegion> FindCountryRegionByIdAsync(TKey id);
     }
 }

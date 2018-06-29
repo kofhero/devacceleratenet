@@ -62,6 +62,16 @@ namespace Ejyle.DevAccelerate.Lists.System
             return DbContext.DateFormats.Where(m => m.Id.Equals(id)).SingleOrDefaultAsync();
         }
 
+        public TDateFormat FindByDateFormatExpression(string expr)
+        {
+            return DbContext.DateFormats.Where(m => m.DateFormatExpression == expr).SingleOrDefault();
+        }
+
+        public Task<TDateFormat> FindByDateFormatExpressionAsync(string expr)
+        {
+            return DbContext.DateFormats.Where(m => m.DateFormatExpression == expr).SingleOrDefaultAsync();
+        }
+
         protected virtual void Dispose(bool disposing)
         {
             if (!_isDisposed)

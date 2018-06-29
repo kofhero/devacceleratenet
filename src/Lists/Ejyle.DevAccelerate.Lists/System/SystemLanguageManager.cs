@@ -54,6 +54,16 @@ namespace Ejyle.DevAccelerate.Lists.System
             return Repository.FindByIdAsync(id);
         }
 
+        public List<TSystemLanguage> FindByCountryId(TKey countryId)
+        {
+            return Repository.FindByCountryId(countryId);
+        }
+
+        public Task<List<TSystemLanguage>> FindByCountryIdAsync(TKey countryId)
+        {
+            return Repository.FindByCountryIdAsync(countryId);
+        }
+
         protected virtual void Dispose(bool disposing)
         {
             if (!_isDisposed)

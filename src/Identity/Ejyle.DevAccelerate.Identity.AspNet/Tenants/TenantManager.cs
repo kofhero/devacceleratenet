@@ -7,10 +7,18 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Data.Entity;
+using System.Collections.Generic;
 
 namespace Ejyle.DevAccelerate.Identity.AspNet.Tenants
 {
-    public class TenantManagery<TKey, TNullableKey, TTenant, TTenantUser, TTenantRepository>
+    public class TenantManager : TenantManager<int, int?, Tenant, TenantUser, TenantRepository>
+    {
+        public TenantManager(TenantRepository repository)
+            : base(repository)
+        { }
+    }
+
+    public class TenantManager<TKey, TNullableKey, TTenant, TTenantUser, TTenantRepository>
         : IDisposable
         where TKey : IEquatable<TKey>
         where TTenant : ITenant<TKey, TNullableKey>
@@ -19,7 +27,7 @@ namespace Ejyle.DevAccelerate.Identity.AspNet.Tenants
     {
         private bool _disposed = false;
 
-        public TenantManagery(TTenantRepository repository)
+        public TenantManager(TTenantRepository repository)
         {
             Repository = repository;
         }
@@ -36,7 +44,27 @@ namespace Ejyle.DevAccelerate.Identity.AspNet.Tenants
             return Repository.FindByIdAsync(tenantId);
         }
 
-        public Task<TTenant> FindByKey(string tenantKey)
+        public void Create(TTenant tenant)
+        {
+            Repository.Create(tenant);
+        }
+
+        public void Update(TTenant tenant)
+        {
+            Repository.Update(tenant);
+        }
+
+        public TTenant FindById(TKey tenantId)
+        {
+            return Repository.FindById(tenantId);
+        }
+
+        public Task<TTenant> FindByKeyAsync(string tenantKey)
+        {
+            return Repository.FindByKeyAsync(tenantKey);
+        }
+
+        public TTenant FindByKey(string tenantKey)
         {
             return Repository.FindByKey(tenantKey);
         }
@@ -44,6 +72,26 @@ namespace Ejyle.DevAccelerate.Identity.AspNet.Tenants
         public Task UpdateAsync(TTenant tenant)
         {
             return Repository.UpdateAsync(tenant);
+        }
+
+        public void CreateTenantUser(TTenantUser tenantUser)
+        {
+            Repository.CreateTenantUser(tenantUser);
+        }
+
+        public Task CreateTenantUserAsync(TTenantUser tenantUser)
+        {
+            return Repository.CreateTenantUserAsync(tenantUser);
+        }
+
+        public Task<List<TTenant>> FindByUserIdAsync(TKey userId)
+        {
+            return Repository.FindByUserIdAsync(userId);
+        }
+
+        public List<TTenant> FindByUserId(TKey userId)
+        {
+            return Repository.FindByUserId(userId);
         }
 
         public void Dispose()

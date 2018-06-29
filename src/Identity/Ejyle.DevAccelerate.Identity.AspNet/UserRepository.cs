@@ -134,5 +134,12 @@ namespace Ejyle.DevAccelerate.Identity.AspNet
             var context = Context as TDbContext;
             return context.UserSessions.Where(m => m.UserId.Equals(userId)).ToListAsync();
         }
+
+        public void CreateUserSession(TUserSession userSession)
+        {
+            var context = Context as TDbContext;
+            context.UserSessions.Add(userSession);
+            context.SaveChanges();
+        }
     }
 }

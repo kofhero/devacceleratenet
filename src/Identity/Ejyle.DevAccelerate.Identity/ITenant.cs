@@ -42,6 +42,11 @@ namespace Ejyle.DevAccelerate.Identity
         bool IsDomainOwnershipVerified { get; set; }
 
         /// <summary>
+        /// Gets or sets the ID of the country of the tenant.
+        /// </summary>
+        TNullableKey CountryId { get; set; }
+
+        /// <summary>
         /// Gets or sets the currency ID of the tenant.
         /// </summary>
         TNullableKey CurrencyId { get; set; }
@@ -50,6 +55,26 @@ namespace Ejyle.DevAccelerate.Identity
         /// Gets or sets the time zone of the tenant.
         /// </summary>
         TNullableKey TimeZoneId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the ID of the date and time format.
+        /// </summary>
+        TNullableKey DateFormatId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the ID of the date only format.
+        /// </summary>
+        TNullableKey DateFormatWithDateOnlyId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the ID of the time only format.
+        /// </summary>
+        TNullableKey DateFormatWithTimeOnlyId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the ID of the system language.
+        /// </summary>
+        TNullableKey SystemLanguageId { get; set; }
 
         /// <summary>
         /// Gets or sets the ID of the user who owns the tenant.

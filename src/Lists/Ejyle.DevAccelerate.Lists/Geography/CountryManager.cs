@@ -54,6 +54,26 @@ namespace Ejyle.DevAccelerate.Lists.Geography
             return Repository.FindByIdAsync(id);
         }
 
+        public TCountryRegion FindCountryRegionById(TKey id)
+        {
+            return Repository.FindCountryRegionById(id);
+        }
+
+        public Task<TCountryRegion> FindCountryRegionByIdAsync(TKey id)
+        {
+            return Repository.FindCountryRegionByIdAsync(id);
+        }
+
+        public TCountry FindByName(string name)
+        {
+            return Repository.FindByName(name);
+        }
+
+        public Task<TCountry> FindByNameAsync(string name)
+        {
+            return Repository.FindByNameAsync(name);
+        }
+
         protected virtual void Dispose(bool disposing)
         {
             if (!_isDisposed)

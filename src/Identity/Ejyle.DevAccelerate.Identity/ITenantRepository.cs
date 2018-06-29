@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Ejyle.DevAccelerate.Core;
 
@@ -10,8 +11,21 @@ namespace Ejyle.DevAccelerate.Identity
         where TTenantUser : ITenantUser<TKey>
     {
         Task CreateAsync(TTenant tenant);
+        void Create(TTenant tenant);
+
         Task UpdateAsync(TTenant tenant);
+        void Update(TTenant tenant);
+
         Task<TTenant> FindByIdAsync(TKey tenantId);
-        Task<TTenant> FindByKey(string tenantKey);
+        TTenant FindById(TKey tenantId);
+
+        Task<TTenant> FindByKeyAsync(string tenantKey);
+        TTenant FindByKey(string tenantKey);
+
+        Task<List<TTenant>> FindByUserIdAsync(TKey userId);
+        List<TTenant> FindByUserId(TKey userId);
+
+        void CreateTenantUser(TTenantUser tenantUser);
+        Task CreateTenantUserAsync(TTenantUser tenantUser);
     }
 }
