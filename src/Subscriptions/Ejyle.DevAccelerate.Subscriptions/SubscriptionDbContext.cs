@@ -14,7 +14,7 @@ namespace Ejyle.DevAccelerate.Subscriptions
         where TSubscriptionPlan : SubscriptionPlan<TKey, TNullableKey, TBillingCycle, TSubscription>
         where TBillingCycle : BillingCycle<TKey, TSubscriptionPlan>
     {
-        private const string SCHEMA_NAME = "subscriptions";
+        private const string SCHEMA_NAME = "Subscriptions";
 
         public SubscriptionDbContext()
             : base("SubscriptionsDbConnection")

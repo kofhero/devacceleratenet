@@ -27,7 +27,7 @@ namespace Ejyle.DevAccelerate.Notifications
         where TNotificationTemplate : NotificationTemplate<TKey, TNullableKey, TUserIdKey, TNotificationSender>
         where TNotificationSender : NotificationSender<TKey, TNullableKey, TUserIdKey, TNotificationTemplate>
     {
-        private const string SCHEMA_NAME = "notifications";
+        private const string SCHEMA_NAME = "Notifications";
 
         public NotificationsDbContext()
             : base("NotificationsConnection")

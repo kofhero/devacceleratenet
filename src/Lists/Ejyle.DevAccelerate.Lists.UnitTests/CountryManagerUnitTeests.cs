@@ -1,5 +1,4 @@
-﻿using System;
-using Ejyle.DevAccelerate.Lists.Geography;
+﻿using Ejyle.DevAccelerate.Lists.Geography;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Ejyle.DevAccelerate.Lists.UnitTests

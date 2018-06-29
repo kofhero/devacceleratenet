@@ -4,10 +4,7 @@
 // ----------------------------------------------------------------------------------------------------------------------
 
 using System;
-using System.Linq;
 using System.Threading.Tasks;
-using System.Data.Entity;
-using System.Collections.Generic;
 
 namespace Ejyle.DevAccelerate.Identity.AspNet
 {

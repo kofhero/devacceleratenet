@@ -3,13 +3,17 @@
 // Licensed under the MIT license. See the LICENSE file in the project's root directory for complete license information.
 // ----------------------------------------------------------------------------------------------------------------------
 
+using Ejyle.DevAccelerate.Core;
+using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Ejyle.DevAccelerate.Core.Sms
+namespace Ejyle.DevAccelerate.Apps.Features
 {
-    public interface ISmsProvider
+    public interface IFeatureRepository<TKey, TFeature> : IEntityRepository<TKey, TFeature>
+        where TKey : IEquatable<TKey>
+        where TFeature : IFeature<TKey>
     {
-        void Send(string to, string body);
-        Task SendAsync(string to, string body);
+        Task<List<TFeature>> FindAllAsync();
     }
 }

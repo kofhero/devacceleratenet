@@ -1,4 +1,9 @@
-﻿using Ejyle.DevAccelerate.Notifications.Messages;
+﻿// ----------------------------------------------------------------------------------------------------------------------
+// Copyright © Ejyle Technologies (P) Ltd (www.ejyle.com)
+// Licensed under the MIT license. See the LICENSE file in the project's root directory for complete license information.
+// ----------------------------------------------------------------------------------------------------------------------
+
+using Ejyle.DevAccelerate.Notifications.Messages;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;

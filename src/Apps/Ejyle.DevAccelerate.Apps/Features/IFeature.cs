@@ -3,13 +3,15 @@
 // Licensed under the MIT license. See the LICENSE file in the project's root directory for complete license information.
 // ----------------------------------------------------------------------------------------------------------------------
 
-using System.Threading.Tasks;
+using System;
+using Ejyle.DevAccelerate.Core;
 
-namespace Ejyle.DevAccelerate.Core.Sms
+namespace Ejyle.DevAccelerate.Apps.Features
 {
-    public interface ISmsProvider
+    public interface IFeature<TKey> : IEntity<TKey>
+        where TKey : IEquatable<TKey>
     {
-        void Send(string to, string body);
-        Task SendAsync(string to, string body);
+        string Name { get; set; }
+        string FeatureKey { get; set; }
     }
 }

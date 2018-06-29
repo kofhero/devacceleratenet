@@ -6,7 +6,6 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Ejyle.DevAccelerate.Lists.Geography;
 
 namespace Ejyle.DevAccelerate.Lists.System
 {

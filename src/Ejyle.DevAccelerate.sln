@@ -57,6 +57,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejyle.DevAccelerate.Files",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejyle.DevAccelerate.Files.UnitTests", "Files\Ejyle.DevAccelerate.Files.UnitTests\Ejyle.DevAccelerate.Files.UnitTests.csproj", "{F68BD80A-F8F5-4265-BC11-975D8E4A914B}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Apps", "Apps", "{E02E530B-7C8D-4320-BCE3-9BC378F3E078}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejyle.DevAccelerate.Apps", "Apps\Ejyle.DevAccelerate.Apps\Ejyle.DevAccelerate.Apps.csproj", "{225D3978-2C09-46C0-A051-8411E0D81614}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -135,6 +139,10 @@ Global
 		{F68BD80A-F8F5-4265-BC11-975D8E4A914B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F68BD80A-F8F5-4265-BC11-975D8E4A914B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F68BD80A-F8F5-4265-BC11-975D8E4A914B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{225D3978-2C09-46C0-A051-8411E0D81614}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{225D3978-2C09-46C0-A051-8411E0D81614}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{225D3978-2C09-46C0-A051-8411E0D81614}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{225D3978-2C09-46C0-A051-8411E0D81614}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -158,9 +166,10 @@ Global
 		{2BC69DFD-54CA-4DCB-8A45-B5BD35E510EC} = {2598DB80-FD71-4B79-AA06-8AA862FECE5D}
 		{05131571-1354-4A9B-9EA0-EB7F44CEEE9E} = {3E96FC79-AB3D-429D-8604-6E5687BF9ABD}
 		{F68BD80A-F8F5-4265-BC11-975D8E4A914B} = {3E96FC79-AB3D-429D-8604-6E5687BF9ABD}
+		{225D3978-2C09-46C0-A051-8411E0D81614} = {E02E530B-7C8D-4320-BCE3-9BC378F3E078}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {42F3A2F2-E141-4DF6-99B0-B818023128BF}
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Logging.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.ExceptionHandling.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Data.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Logging.Database.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.ExceptionHandling.Logging.6.0.1304.0\lib\NET45
+		SolutionGuid = {42F3A2F2-E141-4DF6-99B0-B818023128BF}
 	EndGlobalSection
 EndGlobal

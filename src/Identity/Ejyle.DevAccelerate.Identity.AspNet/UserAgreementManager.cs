@@ -5,7 +5,6 @@
 
 using System;
 using System.Threading.Tasks;
-using Ejyle.DevAccelerate.Identity.AspNet.Tenants;
 
 namespace Ejyle.DevAccelerate.Identity.AspNet
 {
