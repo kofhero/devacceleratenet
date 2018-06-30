@@ -12,7 +12,8 @@ namespace Ejyle.DevAccelerate.Apps
         where TKey : IEquatable<TKey>
     {
         TKey AppId { get; set; }
-        TKey FeatureId { get; set; }
+        string Name { get; set; }
+        string AppFeatureKey { get; set; }
         bool IsActive { get; set; }
     }
 }

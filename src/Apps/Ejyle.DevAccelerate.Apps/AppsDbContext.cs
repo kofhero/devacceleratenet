@@ -5,13 +5,24 @@
 
 using System;
 using System.Data.Entity;
-using Ejyle.DevAccelerate.Apps.Features;
 
 namespace Ejyle.DevAccelerate.Apps
 {
-    public class AppsDbContext<TKey, TFeature, TApp, TAppFeature> : DbContext
+    public class AppsDbContext : AppsDbContext<int, App, AppFeature>
+    {
+        public AppsDbContext()
+            : base("AppsConnection")
+        { }
+
+        public AppsDbContext(string nameOrConnectionString)
+            : base(nameOrConnectionString)
+        { }
+    }
+
+    public class AppsDbContext<TKey, TApp, TAppFeature> : DbContext
         where TKey : IEquatable<TKey>
-        where TFeature : Feature<TKey>
+        where TApp : App<TKey, TAppFeature>
+        where TAppFeature : AppFeature<TKey, TApp>
     {
         private const string SCHEMA_NAME = "Apps";
 
@@ -19,13 +30,21 @@ namespace Ejyle.DevAccelerate.Apps
             : base(nameOrConnectionString)
         { }
 
-        public virtual DbSet<TFeature> Features { get; set; }
+        public virtual DbSet<TApp> Apps { get; set; }
+        public virtual DbSet<TAppFeature> AppFeature { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<TFeature>().ToTable("Features", SCHEMA_NAME);
+            modelBuilder.Entity<TApp>().ToTable("Apps", SCHEMA_NAME);
+            modelBuilder.Entity<TAppFeature>().ToTable("AppFeatures", SCHEMA_NAME);
+
+            modelBuilder.Entity<TApp>()
+                .HasMany(e => e.AppFeatures)
+                .WithRequired(e => e.App)
+                .HasForeignKey(e => e.AppId)
+                .WillCascadeOnDelete(false);
         }
     }
 }

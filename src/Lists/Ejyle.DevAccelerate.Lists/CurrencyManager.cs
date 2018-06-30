@@ -3,6 +3,7 @@
 // Licensed under the MIT license. See the LICENSE file in the project's root directory for complete license information.
 // ----------------------------------------------------------------------------------------------------------------------
 
+using Ejyle.DevAccelerate.Core;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -16,23 +17,14 @@ namespace Ejyle.DevAccelerate.Lists
         { }
     }
 
-    public class CurrencyManager<TKey, TCurrency, TRepository>
+    public class CurrencyManager<TKey, TCurrency, TRepository> : EntityManagerBase<TKey, TCurrency, TRepository>
         where TKey : IEquatable<TKey>
         where TCurrency : ICurrency<TKey>
         where TRepository : ICurrencyRepository<TKey, TCurrency>
     {
-        private bool _isDisposed = false;
-
         public CurrencyManager(TRepository repository)
-        {
-            Repository = repository;
-        }
-
-        protected TRepository Repository
-        {
-            get;
-            private set;
-        }
+            : base(repository)
+        { }
 
         public List<TCurrency> FindAll()
         {
@@ -52,25 +44,6 @@ namespace Ejyle.DevAccelerate.Lists
         public Task<TCurrency> FindByIdAsync(TKey id)
         {
             return Repository.FindByIdAsync(id);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!_isDisposed)
-            {
-                if (disposing)
-                {
-                    Repository.Dispose();
-                    Repository = default(TRepository);
-                }
-
-                _isDisposed = true;
-            }
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
         }
     }
 }

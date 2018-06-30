@@ -9,6 +9,7 @@ using System.Linq;
 using System.Data.Entity;
 using System.Threading.Tasks;
 using Ejyle.DevAccelerate.Lists.System;
+using Ejyle.DevAccelerate.Core.EntityFramework;
 
 namespace Ejyle.DevAccelerate.Lists.Geography
 {
@@ -19,7 +20,8 @@ namespace Ejyle.DevAccelerate.Lists.Geography
         { }
     }
 
-    public class CountryRepository<TKey, TNullableKey, TGlobalTimeZone, TDateFormat, TSystemLanguage, TCurrency, TCountry, TCountryRegion, TDbContext> : ICountryRepository<TKey, TNullableKey, TCountry, TCountryRegion>
+    public class CountryRepository<TKey, TNullableKey, TGlobalTimeZone, TDateFormat, TSystemLanguage, TCurrency, TCountry, TCountryRegion, TDbContext>
+        : EntityRepositoryBase<TKey, TCountry, TDbContext>, ICountryRepository<TKey, TNullableKey, TCountry, TCountryRegion>
         where TKey : IEquatable<TKey>
         where TGlobalTimeZone : GlobalTimeZone<TKey, TNullableKey, TDateFormat, TCountry>
         where TDateFormat : DateFormat<TKey, TNullableKey, TGlobalTimeZone>
@@ -29,18 +31,9 @@ namespace Ejyle.DevAccelerate.Lists.Geography
         where TCountryRegion : CountryRegion<TKey, TNullableKey, TCountryRegion, TCountry>
         where TDbContext : ListsDbContext<TKey, TNullableKey, TGlobalTimeZone, TDateFormat, TSystemLanguage, TCurrency, TCountry, TCountryRegion>
     {
-        private bool _isDisposed = false;
-
         public CountryRepository(TDbContext dbContext)
-        {
-            DbContext = dbContext;
-        }
-
-        protected TDbContext DbContext
-        {
-            get;
-            private set;
-        }
+            : base(dbContext)
+        { }
 
         public List<TCountry> FindAll()
         {
@@ -80,25 +73,6 @@ namespace Ejyle.DevAccelerate.Lists.Geography
         public Task<TCountry> FindByNameAsync(string name)
         {
             return DbContext.Countries.Where(m => m.Name == name).SingleOrDefaultAsync();
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!_isDisposed)
-            {
-                if (disposing)
-                {
-                    DbContext.Dispose();
-                    DbContext = null;
-                }
-
-                _isDisposed = true;
-            }
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
         }
     }
 }

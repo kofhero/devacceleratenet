@@ -7,12 +7,13 @@ using System;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
+using Ejyle.DevAccelerate.Core.EntityFramework;
 using Ejyle.DevAccelerate.Identity.AspNet.Tenants;
 
 namespace Ejyle.DevAccelerate.Identity.AspNet
 {
     public class UserAgreementRepository<TKey, TNullableKey, TUser, TRole, TUserLogin, TUserRole, TUserClaim, TTenant, TTenantUser, TUserSession, TUserAgreement, TUserAgreementVersion, TDbContext>
-        : IUserAgreementRepository<TKey, TUserAgreement, TUserAgreementVersion>
+        : EntityRepositoryBase<TKey, TUserAgreement, TDbContext>, IUserAgreementRepository<TKey, TUserAgreement, TUserAgreementVersion>
         where TKey : IEquatable<TKey>
         where TUser : User<TKey, TNullableKey, TUserLogin, TUserRole, TUserClaim>
         where TRole : Role<TKey, TUserRole>, new()
@@ -26,14 +27,9 @@ namespace Ejyle.DevAccelerate.Identity.AspNet
         where TUserAgreementVersion : UserAgreementVersion<TKey, TUserAgreement>
         where TDbContext : AspNetIdentityDbContext<TKey, TNullableKey, TUser, TRole, TUserLogin, TUserRole, TUserClaim, TTenant, TTenantUser, TUserSession, TUserAgreement, TUserAgreementVersion>
     {
-        private bool _disposed = false;
-
         public UserAgreementRepository(TDbContext dbContext)
-        {
-            DbContext = dbContext;
-        }
-
-        protected TDbContext DbContext { get; private set; } = default(TDbContext);
+            : base(dbContext)
+        { }
 
         public Task CreateAsync(TUserAgreement userAgreement)
         {
@@ -55,25 +51,6 @@ namespace Ejyle.DevAccelerate.Identity.AspNet
         {
             DbContext.Entry(userAgreement).State = EntityState.Modified;
             return DbContext.SaveChangesAsync();
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!_disposed)
-            {
-                if (disposing)
-                {
-                    DbContext.Dispose();
-                    DbContext = null;
-                }
-
-                _disposed = true;
-            }
         }
     }
 }

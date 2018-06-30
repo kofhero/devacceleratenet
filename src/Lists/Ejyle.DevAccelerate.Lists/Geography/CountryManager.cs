@@ -3,6 +3,7 @@
 // Licensed under the MIT license. See the LICENSE file in the project's root directory for complete license information.
 // ----------------------------------------------------------------------------------------------------------------------
 
+using Ejyle.DevAccelerate.Core;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -16,23 +17,15 @@ namespace Ejyle.DevAccelerate.Lists.Geography
     }
 
     public class CountryManager<TKey, TNullableKey, TCountry, TCountryRegion, TRepository>
+        : EntityManagerBase<TKey, TCountry, TRepository>
         where TKey : IEquatable<TKey>
         where TCountry : ICountry<TKey>
         where TCountryRegion : ICountryRegion<TKey, TNullableKey>
         where TRepository : ICountryRepository<TKey, TNullableKey, TCountry, TCountryRegion>
     {
-        private bool _isDisposed = false;
-
         public CountryManager(TRepository repository)
-        {
-            Repository = repository;
-        }
-
-        protected TRepository Repository
-        {
-            get;
-            private set;
-        }
+            : base(repository)
+        { }
 
         public List<TCountry> FindAll()
         {
@@ -72,25 +65,6 @@ namespace Ejyle.DevAccelerate.Lists.Geography
         public Task<TCountry> FindByNameAsync(string name)
         {
             return Repository.FindByNameAsync(name);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!_isDisposed)
-            {
-                if (disposing)
-                {
-                    Repository.Dispose();
-                    Repository = default(TRepository);
-                }
-
-                _isDisposed = true;
-            }
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
         }
     }
 }

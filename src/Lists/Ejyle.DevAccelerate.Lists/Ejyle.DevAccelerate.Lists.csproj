@@ -87,6 +87,10 @@
     <Content Include="da.ico" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Core\Ejyle.DevAccelerate.Core.EntityFramework\Ejyle.DevAccelerate.Core.EntityFramework.csproj">
+      <Project>{689dadba-c995-4c5e-b554-4ee7a1957450}</Project>
+      <Name>Ejyle.DevAccelerate.Core.EntityFramework</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Core\Ejyle.DevAccelerate.Core\Ejyle.DevAccelerate.Core.csproj">
       <Project>{d6c2a6b1-b80f-404c-b087-0a31927f1a4c}</Project>
       <Name>Ejyle.DevAccelerate.Core</Name>

@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Data.Entity;
 using System.Collections.Generic;
+using Ejyle.DevAccelerate.Core.EntityFramework;
 
 namespace Ejyle.DevAccelerate.Identity.AspNet.Tenants
 {
@@ -21,7 +22,7 @@ namespace Ejyle.DevAccelerate.Identity.AspNet.Tenants
     }
 
     public class TenantRepository<TKey, TNullableKey, TUser, TRole, TUserLogin, TUserRole, TUserClaim, TTenant, TTenantUser, TUserSession, TUserAgreement, TUserAgreementVersion, TDbContext>
-        : ITenantRepository<TKey, TNullableKey, TTenant, TTenantUser>
+        : EntityRepositoryBase<TKey, TTenant, TDbContext>, ITenantRepository<TKey, TNullableKey, TTenant, TTenantUser>
         where TKey : IEquatable<TKey>
         where TUser : User<TKey, TNullableKey, TUserLogin, TUserRole, TUserClaim>
         where TRole : Role<TKey, TUserRole>, new()
@@ -35,14 +36,9 @@ namespace Ejyle.DevAccelerate.Identity.AspNet.Tenants
         where TUserAgreementVersion : UserAgreementVersion<TKey, TUserAgreement>
         where TDbContext : AspNetIdentityDbContext<TKey, TNullableKey, TUser, TRole, TUserLogin, TUserRole, TUserClaim, TTenant, TTenantUser, TUserSession, TUserAgreement, TUserAgreementVersion>
     {
-        private bool _disposed = false;
-
         public TenantRepository(TDbContext dbContext)
-        {
-            DbContext = dbContext;
-        }
-
-        protected TDbContext DbContext { get; private set; } = default(TDbContext);
+            : base(dbContext)
+        { }
 
         public Task CreateAsync(TTenant tenant)
         {
@@ -108,25 +104,6 @@ namespace Ejyle.DevAccelerate.Identity.AspNet.Tenants
         public List<TTenant> FindByUserId(TKey userId)
         {
             return DbContext.Tenants.Where(m => m.TenantUsers.Any(x => x.UserId.Equals(userId))).ToList();
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!_disposed)
-            {
-                if (disposing)
-                {
-                    DbContext.Dispose();
-                    DbContext = null;
-                }
-
-                _disposed = true;
-            }
         }
     }
 }

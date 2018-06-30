@@ -3,26 +3,22 @@
 // Licensed under the MIT license. See the LICENSE file in the project's root directory for complete license information.
 // ----------------------------------------------------------------------------------------------------------------------
 
+using Ejyle.DevAccelerate.Core;
 using System;
 using System.Threading.Tasks;
 
 namespace Ejyle.DevAccelerate.Identity.AspNet
 {
     public class UserAgreementManagery<TKey, TUserAgreement, TUserAgreementVersion, TUserAgreementRepository>
-        : IDisposable
+        : EntityManagerBase<TKey, TUserAgreement, TUserAgreementRepository>
         where TKey : IEquatable<TKey>
         where TUserAgreement : UserAgreement<TKey, TUserAgreementVersion>
         where TUserAgreementVersion : UserAgreementVersion<TKey, TUserAgreement>
         where TUserAgreementRepository : IUserAgreementRepository<TKey, TUserAgreement, TUserAgreementVersion>
     {
-        private bool _disposed = false;
-
         public UserAgreementManagery(TUserAgreementRepository repository)
-        {
-            Repository = repository;
-        }
-
-        protected TUserAgreementRepository Repository { get; private set; } = default(TUserAgreementRepository);
+            : base(repository)
+        { }
 
         public Task CreateAsync(TUserAgreement userAgreement)
         {
@@ -42,25 +38,6 @@ namespace Ejyle.DevAccelerate.Identity.AspNet
         public Task UpdateAsync(TUserAgreement userAgreement)
         {
             return Repository.UpdateAsync(userAgreement);
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!_disposed)
-            {
-                if (disposing)
-                {
-                    Repository.Dispose();
-                    Repository = default(TUserAgreementRepository);
-                }
-
-                _disposed = true;
-            }
         }
     }
 }

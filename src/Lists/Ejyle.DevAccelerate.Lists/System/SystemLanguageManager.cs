@@ -3,6 +3,7 @@
 // Licensed under the MIT license. See the LICENSE file in the project's root directory for complete license information.
 // ----------------------------------------------------------------------------------------------------------------------
 
+using Ejyle.DevAccelerate.Core;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -17,22 +18,14 @@ namespace Ejyle.DevAccelerate.Lists.System
     }
 
     public class SystemLanguageManager<TKey, TSystemLanguage, TRepository>
+        : EntityManagerBase<TKey, TSystemLanguage, TRepository>
         where TKey : IEquatable<TKey>
         where TSystemLanguage : ISystemLanguage<TKey>
         where TRepository : ISystemLanguageRepository<TKey, TSystemLanguage>
     {
-        private bool _isDisposed = false;
-
         public SystemLanguageManager(TRepository repository)
-        {
-            Repository = repository;
-        }
-
-        protected TRepository Repository
-        {
-            get;
-            private set;
-        }
+            : base(repository)
+        { }
 
         public List<TSystemLanguage> FindAll()
         {
@@ -62,25 +55,6 @@ namespace Ejyle.DevAccelerate.Lists.System
         public Task<List<TSystemLanguage>> FindByCountryIdAsync(TKey countryId)
         {
             return Repository.FindByCountryIdAsync(countryId);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!_isDisposed)
-            {
-                if (disposing)
-                {
-                    Repository.Dispose();
-                    Repository = default(TRepository);
-                }
-
-                _isDisposed = true;
-            }
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
         }
     }
 }

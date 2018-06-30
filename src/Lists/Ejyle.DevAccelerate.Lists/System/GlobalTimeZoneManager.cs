@@ -3,6 +3,7 @@
 // Licensed under the MIT license. See the LICENSE file in the project's root directory for complete license information.
 // ----------------------------------------------------------------------------------------------------------------------
 
+using Ejyle.DevAccelerate.Core;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -17,6 +18,7 @@ namespace Ejyle.DevAccelerate.Lists.System
     }
 
     public class GlobalTimeZoneManager<TKey, TNullableKey, TGlobalTimeZone, TRepository>
+        : EntityManagerBase<TKey, TGlobalTimeZone, TRepository>
         where TKey : IEquatable<TKey>
         where TGlobalTimeZone : IGlobalTimeZone<TKey, TNullableKey>
         where TRepository : IGlobalTimeZoneRepository<TKey, TNullableKey, TGlobalTimeZone>
@@ -24,15 +26,8 @@ namespace Ejyle.DevAccelerate.Lists.System
         private bool _isDisposed = false;
 
         public GlobalTimeZoneManager(TRepository repository)
-        {
-            Repository = repository;
-        }
-
-        protected TRepository Repository
-        {
-            get;
-            private set;
-        }
+            : base(repository)
+        { }
 
         public List<TGlobalTimeZone> FindAll()
         {
@@ -62,25 +57,6 @@ namespace Ejyle.DevAccelerate.Lists.System
         public Task<List<TGlobalTimeZone>> FindByCountryIdAsync(TKey countryId)
         {
             return Repository.FindByCountryIdAsync(countryId);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!_isDisposed)
-            {
-                if (disposing)
-                {
-                    Repository.Dispose();
-                    Repository = default(TRepository);
-                }
-
-                _isDisposed = true;
-            }
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
         }
     }
 }

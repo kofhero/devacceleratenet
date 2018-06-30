@@ -3,6 +3,7 @@
 // Licensed under the MIT license. See the LICENSE file in the project's root directory for complete license information.
 // ----------------------------------------------------------------------------------------------------------------------
 
+using Ejyle.DevAccelerate.Core;
 using System;
 using System.Threading.Tasks;
 
@@ -12,25 +13,18 @@ namespace Ejyle.DevAccelerate.Identity.AspNet
     {
         public UserSessionManager(UserSessionRepository repository)
             : base(repository)
-        {
-
-        }
+        { }
     }
 
     public class UserSessionManager<TKey, TNullableKey, TUserSession, TUserSessionRepository>
-        : IDisposable
+        : EntityManagerBase<TKey, TUserSession, TUserSessionRepository>
         where TKey : IEquatable<TKey>
         where TUserSession : IUserSession<TKey>
         where TUserSessionRepository : IUserSessionRepository<TKey, TUserSession>
     {
-        private bool _disposed = false;
-
         public UserSessionManager(TUserSessionRepository repository)
-        {
-            Repository = repository;
-        }
-
-        protected TUserSessionRepository Repository { get; private set; } = default(TUserSessionRepository);
+            : base(repository)
+        { }
 
         public Task CreateAsync(TUserSession userSession)
         {
@@ -60,25 +54,6 @@ namespace Ejyle.DevAccelerate.Identity.AspNet
         public TUserSession FindByKey(string key)
         {
             return Repository.FindByKey(key);
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!_disposed)
-            {
-                if (disposing)
-                {
-                    Repository.Dispose();
-                    Repository = default(TUserSessionRepository);
-                }
-
-                _disposed = true;
-            }
         }
     }
 }

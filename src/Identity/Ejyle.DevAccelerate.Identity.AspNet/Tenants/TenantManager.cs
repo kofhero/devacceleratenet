@@ -6,6 +6,7 @@
 using System;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using Ejyle.DevAccelerate.Core;
 
 namespace Ejyle.DevAccelerate.Identity.AspNet.Tenants
 {
@@ -17,20 +18,15 @@ namespace Ejyle.DevAccelerate.Identity.AspNet.Tenants
     }
 
     public class TenantManager<TKey, TNullableKey, TTenant, TTenantUser, TTenantRepository>
-        : IDisposable
+        : EntityManagerBase<TKey, TTenant, TTenantRepository>, IDisposable
         where TKey : IEquatable<TKey>
         where TTenant : ITenant<TKey, TNullableKey>
         where TTenantUser : ITenantUser<TKey>
         where TTenantRepository : ITenantRepository<TKey, TNullableKey, TTenant, TTenantUser>
     {
-        private bool _disposed = false;
-
         public TenantManager(TTenantRepository repository)
-        {
-            Repository = repository;
-        }
-
-        protected TTenantRepository Repository { get; private set; } = default(TTenantRepository);
+            : base(repository)
+        { }
 
         public Task CreateAsync(TTenant tenant)
         {
@@ -90,25 +86,6 @@ namespace Ejyle.DevAccelerate.Identity.AspNet.Tenants
         public List<TTenant> FindByUserId(TKey userId)
         {
             return Repository.FindByUserId(userId);
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!_disposed)
-            {
-                if (disposing)
-                {
-                    Repository.Dispose();
-                    Repository = default(TTenantRepository);
-                }
-
-                _disposed = true;
-            }
         }
     }
 }

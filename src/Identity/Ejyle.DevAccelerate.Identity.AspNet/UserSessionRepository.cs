@@ -8,6 +8,7 @@ using System;
 using System.Linq;
 using System.Data.Entity;
 using System.Threading.Tasks;
+using Ejyle.DevAccelerate.Core.EntityFramework;
 
 namespace Ejyle.DevAccelerate.Identity.AspNet
 {
@@ -19,7 +20,7 @@ namespace Ejyle.DevAccelerate.Identity.AspNet
     }
 
     public class UserSessionRepository<TKey, TNullableKey, TUser, TRole, TUserLogin, TUserRole, TUserClaim, TTenant, TTenantUser, TUserSession, TUserAgreement, TUserAgreementVersion, TDbContext>
-        : IUserSessionRepository<TKey, TUserSession>
+        : EntityRepositoryBase<TKey, TUserSession, TDbContext>, IUserSessionRepository<TKey, TUserSession>
         where TKey : IEquatable<TKey>
         where TUser : User<TKey, TNullableKey, TUserLogin, TUserRole, TUserClaim>
         where TRole : Role<TKey, TUserRole>, new()
@@ -33,63 +34,40 @@ namespace Ejyle.DevAccelerate.Identity.AspNet
         where TUserAgreementVersion : UserAgreementVersion<TKey, TUserAgreement>
         where TDbContext : AspNetIdentityDbContext<TKey, TNullableKey, TUser, TRole, TUserLogin, TUserRole, TUserClaim, TTenant, TTenantUser, TUserSession, TUserAgreement, TUserAgreementVersion>
     {
-        private bool _disposed = false;
-        private TDbContext _dbContext;
-
         public UserSessionRepository(TDbContext dbContext)
-        {
-            _dbContext = dbContext;
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!_disposed)
-            {
-                if (disposing)
-                {
-                    _dbContext.Dispose();
-                    _dbContext = default(TDbContext);
-                }
-
-                _disposed = true;
-            }
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-        }
+            : base(dbContext)
+        { }
 
         public Task CreateAsync(TUserSession userSession)
         {
-            _dbContext.UserSessions.Add(userSession);
-            return _dbContext.SaveChangesAsync();
+            DbContext.UserSessions.Add(userSession);
+            return DbContext.SaveChangesAsync();
         }
 
         public void Create(TUserSession userSession)
         {
-            _dbContext.UserSessions.Add(userSession);
-            _dbContext.SaveChanges(); ;
+            DbContext.UserSessions.Add(userSession);
+            DbContext.SaveChanges(); ;
         }
 
         public Task<TUserSession> FindByIdAsync(TKey id)
         {
-            return _dbContext.UserSessions.Where(m => m.Equals(id)).SingleOrDefaultAsync();
+            return DbContext.UserSessions.Where(m => m.Equals(id)).SingleOrDefaultAsync();
         }
 
         public TUserSession FindById(TKey id)
         {
-            return _dbContext.UserSessions.Where(m => m.Equals(id)).SingleOrDefault();
+            return DbContext.UserSessions.Where(m => m.Equals(id)).SingleOrDefault();
         }
 
         public Task<TUserSession> FindByKeyAsync(string key)
         {
-            return _dbContext.UserSessions.Where(m => m.SessionKey == key).SingleOrDefaultAsync();
+            return DbContext.UserSessions.Where(m => m.SessionKey == key).SingleOrDefaultAsync();
         }
 
         public TUserSession FindByKey(string key)
         {
-            return _dbContext.UserSessions.Where(m => m.SessionKey == key).SingleOrDefault();
+            return DbContext.UserSessions.Where(m => m.SessionKey == key).SingleOrDefault();
         }
     }
 }

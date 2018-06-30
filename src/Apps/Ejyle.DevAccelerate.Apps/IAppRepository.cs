@@ -8,12 +8,20 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Ejyle.DevAccelerate.Apps.Features
+namespace Ejyle.DevAccelerate.Apps
 {
-    public interface IFeatureRepository<TKey, TFeature> : IEntityRepository<TKey, TFeature>
+    public interface IAppRepository<TKey, TApp, TAppFeature> : IEntityRepository<TKey, TApp>
         where TKey : IEquatable<TKey>
-        where TFeature : IFeature<TKey>
+        where TApp : IApp<TKey>
+        where TAppFeature : IAppFeature<TKey>
     {
-        Task<List<TFeature>> FindAllAsync();
+        Task<List<TApp>> FindAllAsync();
+        List<TApp> FindAll();
+
+        Task<TApp> FindByIdAsync(TKey id);
+        TApp FindById(TKey id);
+
+        Task<TApp> FindByKeyAsync(string key);
+        TApp FindByKey(string key);
     }
 }

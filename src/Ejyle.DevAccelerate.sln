@@ -61,6 +61,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Apps", "Apps", "{E02E530B-7
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejyle.DevAccelerate.Apps", "Apps\Ejyle.DevAccelerate.Apps\Ejyle.DevAccelerate.Apps.csproj", "{225D3978-2C09-46C0-A051-8411E0D81614}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejyle.DevAccelerate.Core.EntityFramework", "Core\Ejyle.DevAccelerate.Core.EntityFramework\Ejyle.DevAccelerate.Core.EntityFramework.csproj", "{689DADBA-C995-4C5E-B554-4EE7A1957450}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -143,6 +145,10 @@ Global
 		{225D3978-2C09-46C0-A051-8411E0D81614}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{225D3978-2C09-46C0-A051-8411E0D81614}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{225D3978-2C09-46C0-A051-8411E0D81614}.Release|Any CPU.Build.0 = Release|Any CPU
+		{689DADBA-C995-4C5E-B554-4EE7A1957450}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{689DADBA-C995-4C5E-B554-4EE7A1957450}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{689DADBA-C995-4C5E-B554-4EE7A1957450}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{689DADBA-C995-4C5E-B554-4EE7A1957450}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -167,6 +173,7 @@ Global
 		{05131571-1354-4A9B-9EA0-EB7F44CEEE9E} = {3E96FC79-AB3D-429D-8604-6E5687BF9ABD}
 		{F68BD80A-F8F5-4265-BC11-975D8E4A914B} = {3E96FC79-AB3D-429D-8604-6E5687BF9ABD}
 		{225D3978-2C09-46C0-A051-8411E0D81614} = {E02E530B-7C8D-4320-BCE3-9BC378F3E078}
+		{689DADBA-C995-4C5E-B554-4EE7A1957450} = {B81C5372-A185-4E08-B4C7-55DACCBC851B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Logging.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.ExceptionHandling.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Data.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Logging.Database.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.ExceptionHandling.Logging.6.0.1304.0\lib\NET45
