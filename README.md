@@ -15,7 +15,7 @@
 
 <h3>Commitment to DevAccelerate.NET</h3>
 
-<p>The project is officially supported by Ejyle and actively contributed to by Tanveer Yousuf.</p>
+<p>The project is officially supported by Ejyle and is committed to actively contribute to the project.</p>
 
 <h3>License</h3>
 
